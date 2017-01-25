@@ -169,6 +169,7 @@
     <Content Include="css\style-main-rtl.css" />
     <Content Include="css\style-main.css" />
     <Content Include="css\utility-classes.css" />
+    <Content Include="css\webrtc\style.css" />
     <Content Include="dialog\index.html" />
     <Content Include="fonts\fontawesome-webfont3295.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -799,6 +800,8 @@
     <Content Include="js\vertical-timeline\img\cd-icon-location.svg" />
     <Content Include="js\vertical-timeline\img\cd-icon-movie.svg" />
     <Content Include="js\vertical-timeline\img\cd-icon-picture.svg" />
+    <Content Include="js\webrtc\firebase.js" />
+    <Content Include="js\webrtc\RTCMultiConnection.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -811,6 +814,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -842,6 +846,8 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
