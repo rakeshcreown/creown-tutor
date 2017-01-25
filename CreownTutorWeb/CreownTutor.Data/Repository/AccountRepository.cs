@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CreownTutor.Data.Model;
 
 namespace CreownTutor.Data.Repository
 {
@@ -10,6 +11,8 @@ namespace CreownTutor.Data.Repository
     {
         public void Register()
         {
+            var loginregistrationviewmodel = new LoginRegistrationViewModel();
+            //loginregistrationviewmodel.Name=
 
         }
 

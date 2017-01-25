@@ -815,7 +815,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -844,7 +844,7 @@
     <Content Include="js\revolution-slider\fonts\revicons\revicons90c6.ttf" />
     <Content Include="js\revolution-slider\fonts\revicons\revicons90c6.woff" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -859,6 +859,12 @@
     <Folder Include="App_Data\" />
     <Folder Include="DB_Script\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreownTutor.Data\CreownTutor.Data.csproj">
+      <Project>{b89715bc-e244-4e3a-a6e5-c4d51b77978a}</Project>
+      <Name>CreownTutor.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
