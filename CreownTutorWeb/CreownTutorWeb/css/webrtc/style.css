@@ -25,13 +25,13 @@ article p:last-child {
     margin-bottom: 0;
 }
 
-h1, h2 {
+/*h1, h2 {
     border-bottom: 1px solid rgb(189, 189, 189);
     display: inline;
     font-weight: normal;
     line-height: 36px;
     padding: 0 0 3px 0;
-}
+}*/
 
 :-moz-any-link:focus {
     border: 0;
@@ -46,7 +46,7 @@ h1, h2 {
     background: #ccc;
 }
 
-button, input[type=button] {
+/*button, input[type=button] {
     -moz-border-radius: 3px;
     -moz-transition: none;
     -webkit-transition: none;
@@ -79,7 +79,7 @@ button[disabled], input[type=button][disabled] {
     border: 1px solid rgb(187, 181, 181);
     color: gray;
     text-shadow: none;
-}
+}*/
 
 strong {
     color: rgb(204, 14, 14);

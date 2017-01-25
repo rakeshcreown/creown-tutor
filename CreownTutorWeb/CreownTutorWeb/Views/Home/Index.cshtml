@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="author" content="Muaz Khan">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link href="/css/webrtc/style.css" rel="stylesheet" />
 <style>
@@ -59,14 +58,8 @@
 
 <!-- scripts used for broadcasting -->
 <script src="/js/webrtc/firebase.js"></script>
-@*<script src="//cdn.webrtc-experiment.com/firebase.js">
-</script>*@
-@*<script src="//cdn.webrtc-experiment.com/RTCMultiConnection.js">
-</script>*@
 <script src="/js/webrtc/RTCMultiConnection.js"></script>
 <article>
-    @*<div class="github-stargazers"></div>*@
-
     <!-- just copy this <section> and next script -->
     <section class="experiment">
         <section>
@@ -107,15 +100,15 @@
         connection.onstream = function (e) {
             e.mediaElement.width = 600;
             videosContainer.insertBefore(e.mediaElement, videosContainer.firstChild);
-            rotateVideo(e.mediaElement);
+            //rotateVideo(e.mediaElement);
             scaleVideos();
         };
-        function rotateVideo(mediaElement) {
-            mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-            setTimeout(function () {
-                mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-            }, 1000);
-        }
+        //function rotateVideo(mediaElement) {
+        //    mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+        //    setTimeout(function () {
+        //        mediaElement.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+        //    }, 1000);
+        //}
         connection.onstreamended = function (e) {
             e.mediaElement.style.opacity = 0;
             rotateVideo(e.mediaElement);
