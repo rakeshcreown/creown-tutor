@@ -15,6 +15,13 @@
           <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
           <Property Name="IsItemDelivered" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -22,15 +29,14 @@
           <Property Name="CourseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CourseDescription" Type="varchar(max)" Nullable="false" />
-          <Property Name="NoOfChapters" Type="int" Nullable="false" />
-          <Property Name="DurationOfCourse" Type="datetime" Nullable="false" />
-          <Property Name="NoOfAttendees" Type="int" Nullable="false" />
-          <Property Name="TypeOfCourse" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Language" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ContentType" Type="varbinary(max)" Nullable="false" />
-          <Property Name="CreatedDateAndTime" Type="datetime" Nullable="false" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="NoOfChapters" Type="int" />
+          <Property Name="DurationOfCourse" Type="datetime" />
+          <Property Name="NoOfAttendees" Type="int" />
+          <Property Name="TypeOfCourse" Type="varchar" MaxLength="50" />
+          <Property Name="Language" Type="varchar" MaxLength="50" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDateAndTime" Type="datetime" />
+          <Property Name="RoleID" Type="int" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -48,7 +54,7 @@
           <Property Name="ClassroomType" Type="varchar" MaxLength="50" />
           <Property Name="Visibility" Type="bit" Nullable="false" />
           <Property Name="TypeOfCourse" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="HostUserID" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -71,6 +77,30 @@
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SessionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SessionUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="IsPresenter" Type="bit" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCategory" Type="varchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="int" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
@@ -100,21 +130,25 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailAddress" Type="varchar(max)" Nullable="false" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
-          <Property Name="Location" Type="varchar" MaxLength="50" />
-          <Property Name="ContactDetails" Type="varchar" MaxLength="50" />
-          <Property Name="DateOfBirth" Type="varchar" MaxLength="50" />
-          <Property Name="RoleID" Type="int" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" />
-          <Property Name="ProfileImage" Type="image" />
-          <Property Name="SessionID" Type="int" />
-          <Property Name="CourseID" Type="int" />
+          <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactDetails" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProfileImage" Type="image" Nullable="false" />
+          <Property Name="SessionID" Type="int" Nullable="false" />
+          <Property Name="CourseID" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="CreownTutorModelStoreContainer">
           <EntitySet Name="CartInfomation" EntityType="Self.CartInfomation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiveSession" EntityType="Self.LiveSession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionStatus" EntityType="Self.SessionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionUsers" EntityType="Self.SessionUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -131,44 +165,6 @@
           <Property Name="TotalPrice" Type="Int64" Nullable="false" />
           <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsItemDelivered" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Course">
-          <Key>
-            <PropertyRef Name="CourseID" />
-          </Key>
-          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CourseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NoOfChapters" Type="Int32" Nullable="false" />
-          <Property Name="DurationOfCourse" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NoOfAttendees" Type="Int32" Nullable="false" />
-          <Property Name="TypeOfCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ContentType" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="CreatedDateAndTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="LiveSession">
-          <Key>
-            <PropertyRef Name="SessionID" />
-          </Key>
-          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FromTime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="ToTime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Timezone" Type="DateTime" Precision="3" />
-          <Property Name="IsLanguagecgangeable" Type="Boolean" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NoOfAttendees" Type="Int32" Nullable="false" />
-          <Property Name="ClassroomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Visibility" Type="Boolean" Nullable="false" />
-          <Property Name="TypeOfCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -210,12 +206,16 @@
         </EntityType>
         <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CartInfomations" EntityType="Self.CartInfomation" />
-          <EntitySet Name="Courses" EntityType="Self.Course" />
-          <EntitySet Name="LiveSessions" EntityType="Self.LiveSession" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Tests" EntityType="Self.Test" />
           <EntitySet Name="UserDetails" EntityType="CreownTutorModel.UserDetail" />
+          <EntitySet Name="Categories" EntityType="CreownTutorModel.Category" />
+          <EntitySet Name="SessionStatus" EntityType="CreownTutorModel.SessionStatu" />
+          <EntitySet Name="SessionUsers" EntityType="CreownTutorModel.SessionUser" />
+          <EntitySet Name="SubCategories" EntityType="CreownTutorModel.SubCategory" />
+          <EntitySet Name="LiveSessions" EntityType="CreownTutorModel.LiveSession" />
+          <EntitySet Name="Courses" EntityType="CreownTutorModel.Course" />
         </EntityContainer>
         <EntityType Name="UserDetail">
           <Key>
@@ -226,14 +226,82 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="SessionID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SessionStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SessionUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="IsPresenter" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategory1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LiveSession">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FromTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ToTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Timezone" Type="DateTime" Precision="3" />
+          <Property Name="IsLanguagecgangeable" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="NoOfAttendees" Type="Int32" Nullable="false" />
+          <Property Name="ClassroomType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Visibility" Type="Boolean" Nullable="false" />
+          <Property Name="TypeOfCourse" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HostUserID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="CourseID" />
+          </Key>
+          <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NoOfChapters" Type="Int32" />
+          <Property Name="DurationOfCourse" Type="DateTime" Precision="3" />
+          <Property Name="NoOfAttendees" Type="Int32" />
+          <Property Name="TypeOfCourse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDateAndTime" Type="DateTime" Precision="3" />
           <Property Name="RoleID" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="SessionID" Type="Int32" />
-          <Property Name="CourseID" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -249,46 +317,6 @@
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="IsItemDelivered" ColumnName="IsItemDelivered" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="CreownTutorModel.Course">
-              <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
-                <ScalarProperty Name="NoOfChapters" ColumnName="NoOfChapters" />
-                <ScalarProperty Name="DurationOfCourse" ColumnName="DurationOfCourse" />
-                <ScalarProperty Name="NoOfAttendees" ColumnName="NoOfAttendees" />
-                <ScalarProperty Name="TypeOfCourse" ColumnName="TypeOfCourse" />
-                <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
-                <ScalarProperty Name="CreatedDateAndTime" ColumnName="CreatedDateAndTime" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LiveSessions">
-            <EntityTypeMapping TypeName="CreownTutorModel.LiveSession">
-              <MappingFragment StoreEntitySet="LiveSession">
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
-                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
-                <ScalarProperty Name="Timezone" ColumnName="Timezone" />
-                <ScalarProperty Name="IsLanguagecgangeable" ColumnName="IsLanguagecgangeable" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="NoOfAttendees" ColumnName="NoOfAttendees" />
-                <ScalarProperty Name="ClassroomType" ColumnName="ClassroomType" />
-                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
-                <ScalarProperty Name="TypeOfCourse" ColumnName="TypeOfCourse" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -349,6 +377,80 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="CreownTutorModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionStatus">
+            <EntityTypeMapping TypeName="CreownTutorModel.SessionStatu">
+              <MappingFragment StoreEntitySet="SessionStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionUsers">
+            <EntityTypeMapping TypeName="CreownTutorModel.SessionUser">
+              <MappingFragment StoreEntitySet="SessionUsers">
+                <ScalarProperty Name="IsPresenter" ColumnName="IsPresenter" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="CreownTutorModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategory1" ColumnName="SubCategory" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiveSessions">
+            <EntityTypeMapping TypeName="CreownTutorModel.LiveSession">
+              <MappingFragment StoreEntitySet="LiveSession">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HostUserID" ColumnName="HostUserID" />
+                <ScalarProperty Name="TypeOfCourse" ColumnName="TypeOfCourse" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="ClassroomType" ColumnName="ClassroomType" />
+                <ScalarProperty Name="NoOfAttendees" ColumnName="NoOfAttendees" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsLanguagecgangeable" ColumnName="IsLanguagecgangeable" />
+                <ScalarProperty Name="Timezone" ColumnName="Timezone" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="CreownTutorModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="CreatedDateAndTime" ColumnName="CreatedDateAndTime" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="TypeOfCourse" ColumnName="TypeOfCourse" />
+                <ScalarProperty Name="NoOfAttendees" ColumnName="NoOfAttendees" />
+                <ScalarProperty Name="DurationOfCourse" ColumnName="DurationOfCourse" />
+                <ScalarProperty Name="NoOfChapters" ColumnName="NoOfChapters" />
+                <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

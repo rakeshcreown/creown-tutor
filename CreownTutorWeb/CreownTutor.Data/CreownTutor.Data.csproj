@@ -60,7 +60,10 @@
     <Compile Include="Repository\CartInfomation.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\Category.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\CourseRepository.cs" />
     <Compile Include="Repository\Course.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -86,6 +89,15 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\Role.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\SessionStatu.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\SessionUser.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\SubCategory.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\Test.cs">

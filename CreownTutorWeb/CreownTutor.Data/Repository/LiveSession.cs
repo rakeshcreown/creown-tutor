@@ -26,7 +26,7 @@ namespace CreownTutor.Data.Repository
         public string ClassroomType { get; set; }
         public bool Visibility { get; set; }
         public string TypeOfCourse { get; set; }
-        public int UserID { get; set; }
+        public int HostUserID { get; set; }
         public int Status { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

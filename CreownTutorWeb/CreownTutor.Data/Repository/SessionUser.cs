@@ -12,20 +12,11 @@ namespace CreownTutor.Data.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class UserDetail
+    public partial class SessionUser
     {
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Name { get; set; }
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
-        public string Location { get; set; }
-        public string ContactDetails { get; set; }
-        public string DateOfBirth { get; set; }
-        public int RoleID { get; set; }
-        public string Gender { get; set; }
-        public byte[] ProfileImage { get; set; }
+        public int ID { get; set; }
         public int SessionID { get; set; }
-        public int CourseID { get; set; }
+        public int UserID { get; set; }
+        public Nullable<bool> IsPresenter { get; set; }
     }
 }

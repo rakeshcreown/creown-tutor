@@ -17,14 +17,13 @@ namespace CreownTutor.Data.Repository
         public int CourseID { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
-        public int NoOfChapters { get; set; }
-        public System.DateTime DurationOfCourse { get; set; }
-        public int NoOfAttendees { get; set; }
+        public Nullable<int> NoOfChapters { get; set; }
+        public Nullable<System.DateTime> DurationOfCourse { get; set; }
+        public Nullable<int> NoOfAttendees { get; set; }
         public string TypeOfCourse { get; set; }
         public string Language { get; set; }
         public string Category { get; set; }
-        public byte[] ContentType { get; set; }
-        public System.DateTime CreatedDateAndTime { get; set; }
-        public int RoleID { get; set; }
+        public Nullable<System.DateTime> CreatedDateAndTime { get; set; }
+        public Nullable<int> RoleID { get; set; }
     }
 }

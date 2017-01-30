@@ -6,12 +6,16 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3fb2c17751fe4417820e851591146be4" Name="Diagram1">
         <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
