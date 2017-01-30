@@ -170,6 +170,7 @@
     <Content Include="css\style-main.css" />
     <Content Include="css\utility-classes.css" />
     <Content Include="css\webrtc\style.css" />
+    <Content Include="DB_Script\DbVersion1.1.sql" />
     <Content Include="dialog\index.html" />
     <Content Include="fonts\fontawesome-webfont3295.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -857,7 +858,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DB_Script\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

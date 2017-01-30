@@ -127,5 +127,27 @@ CREATE TABLE [dbo].[UserDetails](
 GO
 
 
+alter table [dbo].[LiveSession]
+add [Status] int not null default 1
+GO
 
+alter table LiveSession
+add CreatedBy int null
+go
+
+alter table LiveSession
+add CreatedDate DateTime null
+go
+
+alter table Reviews
+add CourseID int null 
+go
+
+alter table Reviews
+add SessionID int null
+go
+
+alter table Reviews
+add AddedTime DateTime null 
+go
 
