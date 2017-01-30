@@ -11,13 +11,22 @@ namespace CreownTutor.Data.Repository
     {
         public void Register(LoginRegistrationViewModel model)
         {
-            UserDetail userInformation = new UserDetail();
-            userInformation.Username = model.UserName;
-            userInformation.EmailAddress = model.EmailAddress;
-            userInformation.Password = model.Password;
-            userInformation.Name = model.Name;
-            dbEntity.UserDetails.Add(userInformation);
-            dbEntity.SaveChanges();
+            try
+            {
+                UserDetail userInformation = new UserDetail();
+                userInformation.Username = model.UserName;
+                userInformation.EmailAddress = model.EmailAddress;
+                userInformation.Password = model.Password;
+                userInformation.Name = model.Name;
+                dbEntity.UserDetails.Add(userInformation);
+                dbEntity.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+               
+            }
+            
         }
 
         public void Login()

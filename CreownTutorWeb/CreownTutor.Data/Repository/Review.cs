@@ -18,5 +18,8 @@ namespace CreownTutor.Data.Repository
         public int ReviewRating { get; set; }
         public string ReviewComments { get; set; }
         public int UserID { get; set; }
+        public Nullable<int> CourseID { get; set; }
+        public Nullable<int> SessionID { get; set; }
+        public Nullable<System.DateTime> AddedTime { get; set; }
     }
 }

@@ -22,10 +22,10 @@ namespace CreownTutor.Data.Repository
         public string Location { get; set; }
         public string ContactDetails { get; set; }
         public string DateOfBirth { get; set; }
-        public int RoleID { get; set; }
+        public Nullable<int> RoleID { get; set; }
         public string Gender { get; set; }
         public byte[] ProfileImage { get; set; }
-        public int SessionID { get; set; }
-        public int CourseID { get; set; }
+        public Nullable<int> SessionID { get; set; }
+        public Nullable<int> CourseID { get; set; }
     }
 }
