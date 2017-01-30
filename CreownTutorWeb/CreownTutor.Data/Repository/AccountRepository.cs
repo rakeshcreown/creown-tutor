@@ -7,13 +7,17 @@ using CreownTutor.Data.Model;
 
 namespace CreownTutor.Data.Repository
 {
-    public class AccountRepository
+    public class AccountRepository : BaseRepository
     {
-        public void Register()
+        public void Register(LoginRegistrationViewModel model)
         {
-            var loginregistrationviewmodel = new LoginRegistrationViewModel();
-            //loginregistrationviewmodel.Name=
-
+            UserDetail userInformation = new UserDetail();
+            userInformation.Username = model.UserName;
+            userInformation.EmailAddress = model.EmailAddress;
+            userInformation.Password = model.Password;
+            userInformation.Name = model.Name;
+            dbEntity.UserDetails.Add(userInformation);
+            dbEntity.SaveChanges();
         }
 
         public void Login()

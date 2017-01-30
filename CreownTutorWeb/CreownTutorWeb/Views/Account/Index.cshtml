@@ -6,7 +6,7 @@
 
 
 
-   <!-- Section: inner-header -->
+<!-- Section: inner-header -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg/bg3.jpg">
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
@@ -32,20 +32,19 @@
                 <h4 class="text-gray mt-0 pt-5"> Login</h4>
                 <hr>
                 @*<form name="login-form" class="clearfix">*@
-                @Html.BeginForm("Login","Account",FormMethod.Post,new { @class = "clearfix" })
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "clearfix" }))
+                {
                     <div class="row">
                         <div class="form-group col-md-12">
-                            @*<label for="form_username_email">Username/Email</label>*@
+                            <label for="form_username_email">Username/Email</label>
                             @*<input id="form_username_email" name="form_username_email" class="form-control" type="text">*@
-                            @Html.LabelFor(m=>m.UserName,new { @id = "form_username_email" })
-                            @Html.TextBoxFor(m => m.UserName,new { @id= "form_username_email", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.UserName, new { @id = "form_username_email", @class = "form-control" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            @*<label for="form_password">Password</label>*@
+                            <label for="form_password">Password</label>
                             @*<input id="form_password" name="form_password" class="form-control" type="text">*@
-                            @Html.LabelFor(m => m.Password,new { @id= "form_password" })
                             @Html.TextBoxFor(m => m.Password, new { @id = "form_password", @class = "form-control" })
                         </div>
                     </div>
@@ -58,18 +57,20 @@
                     <div class="form-group pull-right mt-10">
                         <button type="submit" class="btn btn-dark btn-sm">Login</button>
                     </div>
-                    <div class="clear text-center pt-10">
-                        <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
-                    </div>
-                    <div class="clear text-center pt-10">
-                        <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
-                        <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
-                    </div>
+                }
+                <div class="clear text-center pt-10">
+                    <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
+                </div>
+                <div class="clear text-center pt-10">
+                    <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
+                    <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
+                </div>
                 @*</form>*@
             </div>
             <div class="col-md-7 col-md-offset-1">
                 @*<form name="reg-form" class="register-form" method="post">*@
-                 @Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form" })
+                @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form" }))
+                {
                     <div class="icon-box mb-0 p-0">
                         <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                             <i class="pe-7s-users"></i>
@@ -79,43 +80,40 @@
                     <hr>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            @*<label for="form_name">Name</label>
-                            <input name="form_name" class="form-control" type="text">*@
-                            @Html.LabelFor(m=>m.Name,new { @id = "form_name"})
-                            @Html.TextBoxFor(m=>m.Name,new { @id = "form_name", @class = "form-control" })
+                            <label for="form_name">Name</label>
+                            @*<input name="form_name" class="form-control" type="text">*@
+                            @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control" })
                         </div>
                         <div class="form-group col-md-6">
-                            @*<label>Email Address</label>
-                            <input name="form_email" class="form-control" type="email">*@
-                            @Html.LabelFor(m => m.EmailAddress, new { @id = "form_email" })
+                            <label>Email Address</label>
+                            @*<input name="form_email" class="form-control" type="email">*@
                             @Html.TextBoxFor(m => m.EmailAddress, new { @id = "form_email", @class = "form-control" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            @*<label for="form_choose_username">Choose Username</label>
-                            <input id="form_choose_username" name="form_choose_username" class="form-control" type="text">*@
-                            @Html.LabelFor(m => m.UserName, new { @id = "form_choose_username" })
+                            <label for="form_choose_username">Choose Username</label>
+                            @*<input id="form_choose_username" name="form_choose_username" class="form-control" type="text">*@
                             @Html.TextBoxFor(m => m.UserName, new { @id = "form_choose_username", @class = "form-control" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            @*<label for="form_choose_password">Choose Password</label>
-                            <input id="form_choose_password" name="form_choose_password" class="form-control" type="text">*@
-                            @Html.LabelFor(m => m.Password, new { @id = "form_choose_password" })
+                            <label for="form_choose_password">Choose Password</label>
+                            @*<input id="form_choose_password" name="form_choose_password" class="form-control" type="text">*@
                             @Html.TextBoxFor(m => m.Password, new { @id = "form_choose_password", @class = "form-control" })
                         </div>
                         <div class="form-group col-md-6">
-                            @*<label>Re-enter Password</label>
-                            <input id="form_re_enter_password" name="form_re_enter_password" class="form-control" type="text">*@
-                            @Html.LabelFor(m => m.Password,"Re-enter Password", new { @id = "form_re_enter_password" })
+                            <label>Re-enter Password</label>
+                            @*<input id="form_re_enter_password" name="form_re_enter_password" class="form-control" type="text">*@
+                            @*@Html.LabelFor(m => m.Password,"Re-enter Password", new { @id = "form_re_enter_password" })*@
                             @Html.TextBoxFor(m => m.Password, new { @id = "form_re_enter_password", @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Register Now</button>
                     </div>
+                }
                 @*</form>*@
             </div>
         </div>

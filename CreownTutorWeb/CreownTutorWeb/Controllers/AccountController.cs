@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CreownTutor.Data.Model;
+using CreownTutor.Data.Repository;
 
 namespace CreownTutorWeb.Controllers
 {
@@ -11,19 +12,27 @@ namespace CreownTutorWeb.Controllers
     {
         // GET: Login
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(LoginRegistrationViewModel model = null)
         {
-            return View();
+            return View(model);
         }
+
         [HttpPost]
         public ActionResult Login(LoginRegistrationViewModel model)
         {
-
+            if (!string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.Password))
+            {
+                AccountRepository repo = new AccountRepository();
+                repo.Login();
+            }
             return RedirectToAction("Index");
         }
+
         public ActionResult Registration(LoginRegistrationViewModel model)
         {
 
+            AccountRepository repo = new AccountRepository();
+            repo.Register(model);
             return RedirectToAction("Index");
         }
     }
