@@ -151,3 +151,23 @@ alter table Reviews
 add AddedTime DateTime null 
 go
 
+CREATE TABLE [dbo].[Category](
+	[CategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[Category] [varchar](50) NULL,
+ CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED 
+(
+	[CategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[SubCategory](
+	[SubCategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[SubCategory] [varchar](50) NULL,
+	[CategoryID] [int] NULL,
+ CONSTRAINT [PK_SubCategory] PRIMARY KEY CLUSTERED 
+(
+	[SubCategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
