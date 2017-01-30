@@ -31,5 +31,11 @@ namespace CreownTutorWeb.Controllers
         {
             return RedirectToAction("Index", "Course", new { cid = model.Category, s = model.SearchKeyword });
         }
+
+        public ActionResult Detail(int id)
+        {
+
+            return View();
+        }
     }
 }
