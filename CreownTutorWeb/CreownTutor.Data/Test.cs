@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data.Repository
+namespace CreownTutor.Data
 {
     using System;
     using System.Collections.Generic;

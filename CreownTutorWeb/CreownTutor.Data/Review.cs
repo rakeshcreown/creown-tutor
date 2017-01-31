@@ -7,17 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data.Repository
+namespace CreownTutor.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CartInfomation
+    public partial class Review
     {
-        public int CartID { get; set; }
-        public int NoOfItems { get; set; }
-        public long TotalPrice { get; set; }
-        public System.DateTime PurchaseDate { get; set; }
-        public bool IsItemDelivered { get; set; }
+        public int ReviewId { get; set; }
+        public int ReviewRating { get; set; }
+        public string ReviewComments { get; set; }
+        public int UserID { get; set; }
+        public Nullable<int> CourseID { get; set; }
+        public Nullable<int> SessionID { get; set; }
+        public Nullable<System.DateTime> AddedTime { get; set; }
     }
 }

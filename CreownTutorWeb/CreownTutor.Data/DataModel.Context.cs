@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data.Repository
+namespace CreownTutor.Data
 {
     using System;
     using System.Data.Entity;
@@ -26,14 +26,14 @@ namespace CreownTutor.Data.Repository
         }
     
         public virtual DbSet<CartInfomation> CartInfomations { get; set; }
-        public virtual DbSet<Review> Reviews { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<SubCategory> SubCategories { get; set; }
-        public virtual DbSet<LiveSession> LiveSessions { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual DbSet<LiveSession> LiveSessions { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<SubCategory> SubCategories { get; set; }
+        public virtual DbSet<Test> Tests { get; set; }
+        public virtual DbSet<UserDetail> UserDetails { get; set; }
     }
 }
