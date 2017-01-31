@@ -19,9 +19,7 @@ namespace CreownTutor.Data.Model
         public string Password { get; set; }
         [Required(ErrorMessage = "Name cannot be empty")]
         public string Name { get; set; }
-
         public int RoleID { get; set; }
-        public SelectList rolelist { get; set; }
-
+        public SelectList RoleList { get; set; }
     }
 }

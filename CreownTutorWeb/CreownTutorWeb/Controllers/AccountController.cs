@@ -14,7 +14,6 @@ namespace CreownTutorWeb.Controllers
         // GET: Login
         [HttpGet]
         public ActionResult Index(LoginRegistrationViewModel model = null)
-
         {
             AccountRepository repo = new AccountRepository();
             var roles = repo.GetRoles();
@@ -22,13 +21,10 @@ namespace CreownTutorWeb.Controllers
             role.RoleName = "Select";
             role.RoleID = 0;
             roles.Insert(0, role);
-
             SelectList objmodeldata = new SelectList(roles, "RoleID", "RoleName", 0);
-
             /*Assign value to model*/
-            model.rolelist = objmodeldata;
+            model.RoleList = objmodeldata;
             return View(model);
-
         }
 
         [HttpPost]
@@ -44,7 +40,6 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult Registration(LoginRegistrationViewModel model)
         {
-
             AccountRepository repo = new AccountRepository();
             repo.Register(model);
             return RedirectToAction("Index");

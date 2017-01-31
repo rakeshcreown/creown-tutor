@@ -27,33 +27,21 @@ namespace CreownTutor.Data.Repository
             }
             catch (Exception ex)
             {
-
-               
             }
-            
         }
 
         public bool Login(LoginRegistrationViewModel model)
         {
-            try
+            UserDetail userdetails = new UserDetail();
+            if (userdetails.Username == model.UserName && userdetails.Password == model.Password)
             {
-                UserDetail userdetails = new UserDetail();
-                if(userdetails.Username==model.UserName && userdetails.Password==model.Password)
-                {
-                    FormsAuthentication.SetAuthCookie(userdetails.Username, false);
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }                
+                FormsAuthentication.SetAuthCookie(userdetails.Username, false);
+                return true;
             }
-           
-            catch(Exception e)
+            else
             {
-
+                return false;
             }
-            return true;
         }
 
         public List<Role> GetRoles()
