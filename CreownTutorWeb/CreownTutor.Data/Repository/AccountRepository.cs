@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.ModelBinding;
+using System.Web.Security;
 using CreownTutor.Data.Model;
 
 namespace CreownTutor.Data.Repository
@@ -29,9 +31,27 @@ namespace CreownTutor.Data.Repository
             
         }
 
-        public void Login()
+        public bool Login(LoginRegistrationViewModel model)
         {
+            try
+            {
+                UserDetail userdetails = new UserDetail();
+                if(userdetails.Username=="apurva" && userdetails.Password=="apurva@12345")
+                {
+                    FormsAuthentication.SetAuthCookie(userdetails.Username, false);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }                
+            }
+           
+            catch(Exception e)
+            {
 
+            }
+            return true;
         }
     }
 }

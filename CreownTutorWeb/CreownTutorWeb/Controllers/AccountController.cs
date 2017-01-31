@@ -23,7 +23,7 @@ namespace CreownTutorWeb.Controllers
             if (!string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.Password))
             {
                 AccountRepository repo = new AccountRepository();
-                repo.Login();
+                repo.Login(model);
             }
             return RedirectToAction("Index");
         }
