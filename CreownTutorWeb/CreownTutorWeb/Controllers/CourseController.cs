@@ -34,8 +34,8 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult Detail(int id)
         {
-
-            return View();
+            CourseRepository courseRepo = new CourseRepository();
+            return View(courseRepo.GetCourseDetail(id));
         }
     }
 }

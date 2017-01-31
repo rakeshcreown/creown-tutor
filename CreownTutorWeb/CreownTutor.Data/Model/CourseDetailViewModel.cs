@@ -11,5 +11,7 @@ namespace CreownTutor.Data.Model
     {
         public UserDetail User { get; set; }
         public Course Course { get; set; }
+        public List<LiveSession> Sessions { get; set; }
+        public List<CourseRegistration> RegisteredUsers { get; set; }
     }
 }

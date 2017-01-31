@@ -66,6 +66,9 @@
     <Compile Include="Repository\Category.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\CourseRegistration.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repository\CourseRepository.cs" />
     <Compile Include="Repository\Course.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
@@ -92,12 +95,6 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\Role.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repository\SessionStatu.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Repository\SessionUser.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Repository\SubCategory.cs">

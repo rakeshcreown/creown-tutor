@@ -51,6 +51,8 @@ namespace CreownTutor.Data.Repository
             {
                 model.Course = course;
                 model.User = course.UserDetail;
+                model.Sessions = dbEntity.LiveSessions.Where(s => s.CourseID == id).ToList();
+                model.RegisteredUsers = dbEntity.CourseRegistrations.Where(r => r.CourseID == id).ToList();
             }
             return model;
         }

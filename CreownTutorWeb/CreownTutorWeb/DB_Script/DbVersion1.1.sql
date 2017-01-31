@@ -344,3 +344,66 @@ CREATE TABLE [dbo].[SessionUsers](
 END
 GO
 
+
+drop table [LiveSession]
+go
+
+CREATE TABLE [dbo].[LiveSession](
+	[SessionID] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [varchar](50) NOT NULL,
+	[FromDateTime] [datetime] NULL,
+	[ToDateTime] [datetime] NULL,
+	[Timezone] [datetime] NULL,
+	[Description] [varchar](MAX) NULL,
+	[CourseID] int null
+ CONSTRAINT [PK_LiveSession] PRIMARY KEY CLUSTERED 
+(
+	[SessionID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+alter table LiveSession
+add constraint fk_courseid foreign key (CourseID) references Course (CourseID)
+go
+
+
+CREATE TABLE [dbo].[CourseRegistration](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CourseID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+ CONSTRAINT [PK_CourseRegistration] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[CourseRegistration]  WITH CHECK ADD  CONSTRAINT [FK_CourseRegistration_UserDetails] FOREIGN KEY([UserID])
+REFERENCES [dbo].[UserDetails] ([UserID])
+GO
+
+ALTER TABLE [dbo].[CourseRegistration] CHECK CONSTRAINT [FK_CourseRegistration_UserDetails]
+GO
+
+
+Alter Table UserDetails
+drop column SessionID
+go
+
+Alter Table UserDetails
+drop column CourseID
+go
+
+alter table Course
+drop Column RoleID
+go
+
+alter table Course
+add AttendessLimit int null
+go
+
+alter table CourseRegistration
+add RegisteredDateTime datetime null 
+go

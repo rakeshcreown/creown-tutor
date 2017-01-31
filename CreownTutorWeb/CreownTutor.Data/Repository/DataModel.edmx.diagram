@@ -9,14 +9,15 @@
         <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="7.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="10.375" PointY="3.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="9.625" PointY="11.875" />
+        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="11.875" PointY="12.5" />
+        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="7.375" PointY="10.125" />
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="9.625" PointY="11" />
+        <AssociationConnector Association="CreownTutorModel.fk_courseid" />
         <AssociationConnector Association="CreownTutorModel.fk_createdby_userid" />
+        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="9.625" PointY="15.875" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

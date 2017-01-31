@@ -16,19 +16,12 @@ namespace CreownTutor.Data.Repository
     {
         public int SessionID { get; set; }
         public string Title { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.TimeSpan FromTime { get; set; }
-        public System.TimeSpan ToTime { get; set; }
+        public Nullable<System.DateTime> FromDateTime { get; set; }
+        public Nullable<System.DateTime> ToDateTime { get; set; }
         public Nullable<System.DateTime> Timezone { get; set; }
-        public bool IsLanguagecgangeable { get; set; }
         public string Description { get; set; }
-        public int NoOfAttendees { get; set; }
-        public string ClassroomType { get; set; }
-        public bool Visibility { get; set; }
-        public string TypeOfCourse { get; set; }
-        public int HostUserID { get; set; }
-        public int Status { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> CourseID { get; set; }
+    
+        public virtual Course Course { get; set; }
     }
 }

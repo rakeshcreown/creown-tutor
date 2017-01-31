@@ -12,9 +12,13 @@ namespace CreownTutor.Data.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class SessionStatu
+    public partial class CourseRegistration
     {
         public int ID { get; set; }
-        public string Status { get; set; }
+        public int CourseID { get; set; }
+        public int UserID { get; set; }
+        public Nullable<System.DateTime> RegisteredDateTime { get; set; }
+    
+        public virtual UserDetail UserDetail { get; set; }
     }
 }

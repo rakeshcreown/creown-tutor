@@ -18,6 +18,7 @@ namespace CreownTutor.Data.Repository
         public UserDetail()
         {
             this.Courses = new HashSet<Course>();
+            this.CourseRegistrations = new HashSet<CourseRegistration>();
         }
     
         public int UserID { get; set; }
@@ -31,10 +32,10 @@ namespace CreownTutor.Data.Repository
         public int RoleID { get; set; }
         public string Gender { get; set; }
         public byte[] ProfileImage { get; set; }
-        public int SessionID { get; set; }
-        public int CourseID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }
 }
