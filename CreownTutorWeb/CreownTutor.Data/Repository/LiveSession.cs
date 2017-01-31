@@ -30,5 +30,6 @@ namespace CreownTutor.Data.Repository
         public int Status { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
+        public int UserID { get; set; }
     }
 }

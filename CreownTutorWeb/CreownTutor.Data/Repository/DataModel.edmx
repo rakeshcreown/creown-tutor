@@ -55,7 +55,7 @@
           <Property Name="ClassroomType" Type="varchar" MaxLength="50" />
           <Property Name="Visibility" Type="bit" Nullable="false" />
           <Property Name="TypeOfCourse" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="HostUserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -78,22 +78,6 @@
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SessionStatus">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Status" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="SessionUsers">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SessionID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
-          <Property Name="IsPresenter" Type="bit" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -131,16 +115,16 @@
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailAddress" Type="varchar(max)" Nullable="false" />
           <Property Name="Password" Type="varchar(max)" Nullable="false" />
-          <Property Name="Location" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ContactDetails" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DateOfBirth" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="ContactDetails" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="varchar" MaxLength="50" />
           <Property Name="RoleID" Type="int" Nullable="false" />
-          <Property Name="Gender" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ProfileImage" Type="image" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileImage" Type="image" />
           <Property Name="SessionID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="fk_createdby_userid">
+        <Association Name="fk_createdby_user">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <ReferentialConstraint>
@@ -159,12 +143,10 @@
           <EntitySet Name="LiveSession" EntityType="Self.LiveSession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SessionStatus" EntityType="Self.SessionStatus" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SessionUsers" EntityType="Self.SessionUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="fk_createdby_userid" Association="Self.fk_createdby_userid">
+          <AssociationSet Name="fk_createdby_user" Association="Self.fk_createdby_user">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
@@ -226,37 +208,18 @@
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Tests" EntityType="Self.Test" />
-          <EntitySet Name="UserDetails" EntityType="CreownTutorModel.UserDetail" />
           <EntitySet Name="Categories" EntityType="CreownTutorModel.Category" />
           <EntitySet Name="SessionStatus" EntityType="CreownTutorModel.SessionStatu" />
           <EntitySet Name="SessionUsers" EntityType="CreownTutorModel.SessionUser" />
           <EntitySet Name="SubCategories" EntityType="CreownTutorModel.SubCategory" />
           <EntitySet Name="LiveSessions" EntityType="CreownTutorModel.LiveSession" />
           <EntitySet Name="Courses" EntityType="CreownTutorModel.Course" />
-          <AssociationSet Name="fk_createdby_userid" Association="CreownTutorModel.fk_createdby_userid">
+          <EntitySet Name="UserDetails" EntityType="CreownTutorModel.UserDetail" />
+          <AssociationSet Name="fk_createdby_user" Association="CreownTutorModel.fk_createdby_user">
             <End Role="UserDetail" EntitySet="UserDetails" />
             <End Role="Course" EntitySet="Courses" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="UserDetail">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="SessionID" Type="Int32" Nullable="false" />
-          <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_userid" FromRole="UserDetail" ToRole="Course" />
-          </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -308,6 +271,7 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -325,9 +289,28 @@
           <Property Name="CreatedDateAndTime" Type="DateTime" Precision="3" />
           <Property Name="RoleID" Type="Int32" />
           <Property Name="CreatedBy" Type="Int32" />
-          <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.fk_createdby_userid" FromRole="Course" ToRole="UserDetail" />
+          <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.fk_createdby_user" FromRole="Course" ToRole="UserDetail" />
         </EntityType>
-        <Association Name="fk_createdby_userid">
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="SessionID" Type="Int32" Nullable="false" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_user" FromRole="UserDetail" ToRole="Course" />
+        </EntityType>
+        <Association Name="fk_createdby_user">
           <End Type="CreownTutorModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
           <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="*" />
           <ReferentialConstraint>
@@ -397,48 +380,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserDetails">
-            <EntityTypeMapping TypeName="CreownTutorModel.UserDetail">
-              <MappingFragment StoreEntitySet="UserDetails">
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="CreownTutorModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Category1" ColumnName="Category" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SessionStatus">
-            <EntityTypeMapping TypeName="CreownTutorModel.SessionStatu">
-              <MappingFragment StoreEntitySet="SessionStatus">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SessionUsers">
-            <EntityTypeMapping TypeName="CreownTutorModel.SessionUser">
-              <MappingFragment StoreEntitySet="SessionUsers">
-                <ScalarProperty Name="IsPresenter" ColumnName="IsPresenter" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -454,10 +400,10 @@
           <EntitySetMapping Name="LiveSessions">
             <EntityTypeMapping TypeName="CreownTutorModel.LiveSession">
               <MappingFragment StoreEntitySet="LiveSession">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="HostUserID" ColumnName="HostUserID" />
                 <ScalarProperty Name="TypeOfCourse" ColumnName="TypeOfCourse" />
                 <ScalarProperty Name="Visibility" ColumnName="Visibility" />
                 <ScalarProperty Name="ClassroomType" ColumnName="ClassroomType" />
@@ -488,6 +434,25 @@
                 <ScalarProperty Name="CourseDescription" ColumnName="CourseDescription" />
                 <ScalarProperty Name="CourseName" ColumnName="CourseName" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="CreownTutorModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="ContactDetails" ColumnName="ContactDetails" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
