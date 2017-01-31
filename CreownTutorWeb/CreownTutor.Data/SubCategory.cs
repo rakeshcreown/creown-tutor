@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data.Repository
+namespace CreownTutor.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Review
+    public partial class SubCategory
     {
-        public int ReviewId { get; set; }
-        public int ReviewRating { get; set; }
-        public string ReviewComments { get; set; }
-        public int UserID { get; set; }
-        public Nullable<int> CourseID { get; set; }
-        public Nullable<int> SessionID { get; set; }
-        public Nullable<System.DateTime> AddedTime { get; set; }
+        public int SubCategoryID { get; set; }
+        public string SubCategory1 { get; set; }
+        public Nullable<int> CategoryID { get; set; }
     }
 }

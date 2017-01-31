@@ -7,14 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data.Repository
+namespace CreownTutor.Data
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class Category
     {
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
+        public int CategoryID { get; set; }
+        public string Category1 { get; set; }
     }
 }

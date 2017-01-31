@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
-
+using CreownTutor.Data;
 
 namespace CreownTutorWeb.Controllers
 {
