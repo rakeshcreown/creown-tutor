@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CourseDetailViewModel.cs" />
     <Compile Include="Model\CourseViewModel.cs" />
     <Compile Include="Model\LoginRegistrationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -312,3 +312,35 @@ add constraint fk_createdby_user foreign key (createdby) references UserDetails 
 go
 
 
+IF NOT EXISTS (SELECT * 
+    FROM CreownTutor.INFORMATION_SCHEMA.TABLES   
+    WHERE TABLE_SCHEMA = N'dbo'  AND TABLE_NAME = N'SessionStatus')
+BEGIN
+CREATE TABLE [dbo].[SessionStatus](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Status] [varchar](50) NULL,
+ CONSTRAINT [PK_SessionStatus] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS (SELECT * 
+    FROM CreownTutor.INFORMATION_SCHEMA.TABLES   
+    WHERE TABLE_SCHEMA = N'dbo'  AND TABLE_NAME = N'SessionUsers')
+BEGIN
+CREATE TABLE [dbo].[SessionUsers](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SessionID] [int] NOT NULL,
+	[UserID] [int] NOT NULL,
+	[IsPresenter] [bit] NULL,
+ CONSTRAINT [PK_SessionUsers] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
