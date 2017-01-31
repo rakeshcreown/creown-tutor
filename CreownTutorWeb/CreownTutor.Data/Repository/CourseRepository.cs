@@ -42,5 +42,17 @@ namespace CreownTutor.Data.Repository
             }
             return dbEntity.Courses.OrderByDescending(c => c.CreatedDateAndTime).ToList().Take(ct).ToList();
         }
+
+        public CourseDetailViewModel GetCourseDetail(int id)
+        {
+            CourseDetailViewModel model = new CourseDetailViewModel();
+            var course = dbEntity.Courses.FirstOrDefault(c => c.CourseID == id);
+            if (course != null)
+            {
+                model.Course = course;
+                model.User = course.UserDetail;
+            }
+            return model;
+        }
     }
 }
