@@ -25,5 +25,8 @@ namespace CreownTutor.Data.Repository
         public string Category { get; set; }
         public Nullable<System.DateTime> CreatedDateAndTime { get; set; }
         public Nullable<int> RoleID { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+    
+        public virtual UserDetail UserDetail { get; set; }
     }
 }

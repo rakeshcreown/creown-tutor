@@ -37,6 +37,7 @@
           <Property Name="Category" Type="varchar" MaxLength="50" />
           <Property Name="CreatedDateAndTime" Type="datetime" />
           <Property Name="RoleID" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -139,6 +140,18 @@
           <Property Name="SessionID" Type="int" Nullable="false" />
           <Property Name="CourseID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="fk_createdby_userid">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CreownTutorModelStoreContainer">
           <EntitySet Name="CartInfomation" EntityType="Self.CartInfomation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -151,6 +164,10 @@
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_createdby_userid" Association="Self.fk_createdby_userid">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -216,7 +233,11 @@
           <EntitySet Name="SubCategories" EntityType="CreownTutorModel.SubCategory" />
           <EntitySet Name="LiveSessions" EntityType="CreownTutorModel.LiveSession" />
           <EntitySet Name="Courses" EntityType="CreownTutorModel.Course" />
-        </EntityContainer>
+          <AssociationSet Name="fk_createdby_userid" Association="CreownTutorModel.fk_createdby_userid">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="Course" EntitySet="Courses" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="UserDetail">
           <Key>
             <PropertyRef Name="UserID" />
@@ -234,7 +255,8 @@
           <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="SessionID" Type="Int32" Nullable="false" />
           <Property Name="CourseID" Type="Int32" Nullable="false" />
-        </EntityType>
+          <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_userid" FromRole="UserDetail" ToRole="Course" />
+          </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
@@ -302,8 +324,22 @@
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDateAndTime" Type="DateTime" Precision="3" />
           <Property Name="RoleID" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.fk_createdby_userid" FromRole="Course" ToRole="UserDetail" />
         </EntityType>
-      </Schema>
+        <Association Name="fk_createdby_userid">
+          <End Type="CreownTutorModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
+          <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -440,6 +476,7 @@
           <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="CreownTutorModel.Course">
               <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="CreatedDateAndTime" ColumnName="CreatedDateAndTime" />
                 <ScalarProperty Name="Category" ColumnName="Category" />

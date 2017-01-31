@@ -14,6 +14,12 @@ namespace CreownTutor.Data.Repository
     
     public partial class UserDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserDetail()
+        {
+            this.Courses = new HashSet<Course>();
+        }
+    
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Name { get; set; }
@@ -27,5 +33,8 @@ namespace CreownTutor.Data.Repository
         public byte[] ProfileImage { get; set; }
         public int SessionID { get; set; }
         public int CourseID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }
