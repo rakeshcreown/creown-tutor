@@ -32,16 +32,23 @@ namespace CreownTutor.Data.Repository
 
         public bool Login(LoginRegistrationViewModel model)
         {
-            UserDetail userdetails = new UserDetail();
-            if (userdetails.Username == model.UserName && userdetails.Password == model.Password)
+            var user = (from userlist in dbEntity.UserDetails
+                        where userlist.Username == model.UserName && userlist.Password == model.Password
+                        select new
+                        {
+                            userlist.Username,
+                            userlist.UserID
+                        }).ToList();
+
+            if(user.FirstOrDefault()!=null)
             {
-                FormsAuthentication.SetAuthCookie(userdetails.Username, false);
                 return true;
             }
             else
             {
                 return false;
             }
+
         }
 
         public List<Role> GetRoles()
