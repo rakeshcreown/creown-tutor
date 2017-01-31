@@ -311,6 +311,27 @@ alter table Course
 add constraint fk_createdby_user foreign key (createdby) references UserDetails (UserID)
 go
 
+Alter Table UserDetails
+alter column Location varchar(50) null
+go
+
+Alter Table UserDetails
+alter column ContactDetails varchar(50) null
+go
+
+Alter Table UserDetails
+alter column DateOfBirth varchar(50) null
+go
+
+Alter Table UserDetails
+alter column Gender varchar(50) null
+go
+
+Alter Table UserDetails
+alter column ProfileImage image null
+go
+
+
 
 IF NOT EXISTS (SELECT * 
     FROM CreownTutor.INFORMATION_SCHEMA.TABLES   
