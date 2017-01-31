@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data
+namespace CreownTutor.Data.Repository
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CartInfomation
+    public partial class CourseRegistration
     {
-        public int CartID { get; set; }
-        public int NoOfItems { get; set; }
-        public long TotalPrice { get; set; }
-        public System.DateTime PurchaseDate { get; set; }
-        public bool IsItemDelivered { get; set; }
+        public int ID { get; set; }
+        public int CourseID { get; set; }
+        public int UserID { get; set; }
+        public Nullable<System.DateTime> RegisteredDateTime { get; set; }
+    
+        public virtual UserDetail UserDetail { get; set; }
     }
 }

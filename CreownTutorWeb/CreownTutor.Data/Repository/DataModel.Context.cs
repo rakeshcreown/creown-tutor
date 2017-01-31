@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CreownTutor.Data
+namespace CreownTutor.Data.Repository
 {
     using System;
     using System.Data.Entity;
