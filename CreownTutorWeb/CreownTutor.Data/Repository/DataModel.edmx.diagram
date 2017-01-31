@@ -15,8 +15,9 @@
         <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="10.375" PointY="3.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3.375" PointY="0.75" />
-      </Diagram>
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="9.625" PointY="11.875" />
+        <AssociationConnector Association="CreownTutorModel.fk_createdby_userid" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

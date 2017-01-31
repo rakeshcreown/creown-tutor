@@ -296,6 +296,19 @@ alter column RoleID int null
 go
 
 
+IF NOT EXISTS(
+    SELECT *
+    FROM sys.columns 
+    WHERE Name      = N'CreatedBy'
+      AND Object_ID = Object_ID(N'Course'))
+BEGIN
+Alter Table Course
+add CreatedBy int null
+END
+go
 
+alter table Course
+add constraint fk_createdby_user foreign key (createdby) references UserDetails (UserID)
+go
 
 
