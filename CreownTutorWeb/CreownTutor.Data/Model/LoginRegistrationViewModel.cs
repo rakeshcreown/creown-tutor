@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace CreownTutor.Data.Model
 {
@@ -18,5 +19,9 @@ namespace CreownTutor.Data.Model
         public string Password { get; set; }
         [Required(ErrorMessage = "Name cannot be empty")]
         public string Name { get; set; }
+
+        public int RoleID { get; set; }
+        public SelectList rolelist { get; set; }
+
     }
 }

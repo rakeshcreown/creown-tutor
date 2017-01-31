@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.ModelBinding;
+using System.Web.Mvc;
 using System.Web.Security;
 using CreownTutor.Data.Model;
 
@@ -20,6 +21,7 @@ namespace CreownTutor.Data.Repository
                 userInformation.EmailAddress = model.EmailAddress;
                 userInformation.Password = model.Password;
                 userInformation.Name = model.Name;
+                userInformation.RoleID = model.RoleID;
                 dbEntity.UserDetails.Add(userInformation);
                 dbEntity.SaveChanges();
             }
@@ -36,7 +38,7 @@ namespace CreownTutor.Data.Repository
             try
             {
                 UserDetail userdetails = new UserDetail();
-                if(userdetails.Username=="apurva" && userdetails.Password=="apurva@12345")
+                if(userdetails.Username==model.UserName && userdetails.Password==model.Password)
                 {
                     FormsAuthentication.SetAuthCookie(userdetails.Username, false);
                     return true;
@@ -52,6 +54,11 @@ namespace CreownTutor.Data.Repository
 
             }
             return true;
+        }
+
+        public List<Role> GetRoles()
+        {
+            return dbEntity.Roles.ToList();
         }
     }
 }
