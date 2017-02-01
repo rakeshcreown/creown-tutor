@@ -32,6 +32,7 @@ namespace CreownTutor.Data
         public Nullable<System.DateTime> CreatedDateAndTime { get; set; }
         public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> AttendessLimit { get; set; }
+        public Nullable<double> CoursePrice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LiveSession> LiveSessions { get; set; }
