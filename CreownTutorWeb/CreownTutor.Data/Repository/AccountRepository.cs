@@ -17,9 +17,9 @@ namespace CreownTutor.Data.Repository
             try
             {
                 UserDetail userInformation = new UserDetail();
-                userInformation.Username = model.UserName;
+                userInformation.Username = model.RegistrationUserName;
                 userInformation.EmailAddress = model.EmailAddress;
-                userInformation.Password = model.Password;
+                userInformation.Password = model.RegistrationPassword;
                 userInformation.Name = model.Name;
                 userInformation.RoleID = model.RoleID;
                 dbEntity.UserDetails.Add(userInformation);
@@ -33,7 +33,7 @@ namespace CreownTutor.Data.Repository
         public bool Login(LoginRegistrationViewModel model)
         {
             var user = (from userlist in dbEntity.UserDetails
-                        where userlist.Username == model.UserName && userlist.Password == model.Password
+                        where userlist.Username == model.LoginUserName && userlist.Password == model.LoginPassword
                         select new
                         {
                             userlist.Username,

@@ -5,7 +5,6 @@
 }
 
 
-
 <!-- Section: inner-header -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg/bg3.jpg">
     <div class="container pt-70 pb-20">
@@ -31,23 +30,20 @@
             <div class="col-md-4 mb-40">
                 <h4 class="text-gray mt-0 pt-5"> Login</h4>
                 <hr>
-                @*<form name="login-form" class="clearfix">*@
                 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "clearfix" }))
                 {
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="form_username_email">Username/Email</label>
-                            @*<input id="form_username_email" name="form_username_email" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.UserName, new { @id = "form_username_email", @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.UserName)
+                            @Html.TextBoxFor(m => m.LoginUserName, new { @id = "form_username_email", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LoginUserName)
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label for="form_password">Password</label>
-                            @*<input id="form_password" name="form_password" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.Password, new { @id = "form_password", @class = "form-control" , @required="" })
-                            @Html.ValidationMessageFor(m => m.Password)
+                            @Html.TextBoxFor(m => m.LoginPassword, new { @id = "form_password", @class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.LoginPassword)
                            
                         </div>
                         <div>
@@ -71,10 +67,8 @@
                     <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998">Login with facebook</a>
                     <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee">Login with twitter</a>
                 </div>
-                @*</form>*@
             </div>
             <div class="col-md-7 col-md-offset-1">
-                @*<form name="reg-form" class="register-form" method="post">*@
                 @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form"}))
                 {
                     <div class="icon-box mb-0 p-0">
@@ -87,20 +81,17 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="form_name">Name</label>
-                            @*<input name="form_name" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control", @required = "" })
+                            @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control"})
                         </div>
                         <div class="form-group col-md-6">
                             <label>Email Address</label>
-                            @*<input name="form_email" class="form-control" type="email">*@
                             @Html.TextBoxFor(m => m.EmailAddress, new { @id = "form_email", @class = "form-control" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="form_choose_username">Choose Username</label>
-                            @*<input id="form_choose_username" name="form_choose_username" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.UserName, new { @id = "form_choose_username", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.RegistrationUserName, new { @id = "form_choose_username", @class = "form-control" })
                         </div>
                         <div class="form-group col-md-6">
                             <label for="form_chooserole">Choose Role</label>
@@ -111,36 +102,19 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="form_choose_password">Choose Password</label>
-                            @*<input id="form_choose_password" name="form_choose_password" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.Password, new { @id = "form_choose_password", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.RegistrationPassword, new { @id = "form_choose_password", @class = "form-control" })
                         </div>
                         <div class="form-group col-md-6">
                             <label>Re-enter Password</label>
-                            @*<input id="form_re_enter_password" name="form_re_enter_password" class="form-control" type="text">*@
-                            @*@Html.LabelFor(m => m.Password,"Re-enter Password", new { @id = "form_re_enter_password" })*@
-                            @Html.TextBoxFor(m => m.Password, new { @id = "form_re_enter_password", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.RegistrationNewPassword, new { @id = "form_re_enter_password", @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
                         <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Register Now</button>
                     </div>
                 }
-                @*</form>*@
             </div>
         </div>
     </div>
 </section>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $.validator.unobtrusive.parse($("#register-form"));
-    }
-    )
-    function onSubmit(e) {
-        $("#register-form").validate(); // this will validate the form and show the validation messages
-        if($("#register-form").valid()) {
-            $("#register-form").submit(); // submits the form
-        }
-        return false;//prevent default submit of form by returning false.
-        //also e.preventDefault() can be used.
-    }
-</script>
+   
