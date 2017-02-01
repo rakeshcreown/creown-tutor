@@ -883,6 +883,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Detail.cshtml" />
+    <Content Include="Views\Course\CreateCourse.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
