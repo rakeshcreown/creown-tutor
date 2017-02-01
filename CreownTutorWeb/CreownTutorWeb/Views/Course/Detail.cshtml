@@ -31,7 +31,7 @@
                 <div class="single-service">
                     <img src="/images/services/lg6.jpg" alt="">
                     <h3 class="text-theme-colored line-bottom text-theme-colored">@Model.Course.CourseName</h3>
-                    <h4 class="mt-0"><span class="text-theme-color-2">Price :</span> $420</h4>
+                    <h4 class="mt-0"><span class="text-theme-color-2">Price :</span> $@Model.Course.CoursePrice</h4>
                     <ul class="review_text list-inline">
                         <li>
                             <div class="star-rating" title="Rated 4.50 out of 5"><span style="width: 90%;">4.50</span></div>
@@ -41,7 +41,10 @@
                     <h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>
                     <ul id="myTab" class="nav nav-tabs boot-tabs">
                         <li class="active"><a href="#small" data-toggle="tab">Sessions</a></li>
-                        <li><a href="#medium" data-toggle="tab">Registered Users</a></li>
+                        @if (Model.RegisteredUsers != null)
+                        {
+                            <li><a href="#medium" data-toggle="tab">Registered Users</a></li>
+                        }
                         @*
                             <li><a href="#large" data-toggle="tab">Categories</a></li>*@
                     </ul>
@@ -72,26 +75,29 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="medium">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">All Registered User Data</td>
-                                </tr>
-                                <tr>
-                                    <th>User Name</th>
-                                    <th>Registered On</th>
-                                    <th>User Email</th>
-                                </tr>
-                                <tbody>
-                                    @foreach (var item in Model.RegisteredUsers)
-                                    {
-                                        <tr>
-                                            <th scope="row">@item.UserDetail.Username</th>
-                                            <td>@item.RegisteredDateTime</td>
-                                            <td>@item.UserDetail.EmailAddress</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                            @if (Model.RegisteredUsers != null)
+                            {
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">All Registered User Data</td>
+                                    </tr>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>Registered On</th>
+                                        <th>User Email</th>
+                                    </tr>
+                                    <tbody>
+                                        @foreach (var item in Model.RegisteredUsers)
+                                        {
+                                            <tr>
+                                                <th scope="row">@item.UserDetail.Username</th>
+                                                <td>@item.RegisteredDateTime</td>
+                                                <td>@item.UserDetail.EmailAddress</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
                         </div>
                         @*<div class="tab-pane fade" id="large">
                                 <table class="table table-bordered">
@@ -114,43 +120,83 @@
             <div class="col-sm-12 col-md-4">
                 <div class="sidebar sidebar-left mt-sm-30 ml-40">
                     <div class="widget">
-                        <h4 class="widget-title line-bottom">Courses <span class="text-theme-color-2">List</span></h4>
-                        <div class="services-list">
-                            <ul class="list list-border angle-double-right">
-                                <li class="active"><a href="page-courses-accounting-technologies.html">Accounting Technologies</a></li>
-                                <li><a href="page-courses-chemical-engineering.html">Chemical Engineering</a></li>
-                                <li><a href="page-courses-computer-technologies.html">Computer Technologies</a></li>
-                                <li><a href="page-courses-development-studies.html">Development Studies</a></li>
-                                <li><a href="page-courses-electrical-electronic.html">Electrical & Electronic</a></li>
-                                <li><a href="page-courses-modern-languages.html">Modern Languages</a></li>
-                                <li><a href="page-courses-modern-technologies.html">Modern Technologies</a></li>
-                                <li><a href="page-courses-software-engineering.html">Software Engineering</a></li>
-                            </ul>
+                        @*<h4 class="widget-title line-bottom">Courses <span class="text-theme-color-2">List</span></h4>*@
+                        <div class="">
+                            <h4 class="line-bottom">About Me:</h4>
+                            <div class="volunteer-address">
+                                <ul>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="pe-7s-user text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Name:</h5>
+                                                <p>@Model.User.Name</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="pe-7s-pen text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Experiences:</h5>
+                                                <p>@Model.User.ExperienceInfo</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="fa fa-map-marker text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Address:</h5>
+                                                <p>@Model.User.ContactDetails</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15">
+                                            <div class="media-left">
+                                                <i class="fa fa-phone text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Contact:</h5>
+                                                <p><span>Phone:</span>@Model.User.ContactNumber<br><span>Email:</span> @Model.User.ContactEmail</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="widget">
-                        <h4 class="widget-title line-bottom">Opening <span class="text-theme-color-2">Hours</span></h4>
-                        <div class="opening-hours">
-                            <ul class="list-border">
-                                <li class="clearfix">
-                                    <span> Mon - Tues :  </span>
-                                    <div class="value pull-right"> 6.00 am - 10.00 pm </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span> Wednes - Thurs :</span>
-                                    <div class="value pull-right"> 8.00 am - 6.00 pm </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span> Fri : </span>
-                                    <div class="value pull-right"> 3.00 pm - 8.00 pm </div>
-                                </li>
-                                <li class="clearfix">
-                                    <span> Sun : </span>
-                                    <div class="value pull-right"> Colosed </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    @*<div class="widget">
+                            <h4 class="widget-title line-bottom">Opening <span class="text-theme-color-2">Hours</span></h4>
+                            <div class="opening-hours">
+                                <ul class="list-border">
+                                    <li class="clearfix">
+                                        <span> Mon - Tues :  </span>
+                                        <div class="value pull-right"> 6.00 am - 10.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Wednes - Thurs :</span>
+                                        <div class="value pull-right"> 8.00 am - 6.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Fri : </span>
+                                        <div class="value pull-right"> 3.00 pm - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Sun : </span>
+                                        <div class="value pull-right"> Colosed </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>*@
                     <div class="widget">
                         <h4 class="widget-title line-bottom">Quick <span class="text-theme-color-2">Contact</span></h4>
                         <form id="quick_contact_form_sidebar" name="footer_quick_contact_form" class="quick-contact-form" action="http://kodesolution.com/demo/personal/s/studypress/v5.0/demo/includes/quickcontact.php" method="post">
