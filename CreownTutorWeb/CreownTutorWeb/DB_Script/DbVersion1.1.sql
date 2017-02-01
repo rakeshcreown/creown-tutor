@@ -421,47 +421,76 @@ ALTER TABLE [dbo].[CourseRegistration] CHECK CONSTRAINT [FK_CourseRegistration_U
 END
 go
 
-
+IF EXISTS(SELECT * FROM sys.columns WHERE Name = N'SessionID' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 Alter Table UserDetails
 drop column SessionID
+END
 go
 
+IF EXISTS(SELECT * FROM sys.columns WHERE Name = N'CourseID' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 Alter Table UserDetails
 drop column CourseID
+END
 go
 
+IF EXISTS(SELECT * FROM sys.columns WHERE Name = N'RoleID' AND Object_ID = Object_ID(N'Course'))
+BEGIN
 alter table Course
 drop Column RoleID
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'AttendessLimit' AND Object_ID = Object_ID(N'Course'))
+BEGIN
 alter table Course
 add AttendessLimit int null
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'RegisteredDateTime' AND Object_ID = Object_ID(N'CourseRegistration'))
+BEGIN
 alter table CourseRegistration
 add RegisteredDateTime datetime null 
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'CoursePrice' AND Object_ID = Object_ID(N'Course'))
+BEGIN
 alter table Course
 add CoursePrice float  null
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'ContactNumber' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 alter table UserDetails
 add ContactNumber varchar(20) null
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'ContactEmail' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 alter table UserDetails
 add ContactEmail varchar(20) null
+END
 go
 
 alter table UserDetails
 alter column EmailAddress varchar(20) not null
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'ExperienceInfo' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 alter table UserDetails
 add ExperienceInfo varchar(100) null
+END
 go
 
+IF NOT EXISTS(SELECT * FROM sys.columns WHERE Name = N'BioGraphInfo' AND Object_ID = Object_ID(N'UserDetails'))
+BEGIN
 alter table UserDetails
 add BioGraphInfo varchar(MAX) null
+END
 go
