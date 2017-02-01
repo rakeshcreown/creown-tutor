@@ -35,17 +35,11 @@ namespace CreownTutorWeb.Controllers
         public ActionResult Login(LoginRegistrationViewModel model)
         {
             AccountRepository repo = new AccountRepository();
-            bool result = repo.Login(model);
-            if (result == false)
+            if (!repo.Login(model))
             {
                 TempData["LoginError"] = "Invalid Username and Password";
-                return RedirectToAction("Index");
             }
-            else
-            {
-                TempData["LoginError"] = "Logged in Successfully";
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
         }
 
         public ActionResult Registration(LoginRegistrationViewModel model)

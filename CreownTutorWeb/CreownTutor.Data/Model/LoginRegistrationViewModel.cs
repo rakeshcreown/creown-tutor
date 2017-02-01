@@ -17,9 +17,9 @@ namespace CreownTutor.Data.Model
         public string LoginPassword { get; set; }
 
         //Registration
-        [Required(ErrorMessage = "Name cannot be empty")]
+        [Required]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Email Address cannot be empty")]
+        [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmailAddress { get; set; }
         [Required]
@@ -28,6 +28,7 @@ namespace CreownTutor.Data.Model
         public string RegistrationPassword { get; set; }
         [Required]
         public string RegistrationNewPassword { get; set; }
+        [Required]
         public int RoleID { get; set; }
         public SelectList RoleList { get; set; }
         public string ErrorMsg { get; set; }

@@ -32,23 +32,8 @@ namespace CreownTutor.Data.Repository
 
         public bool Login(LoginRegistrationViewModel model)
         {
-            var user = (from userlist in dbEntity.UserDetails
-                        where userlist.Username == model.LoginUserName && userlist.Password == model.LoginPassword
-                        select new
-                        {
-                            userlist.Username,
-                            userlist.UserID
-                        }).ToList();
-
-            if(user.FirstOrDefault()!=null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
+            var user = dbEntity.UserDetails.FirstOrDefault(u => u.Username == model.LoginUserName && u.Password == model.LoginPassword);
+            return user != null;
         }
 
         public List<Role> GetRoles()
