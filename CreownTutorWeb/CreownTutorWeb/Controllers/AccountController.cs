@@ -24,18 +24,28 @@ namespace CreownTutorWeb.Controllers
             SelectList objmodeldata = new SelectList(roles, "RoleID", "RoleName", 0);
             /*Assign value to model*/
             model.RoleList = objmodeldata;
+            if (TempData["LoginError"] != null)
+            {
+                model.ErrorMsg = TempData["LoginError"].ToString();
+            }
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Login(LoginRegistrationViewModel model)
         {
-            if (!string.IsNullOrEmpty(model.UserName) && !string.IsNullOrEmpty(model.Password))
+            AccountRepository repo = new AccountRepository();
+            bool result = repo.Login(model);
+            if (result == false)
             {
-                AccountRepository repo = new AccountRepository();
-                repo.Login(model);
+                TempData["LoginError"] = "Invalid Username and Password";
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            else
+            {
+                TempData["LoginError"] = "Logged in Successfully";
+                return RedirectToAction("Index");
+            }
         }
 
         public ActionResult Registration(LoginRegistrationViewModel model)

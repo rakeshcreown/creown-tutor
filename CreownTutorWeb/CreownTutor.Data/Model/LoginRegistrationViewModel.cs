@@ -21,5 +21,6 @@ namespace CreownTutor.Data.Model
         public string Name { get; set; }
         public int RoleID { get; set; }
         public SelectList RoleList { get; set; }
+        public string ErrorMsg { get; set; }
     }
 }

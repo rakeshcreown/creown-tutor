@@ -39,6 +39,7 @@
                             <label for="form_username_email">Username/Email</label>
                             @*<input id="form_username_email" name="form_username_email" class="form-control" type="text">*@
                             @Html.TextBoxFor(m => m.UserName, new { @id = "form_username_email", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.UserName)
                         </div>
                     </div>
                     <div class="row">
@@ -46,6 +47,11 @@
                             <label for="form_password">Password</label>
                             @*<input id="form_password" name="form_password" class="form-control" type="text">*@
                             @Html.TextBoxFor(m => m.Password, new { @id = "form_password", @class = "form-control" , @required="" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                           
+                        </div>
+                        <div>
+                            @Html.DisplayFor(m => m.ErrorMsg)
                         </div>
                     </div>
                     <div class="checkbox pull-left mt-15">
@@ -69,7 +75,7 @@
             </div>
             <div class="col-md-7 col-md-offset-1">
                 @*<form name="reg-form" class="register-form" method="post">*@
-                @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form" }))
+                @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form"}))
                 {
                     <div class="icon-box mb-0 p-0">
                         <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
@@ -82,7 +88,7 @@
                         <div class="form-group col-md-6">
                             <label for="form_name">Name</label>
                             @*<input name="form_name" class="form-control" type="text">*@
-                            @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control" })
+                            @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control", @required = "" })
                         </div>
                         <div class="form-group col-md-6">
                             <label>Email Address</label>
@@ -124,3 +130,17 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.validator.unobtrusive.parse($("#register-form"));
+    }
+    )
+    function onSubmit(e) {
+        $("#register-form").validate(); // this will validate the form and show the validation messages
+        if($("#register-form").valid()) {
+            $("#register-form").submit(); // submits the form
+        }
+        return false;//prevent default submit of form by returning false.
+        //also e.preventDefault() can be used.
+    }
+</script>
