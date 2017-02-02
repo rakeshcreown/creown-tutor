@@ -37,36 +37,22 @@
                         <div class="widget">
                             <h4 class="widget-title line-bottom">Number Of<span class="text-theme-color-2">Courses</span></h4>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3 pb-sm-20">
-                            <div class="image-box-thum">
-                                <img class="img-fullwidth" alt="" src="~/images/project/lg1.jpg">
+                        @foreach (var course in Model.Courses)
+                        {
+                            <div class="col-sm-6 col-md-4">
+                                <div class="service-block bg-white">
+                                    <div class="thumb">
+                                        <img alt="featured project" src="/images/project/@{@course.CourseID}.jpg" class="img-fullwidth">
+                                        <h4 class="text-white mt-0 mb-0"><span class="price">$125</span></h4>
+                                    </div>
+                                    <div class="content text-left flip p-25 pt-0">
+                                        <h4 class="line-bottom mb-10">@course.CourseName</h4>
+                                        @Html.Raw(course.CourseDescription)
+                                        <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="/Course/Detail/@course.CourseID">view details</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="image-box-details pt-20 pb-sm-20">
-                                <h4 class="title text-uppercase line-bottom mt-0">Experience Yourself</h4>
-                                <p class="desc mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis ipsa ullam dicta suscipit.</p>
-                                <a href="http://kodesolution.com/demo/personal/s/studypress/v5.0/demo/page-about-style2.html#" class="btn btn-xs btn-theme-colored">Read more</a>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3 pb-sm-20">
-                            <div class="image-box-thum">
-                                <img class="img-fullwidth" alt="" src="~/images/project/lg2.jpg">
-                            </div>
-                            <div class="image-box-details pt-20 pb-sm-20">
-                                <h4 class="title text-uppercase line-bottom mt-0">Online Learning</h4>
-                                <p class="desc mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis ipsa ullam dicta suscipit.</p>
-                                <a href="http://kodesolution.com/demo/personal/s/studypress/v5.0/demo/page-about-style2.html#" class="btn btn-xs btn-theme-colored">Read more</a>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <div class="image-box-thum">
-                                <img class="img-fullwidth" alt="" src="~/images/project/lg3.jpg">
-                            </div>
-                            <div class="image-box-details pt-20 pb-sm-20">
-                                <h4 class="title text-uppercase line-bottom mt-0">Mastery Learning</h4>
-                                <p class="desc mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis ipsa ullam dicta suscipit.</p>
-                                <a href="http://kodesolution.com/demo/personal/s/studypress/v5.0/demo/page-about-style2.html#" class="btn btn-xs btn-theme-colored">Read more</a>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
