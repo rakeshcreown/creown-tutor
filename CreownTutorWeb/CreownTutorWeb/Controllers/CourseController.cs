@@ -40,7 +40,11 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult CreateCourse()
         {
-            return View();
+            CourseNewViewModel model = new CourseNewViewModel();
+            CourseRepository courseRepo = new CourseRepository();
+            var categories = courseRepo.GetCategories();
+            model.Categories = new SelectList(categories, "CategoryID", "CategoryName", 0); ;
+            return View(model);
         }
     }
 }
