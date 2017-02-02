@@ -90,13 +90,16 @@
     </Compile>
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\CourseDetailViewModel.cs" />
+    <Compile Include="Model\CourseNewViewModel.cs" />
     <Compile Include="Model\CourseViewModel.cs" />
     <Compile Include="Model\LoginRegistrationViewModel.cs" />
+    <Compile Include="Model\ReviewModel.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CourseRepository.cs" />
+    <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\TeacherRepository.cs" />
     <Compile Include="Review.cs">
       <DependentUpon>DataModel.tt</DependentUpon>

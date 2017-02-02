@@ -16,6 +16,7 @@ namespace CreownTutorWeb.Controllers
         public ActionResult Index(LoginRegistrationViewModel model = null)
         {
             AccountRepository repo = new AccountRepository();
+            ModelState.Clear();
             var roles = repo.GetRoles();
             Role role = new Role();
             role.RoleName = "Select";
