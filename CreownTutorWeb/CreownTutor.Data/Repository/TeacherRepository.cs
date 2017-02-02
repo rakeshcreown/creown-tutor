@@ -21,9 +21,9 @@ namespace CreownTutor.Data.Repository
            
         }
 
-        //public List<Review> GetReview(int userid)
-        //{
-        //    return dbEntity.Reviews.Where(c=>c.UserID==userid).
-        //}
+        public List<Review> GetReview(int userid)
+        {
+            return dbEntity.Reviews.Where(c => c.UserID == userid).OrderByDescending(c => c.AddedTime).ToList();
+        }
     }
 }

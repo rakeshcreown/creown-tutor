@@ -72,6 +72,7 @@
           <Property Name="CourseID" Type="int" />
           <Property Name="SessionID" Type="int" />
           <Property Name="AddedTime" Type="datetime" />
+          <Property Name="ReviewAddedBy" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -79,6 +80,22 @@
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SessionStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SessionUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SessionID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="IsPresenter" Type="bit" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -122,11 +139,23 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="50" />
           <Property Name="ProfileImage" Type="image" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
           <Property Name="ContactEmail" Type="varchar" MaxLength="20" />
           <Property Name="ExperienceInfo" Type="varchar" MaxLength="100" />
           <Property Name="BioGraphInfo" Type="varchar(max)" />
-          <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
         </EntityType>
+        <Association Name="FK__Reviews__ReviewA__5AEE82B9">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
+          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Reviews">
+              <PropertyRef Name="ReviewAddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_courseid">
           <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
           <End Role="LiveSession" Type="Self.LiveSession" Multiplicity="*" />
@@ -151,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_createdby_userid">
+        <Association Name="fk_createdby_user">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <ReferentialConstraint>
@@ -171,9 +200,15 @@
           <EntitySet Name="LiveSession" EntityType="Self.LiveSession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionStatus" EntityType="Self.SessionStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SessionUsers" EntityType="Self.SessionUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Reviews__ReviewA__5AEE82B9" Association="Self.FK__Reviews__ReviewA__5AEE82B9">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="Reviews" EntitySet="Reviews" />
+          </AssociationSet>
           <AssociationSet Name="fk_courseid" Association="Self.fk_courseid">
             <End Role="Course" EntitySet="Course" />
             <End Role="LiveSession" EntitySet="LiveSession" />
@@ -182,7 +217,7 @@
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="CourseRegistration" EntitySet="CourseRegistration" />
           </AssociationSet>
-          <AssociationSet Name="fk_createdby_userid" Association="Self.fk_createdby_userid">
+          <AssociationSet Name="fk_createdby_user" Association="Self.fk_createdby_user">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="Course" EntitySet="Course" />
           </AssociationSet>
@@ -242,6 +277,8 @@
           <Property Name="CourseID" Type="Int32" />
           <Property Name="SessionID" Type="Int32" />
           <Property Name="AddedTime" Type="DateTime" Precision="3" />
+          <Property Name="ReviewAddedBy" Type="Int32" />
+          <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" FromRole="Review" ToRole="UserDetail" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -300,6 +337,12 @@
             <End Role="UserDetail" EntitySet="UserDetails" />
             <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
+          <EntitySet Name="SessionStatus" EntityType="CreownTutorModel.SessionStatu" />
+          <EntitySet Name="SessionUsers" EntityType="CreownTutorModel.SessionUser" />
+          <AssociationSet Name="FK__Reviews__ReviewA__5AEE82B9" Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9">
+            <End Role="UserDetail" EntitySet="UserDetails" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Course">
           <Key>
@@ -354,6 +397,7 @@
           <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_userid" FromRole="UserDetail" ToRole="Course" />
           <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="UserDetail" ToRole="CourseRegistration" />
+          <NavigationProperty Name="Reviews" Relationship="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" FromRole="UserDetail" ToRole="Review" />
         </EntityType>
         <Association Name="fk_createdby_userid">
           <End Type="CreownTutorModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
@@ -376,6 +420,34 @@
             </Principal>
             <Dependent Role="CourseRegistration">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SessionStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SessionUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SessionID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="IsPresenter" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK__Reviews__ReviewA__5AEE82B9">
+          <End Type="CreownTutorModel.UserDetail" Role="UserDetail" Multiplicity="0..1" />
+          <End Type="CreownTutorModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetail">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ReviewAddedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,6 +502,7 @@
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="CreownTutorModel.Review">
               <MappingFragment StoreEntitySet="Reviews">
+                <ScalarProperty Name="ReviewAddedBy" ColumnName="ReviewAddedBy" />
                 <ScalarProperty Name="ReviewId" ColumnName="ReviewId" />
                 <ScalarProperty Name="ReviewRating" ColumnName="ReviewRating" />
                 <ScalarProperty Name="ReviewComments" ColumnName="ReviewComments" />
@@ -514,6 +587,24 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionStatus">
+            <EntityTypeMapping TypeName="CreownTutorModel.SessionStatu">
+              <MappingFragment StoreEntitySet="SessionStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SessionUsers">
+            <EntityTypeMapping TypeName="CreownTutorModel.SessionUser">
+              <MappingFragment StoreEntitySet="SessionUsers">
+                <ScalarProperty Name="IsPresenter" ColumnName="IsPresenter" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

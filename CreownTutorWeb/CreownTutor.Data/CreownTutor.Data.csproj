@@ -104,6 +104,12 @@
     <Compile Include="Role.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SessionStatu.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SessionUser.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubCategory.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
