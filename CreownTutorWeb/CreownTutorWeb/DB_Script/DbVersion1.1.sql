@@ -501,3 +501,6 @@ Alter table Reviews add ReviewAddedBy int
 Alter table Reviews
 add foreign key (ReviewAddedBy)
 references UserDetails(UserID)
+
+alter table CourseRegistration 
+add IsCourseRegistered bit 

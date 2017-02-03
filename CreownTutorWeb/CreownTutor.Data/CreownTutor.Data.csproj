@@ -96,6 +96,7 @@
     <Compile Include="Model\CourseDetailViewModel.cs" />
     <Compile Include="Model\CourseNewViewModel.cs" />
     <Compile Include="Model\CourseViewModel.cs" />
+    <Compile Include="Model\Enrollment.cs" />
     <Compile Include="Model\LoginRegistrationViewModel.cs" />
     <Compile Include="Model\ReviewModel.cs" />
     <Compile Include="Model\RootObject.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CourseRepository.cs" />
+    <Compile Include="Repository\EnrollmentRepository.cs" />
     <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\TeacherRepository.cs" />
     <Compile Include="Review.cs">

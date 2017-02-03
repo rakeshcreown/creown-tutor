@@ -302,6 +302,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="CourseRegistration" ToRole="UserDetail" />
+          <Property Name="IsCourseRegistered" Type="Boolean" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>

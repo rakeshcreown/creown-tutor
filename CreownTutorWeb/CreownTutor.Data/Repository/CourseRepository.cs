@@ -44,7 +44,7 @@ namespace CreownTutor.Data.Repository
             return dbEntity.Courses.OrderByDescending(c => c.CreatedDateAndTime).ToList().Take(ct).ToList();
         }
 
-        public CourseDetailViewModel GetCourseDetail(int id)
+        public CourseDetailViewModel GetCourseDetail(int id,bool isenrolled)
         {
             CourseDetailViewModel model = new CourseDetailViewModel();
             var course = dbEntity.Courses.FirstOrDefault(c => c.CourseID == id);
@@ -53,6 +53,7 @@ namespace CreownTutor.Data.Repository
                 model.Course = course;
                 model.User = course.UserDetail;
                 model.Sessions = dbEntity.LiveSessions.Where(s => s.CourseID == id).ToList();
+                model.IsEnrolled = isenrolled;
                 // TODO - Registered users will be shown only to Teacher Account
                 //model.RegisteredUsers = dbEntity.CourseRegistrations.Where(r => r.CourseID == id).ToList();
             }

@@ -13,5 +13,6 @@ namespace CreownTutor.Data.Model
         public Course Course { get; set; }
         public List<LiveSession> Sessions { get; set; }
         public List<CourseRegistration> RegisteredUsers { get; set; }
+        public bool IsEnrolled { get; set; }
     }
 }
