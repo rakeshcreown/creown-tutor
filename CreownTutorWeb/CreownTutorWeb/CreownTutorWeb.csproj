@@ -795,6 +795,7 @@
     <Content Include="js\classycountdown\js\jquery.classycountdown.js" />
     <Content Include="js\classycountdown\js\jquery.knob.js" />
     <Content Include="js\classycountdown\js\jquery.throttle.js" />
+    <Content Include="js\course.js" />
     <Content Include="js\custom.js" />
     <Content Include="js\fullpage-slider\jquery.fullpage.css" />
     <Content Include="js\fullpage-slider\jquery.fullpage.min.js" />

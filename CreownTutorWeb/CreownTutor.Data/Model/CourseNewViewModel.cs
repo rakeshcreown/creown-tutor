@@ -32,5 +32,7 @@ namespace CreownTutor.Data.Model
         public string Time { get; set; }
 
         public SelectList Categories { get; set; }
+
+        public string SessionData { get; set; }
     }
 }
