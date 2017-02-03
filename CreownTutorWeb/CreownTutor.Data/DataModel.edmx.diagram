@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c1dc4ddd957d4aa4ae1ce9bb180845ec" Name="Diagram1">
-        <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3" PointY="0.75" />
+      <Diagram DiagramId="c1dc4ddd957d4aa4ae1ce9bb180845ec" Name="Diagram1" ZoomLevel="53">
+        <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3" PointY="7.5" />
+        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="5.25" PointY="8.25" />
+        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="4.125" />
         <AssociationConnector Association="CreownTutorModel.fk_courseid" />
-        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="2" />
-        <AssociationConnector Association="CreownTutorModel.fk_createdby_userid" />
+        <AssociationConnector Association="CreownTutorModel.fk_createdby_user" />
         <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="10.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="10.375" PointY="3.75" />
         <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
