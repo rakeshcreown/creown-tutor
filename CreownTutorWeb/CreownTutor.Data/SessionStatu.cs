@@ -12,17 +12,9 @@ namespace CreownTutor.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Review
+    public partial class SessionStatu
     {
-        public int ReviewId { get; set; }
-        public int ReviewRating { get; set; }
-        public string ReviewComments { get; set; }
-        public int UserID { get; set; }
-        public Nullable<int> CourseID { get; set; }
-        public Nullable<int> SessionID { get; set; }
-        public Nullable<System.DateTime> AddedTime { get; set; }
-        public Nullable<int> ReviewAddedBy { get; set; }
-    
-        public virtual UserDetail UserDetail { get; set; }
+        public int ID { get; set; }
+        public string Status { get; set; }
     }
 }

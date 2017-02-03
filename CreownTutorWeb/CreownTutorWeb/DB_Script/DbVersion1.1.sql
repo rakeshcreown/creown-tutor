@@ -494,3 +494,10 @@ alter table UserDetails
 add BioGraphInfo varchar(MAX) null
 END
 go
+
+/*Created by Apurva on 2/2/2017 */
+Alter table Reviews add ReviewAddedBy int
+
+Alter table Reviews
+add foreign key (ReviewAddedBy)
+references UserDetails(UserID)

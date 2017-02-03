@@ -748,6 +748,7 @@
     <Content Include="images\project\lg2.jpg" />
     <Content Include="images\project\lg3.jpg" />
     <Content Include="images\project\lg4.jpg" />
+    <Content Include="images\project\profile1.jpg" />
     <Content Include="images\services\lg2.jpg" />
     <Content Include="images\services\lg4.jpg" />
     <Content Include="images\services\lg5.jpg" />
@@ -759,6 +760,8 @@
     <Content Include="images\services\s3.jpg" />
     <Content Include="images\shadow-overlay.png" />
     <Content Include="images\signature.png" />
+    <Content Include="images\star-empty-lg.png" />
+    <Content Include="images\star-fill-lg.png" />
     <Content Include="images\team\1.html" />
     <Content Include="images\team\1.png" />
     <Content Include="images\team\2.html" />
@@ -783,6 +786,8 @@
     <Content Include="images\testimonials\2.jpg" />
     <Content Include="images\testimonials\3.jpg" />
     <Content Include="images\title-dots.png" />
+    <Content Include="images\WhiteStar.gif" />
+    <Content Include="images\YellowStar.gif" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\calendar-events-data.js" />
     <Content Include="js\chart.js" />
@@ -850,6 +855,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -887,6 +893,8 @@
     <Content Include="Views\Course\Detail.cshtml" />
     <Content Include="Views\Course\CreateCourse.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Shared\_VoteNow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

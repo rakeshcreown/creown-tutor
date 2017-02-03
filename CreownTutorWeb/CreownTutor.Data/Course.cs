@@ -14,12 +14,6 @@ namespace CreownTutor.Data
     
     public partial class Course
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Course()
-        {
-            this.LiveSessions = new HashSet<LiveSession>();
-        }
-    
         public int CourseID { get; set; }
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
@@ -34,8 +28,6 @@ namespace CreownTutor.Data
         public Nullable<int> AttendessLimit { get; set; }
         public Nullable<double> CoursePrice { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LiveSession> LiveSessions { get; set; }
         public virtual UserDetail UserDetail { get; set; }
     }
 }

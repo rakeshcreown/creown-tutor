@@ -17,6 +17,7 @@ namespace CreownTutorWeb.Controllers
             TeacherRepository teacherrepo = new TeacherRepository();
             teacher.Courses=teacherrepo.GetLatestCourseByTeacher(id);
             teacher.User=teacherrepo.GetTeachers(id);
+            teacher.Reviews = teacherrepo.GetReview(id);
             return View(teacher);
         }
 

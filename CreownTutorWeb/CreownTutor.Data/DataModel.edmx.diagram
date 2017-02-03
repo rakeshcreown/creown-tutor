@@ -18,6 +18,9 @@
         <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="2" />
         <AssociationConnector Association="CreownTutorModel.fk_createdby_userid" />
         <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="10.375" PointY="3.75" />
+        <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

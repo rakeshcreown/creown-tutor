@@ -35,5 +35,7 @@ namespace CreownTutor.Data
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<SessionStatu> SessionStatus { get; set; }
+        public virtual DbSet<SessionUser> SessionUsers { get; set; }
     }
 }
