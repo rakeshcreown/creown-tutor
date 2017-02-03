@@ -1,4 +1,5 @@
 ﻿using CreownTutor.Data.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,38 @@ namespace CreownTutor.Data.Repository
                 //model.RegisteredUsers = dbEntity.CourseRegistrations.Where(r => r.CourseID == id).ToList();
             }
             return model;
+        }
+
+        public void CreateCourse(CourseNewViewModel model)
+        {
+            Course course = new Course();
+            course.CourseName = model.CourseName;
+            course.CourseDescription = model.Description;
+            course.Category = model.Category;
+            //Set current logged in teacher id
+            //course.CreatedBy =
+            course.CoursePrice = model.Price;
+            course.AttendessLimit = model.AttendessLimit;
+            course.CreatedDateAndTime = DateTime.Now;
+            dbEntity.Courses.Add(course);
+            dbEntity.SaveChanges();
+
+            var result = JsonConvert.DeserializeObject<RootObject>(model.SessionData);
+            if (result != null && result.jsondata.Count > 0)
+            {
+                foreach (var item in result.jsondata)
+                {
+                    LiveSession session = new LiveSession();
+                    session.CourseID = course.CourseID;
+                    session.Description = item.desc;
+                    session.FromDateTime = Convert.ToDateTime(item.sdate);
+                    session.ToDateTime = Convert.ToDateTime(item.enddate);
+                    session.Title = item.name;
+                    dbEntity.LiveSessions.Add(session);
+                    dbEntity.SaveChanges();
+                }
+            }
+
         }
     }
 }
