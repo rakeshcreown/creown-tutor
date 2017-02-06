@@ -48,6 +48,7 @@
           <Property Name="CourseID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RegisteredDateTime" Type="datetime" />
+          <Property Name="IsEnrolled" Type="bit" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -60,6 +61,9 @@
           <Property Name="Timezone" Type="datetime" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="CourseID" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Reviews">
           <Key>
@@ -302,7 +306,6 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="CourseRegistration" ToRole="UserDetail" />
-          <Property Name="IsCourseRegistered" Type="Boolean" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -316,6 +319,9 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CourseID" Type="Int32" />
           <NavigationProperty Name="Course" Relationship="CreownTutorModel.fk_courseid" FromRole="LiveSession" ToRole="Course" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -509,6 +515,9 @@
           <EntitySetMapping Name="LiveSessions">
             <EntityTypeMapping TypeName="CreownTutorModel.LiveSession">
               <MappingFragment StoreEntitySet="LiveSession">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Timezone" ColumnName="Timezone" />

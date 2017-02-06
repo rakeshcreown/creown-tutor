@@ -32,8 +32,9 @@ namespace CreownTutorWeb.Controllers
             return RedirectToAction("Index", "Course", new { cid = model.Category, s = model.SearchKeyword });
         }
 
-        public ActionResult Detail(int id,bool isenrolled)
+        public ActionResult Detail(int id)
         {
+            bool isenrolled =Convert.ToBoolean(TempData["isenrolled"]);
             return View(courseRepo.GetCourseDetail(id,isenrolled));
         }
 
@@ -63,7 +64,8 @@ namespace CreownTutorWeb.Controllers
         {
             EnrollmentRepository er = new EnrollmentRepository();
             er.Enroll(model);
-            return RedirectToAction("Detail",new {id= model.Course.CourseID,isenrolled=model.Course.IsCourseRegistered });
+            TempData["isenrolled"] = true;
+            return RedirectToAction("Detail",new { id = model.Course.CourseID});
         }
     }
 }

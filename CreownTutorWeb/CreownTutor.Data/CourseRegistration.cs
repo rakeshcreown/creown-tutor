@@ -18,7 +18,6 @@ namespace CreownTutor.Data
         public int CourseID { get; set; }
         public int UserID { get; set; }
         public Nullable<System.DateTime> RegisteredDateTime { get; set; }
-        public Nullable<bool> IsCourseRegistered { get; set; }
     
         public virtual UserDetail UserDetail { get; set; }
     }

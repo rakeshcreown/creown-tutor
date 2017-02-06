@@ -21,6 +21,9 @@ namespace CreownTutor.Data
         public Nullable<System.DateTime> Timezone { get; set; }
         public string Description { get; set; }
         public Nullable<int> CourseID { get; set; }
+        public int Status { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Course Course { get; set; }
     }

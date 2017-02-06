@@ -504,3 +504,6 @@ references UserDetails(UserID)
 
 alter table CourseRegistration 
 add IsCourseRegistered bit 
+
+alter table CourseRegistration
+drop column IsCourseRegistered
