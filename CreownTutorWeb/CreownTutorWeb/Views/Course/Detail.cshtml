@@ -72,18 +72,20 @@
                                     <th>Description</th>
                                     <th>Start Time</th>
                                     <th>End Time</th>
+                                    <th>Session Status</th>
                                 </tr>
                                 <tbody>
                                     @foreach (var item in Model.Sessions)
                                     {
-                                        <tr>
+                                        <tr class="trsessiondata">
                                             <th scope="row">@item.Title</th>
                                             <td>@item.Description</td>
-                                            <td>@item.FromDateTime</td>
-                                            <td>@item.ToDateTime</td>
+                                            <td class="fromdate">@item.FromDateTime</td>
+                                            <td class="todate">@item.ToDateTime</td>
+                                            <td class="timercount">
+                                            </td>
                                         </tr>
                                     }
-
                                 </tbody>
                             </table>
                         </div>
@@ -223,5 +225,70 @@
         if(showpopup==true||showpopup=="True"){
             modal.style.display = "block";
         }
+        updatetimer();
     }
+   
+    function updatetimer() {
+    //TODO:Remainning code for timer
+        //$('.table tr.trsessiondata').each(function (i, item) {
+        //    var fromdate = $(item).find('td.fromdate');
+        //    alert(fromdate)
+        //    var dateTime=new Date().toLocaleString();
+        //    var diff = fromdate - dateTime
+        //    alert(diff)
+        //    $('td.timercount').innerHTML = diff;
+        //});
+        //$('.table tr.trsessiondata').each(function (i, item) {
+        //    var timestart = Date.parse((item).find('td.fromdate'));
+        //    var timeend = new Date().getTime();
+        //    var hourDiff = timeend - timestart;
+        //    var secDiff = hourDiff / 1000; 
+        //    var minDiff = hourDiff / 60 / 1000;
+        //    var hDiff = hourDiff / 3600 / 1000; 
+        //    var humanReadable = {};
+        //    humanReadable.hours = Math.floor(hDiff);
+        //    humanReadable.minutes = minDiff - 60 * humanReadable.hours;
+        //    alert(humanReadable); 
+        //    $('td.timercount').innerHTML = humanReadable;
+        //});
+
+    }
+        @*var fromdate="";
+        @foreach (var items in Model.Sessions)
+        {
+            var fromdate = @items.FromDateTime;
+        }
+        var dt =fromdate;
+        var dateAr = dt.split('/');
+        var newDate = dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2];
+
+        var end = new Date(dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2]);
+
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById('timecountdown').innerHTML = 'Count Down Ends!';
+                window.location.href = '/Course/Detail/5';
+
+                return;
+            }
+            var days = Math.floor(distance / _day);
+            var _hours = Math.floor((distance % _day) / _hour);
+            var _minutes = Math.floor((distance % _hour) / _minute);
+            var _seconds = Math.floor((distance % _minute) / _second);
+
+            document.getElementById('timecountdown').innerHTML = ' Hrs: ' + _hours;
+            document.getElementById('timecountdown').innerHTML += ' Mins: ' + _minutes;
+            document.getElementById('timecountdown').innerHTML += ' Secs: ' + _seconds;
+        }
+        timer = setInterval(showRemaining, 1000);
+    }*@
 </script>
