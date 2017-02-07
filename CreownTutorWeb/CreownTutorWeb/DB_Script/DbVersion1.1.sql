@@ -507,3 +507,26 @@ add IsCourseRegistered bit
 
 alter table CourseRegistration
 drop column IsCourseRegistered
+
+
+/*Created by Apurva on 02/07/2017*/
+alter table Test
+add Category varchar(50) null
+
+alter table Test
+drop column Hour 
+
+alter table Test
+add Hour int
+
+alter table Test
+drop column Minutes
+
+alter table Test
+add Minutes int
+
+alter table Test
+drop column Seconds
+
+alter table Test
+add Seconds int

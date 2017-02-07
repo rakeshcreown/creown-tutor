@@ -119,14 +119,15 @@
           <Property Name="TestInstructions" Type="varchar(max)" Nullable="false" />
           <Property Name="AllowViewingAnswer" Type="bit" Nullable="false" />
           <Property Name="IsTimeAlloted" Type="bit" Nullable="false" />
-          <Property Name="Hour" Type="time" Precision="7" Nullable="false" />
-          <Property Name="Minutes" Type="time" Precision="7" Nullable="false" />
-          <Property Name="Seconds" Type="time" Precision="7" Nullable="false" />
           <Property Name="Marks" Type="int" Nullable="false" />
           <Property Name="Percentage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Result" Type="bit" Nullable="false" />
           <Property Name="PaymentType" Type="bit" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Category" Type="varchar" MaxLength="50" />
+          <Property Name="Hour" Type="int" />
+          <Property Name="Minutes" Type="int" />
+          <Property Name="Seconds" Type="int" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -305,6 +306,7 @@
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsEnrolled" Type="Boolean" />
           <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="CourseRegistration" ToRole="UserDetail" />
         </EntityType>
         <EntityType Name="LiveSession">
@@ -318,10 +320,10 @@
           <Property Name="Timezone" Type="DateTime" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CourseID" Type="Int32" />
-          <NavigationProperty Name="Course" Relationship="CreownTutorModel.fk_courseid" FromRole="LiveSession" ToRole="Course" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="CreatedBy" Type="Int32" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Course" Relationship="CreownTutorModel.fk_courseid" FromRole="LiveSession" ToRole="Course" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -378,14 +380,15 @@
           <Property Name="TestInstructions" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="AllowViewingAnswer" Type="Boolean" Nullable="false" />
           <Property Name="IsTimeAlloted" Type="Boolean" Nullable="false" />
-          <Property Name="Hour" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Minutes" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Seconds" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Marks" Type="Int32" Nullable="false" />
           <Property Name="Percentage" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="Result" Type="Boolean" Nullable="false" />
           <Property Name="PaymentType" Type="Boolean" Nullable="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Hour" Type="Int32" />
+          <Property Name="Minutes" Type="Int32" />
+          <Property Name="Seconds" Type="Int32" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -505,6 +508,7 @@
           <EntitySetMapping Name="CourseRegistrations">
             <EntityTypeMapping TypeName="CreownTutorModel.CourseRegistration">
               <MappingFragment StoreEntitySet="CourseRegistration">
+                <ScalarProperty Name="IsEnrolled" ColumnName="IsEnrolled" />
                 <ScalarProperty Name="RegisteredDateTime" ColumnName="RegisteredDateTime" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -580,14 +584,15 @@
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="CreownTutorModel.Test">
               <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Seconds" ColumnName="Seconds" />
+                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
                 <ScalarProperty Name="Result" ColumnName="Result" />
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="Marks" ColumnName="Marks" />
-                <ScalarProperty Name="Seconds" ColumnName="Seconds" />
-                <ScalarProperty Name="Minutes" ColumnName="Minutes" />
-                <ScalarProperty Name="Hour" ColumnName="Hour" />
                 <ScalarProperty Name="IsTimeAlloted" ColumnName="IsTimeAlloted" />
                 <ScalarProperty Name="AllowViewingAnswer" ColumnName="AllowViewingAnswer" />
                 <ScalarProperty Name="TestInstructions" ColumnName="TestInstructions" />

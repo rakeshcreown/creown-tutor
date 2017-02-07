@@ -20,13 +20,14 @@ namespace CreownTutor.Data
         public string TestInstructions { get; set; }
         public bool AllowViewingAnswer { get; set; }
         public bool IsTimeAlloted { get; set; }
-        public System.TimeSpan Hour { get; set; }
-        public System.TimeSpan Minutes { get; set; }
-        public System.TimeSpan Seconds { get; set; }
         public int Marks { get; set; }
         public decimal Percentage { get; set; }
         public bool Result { get; set; }
         public bool PaymentType { get; set; }
         public int UserID { get; set; }
+        public string Category { get; set; }
+        public Nullable<int> Hour { get; set; }
+        public Nullable<int> Minutes { get; set; }
+        public Nullable<int> Seconds { get; set; }
     }
 }

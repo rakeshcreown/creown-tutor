@@ -11,5 +11,6 @@ namespace CreownTutor.Data.Model
         public string CategoryID { get; set; }
         public string CategoryName { get; set; }
         public int CourseCount { get; set; }
+        public int TestCount { get; set; }
     }
 }
