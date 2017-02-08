@@ -530,3 +530,28 @@ drop column Seconds
 
 alter table Test
 add Seconds int
+
+
+/*Created by Apurva 02/08/2017*/
+CREATE TABLE [dbo].[UsersInRoles](
+	[RoleID] [int] NOT NULL,
+	[UserID] [int] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[UsersInRoles]  WITH CHECK ADD  CONSTRAINT [FK_UsersInRoles_Role] FOREIGN KEY([RoleID])
+REFERENCES [dbo].[Role] ([RoleID])
+GO
+
+ALTER TABLE [dbo].[UsersInRoles] CHECK CONSTRAINT [FK_UsersInRoles_Role]
+GO
+
+ALTER TABLE [dbo].[UsersInRoles]  WITH CHECK ADD  CONSTRAINT [FK_UsersInRoles_UserDetails] FOREIGN KEY([UserID])
+REFERENCES [dbo].[UserDetails] ([UserID])
+GO
+
+ALTER TABLE [dbo].[UsersInRoles] CHECK CONSTRAINT [FK_UsersInRoles_UserDetails]
+GO
+
+

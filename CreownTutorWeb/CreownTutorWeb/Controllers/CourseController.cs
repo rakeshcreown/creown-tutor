@@ -65,7 +65,8 @@ namespace CreownTutorWeb.Controllers
             EnrollmentRepository er = new EnrollmentRepository();
             er.Enroll(model);
             TempData["isenrolled"] = true;
-            return RedirectToAction("Detail",new { id = model.Course.CourseID});
+            //return RedirectToAction("Detail",new { id = model.Course.CourseID});
+            return View("Registration");
         }
     }
 }
