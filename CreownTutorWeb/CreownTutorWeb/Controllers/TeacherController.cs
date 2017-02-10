@@ -21,5 +21,22 @@ namespace CreownTutorWeb.Controllers
             return View(teacher);
         }
 
+        public ActionResult TeacherDashboard(int id=4)
+        {
+            Teacher teacher = new Teacher();
+            TeacherRepository teacherrepo = new TeacherRepository();
+            teacher.Courses = teacherrepo.GetLatestCourseByTeacher(id);
+            teacher.User = teacherrepo.GetTeachers(id);
+            return View(teacher);
+        }
+
+        public ActionResult EditProfile(int id = 4)
+        {
+            Teacher teacher = new Teacher();
+            TeacherRepository teacherrepo = new TeacherRepository();
+            teacher.User = teacherrepo.GetTeachers(id);
+            return View(teacher);
+        }
+
     }
 }

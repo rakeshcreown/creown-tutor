@@ -40,5 +40,15 @@ namespace CreownTutor.Data.Repository
         {
             return dbEntity.Roles.ToList();
         }
+
+        public int GetRoleById(LoginRegistrationViewModel model)
+        {
+            int query = (from s in dbEntity.Roles
+                         join c in dbEntity.UserDetails on s.RoleID equals c.RoleID
+                         where c.Username==model.LoginUserName && c.Password==model.LoginPassword
+                         select s.RoleID).FirstOrDefault();
+           
+            return query;
+        }
     }
 }

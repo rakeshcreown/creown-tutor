@@ -36,9 +36,19 @@ namespace CreownTutorWeb.Controllers
         public ActionResult Login(LoginRegistrationViewModel model)
         {
             AccountRepository repo = new AccountRepository();
+            var getrolebyid = repo.GetRoleById(model);
             if (!repo.Login(model))
             {
                 TempData["LoginError"] = "Invalid Username and Password";
+            }
+            if(getrolebyid == 1)
+            {
+              return RedirectToAction("Index");
+            }
+            else if(getrolebyid == 2)
+            {
+                TeacherController teacher = new TeacherController();
+                return RedirectToAction("TeacherDashboard", "teacher");
             }
             return RedirectToAction("Index");
         }
