@@ -15,13 +15,13 @@ namespace CreownTutorWeb.Controllers
         {
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
-            teacher.Courses=teacherrepo.GetLatestCourseByTeacher(id);
-            teacher.User=teacherrepo.GetTeachers(id);
+            teacher.Courses = teacherrepo.GetLatestCourseByTeacher(id);
+            teacher.User = teacherrepo.GetTeachers(id);
             teacher.Reviews = teacherrepo.GetReview(id);
             return View(teacher);
         }
 
-        public ActionResult TeacherDashboard(int id=4)
+        public ActionResult TeacherDashboard(int id = 4)
         {
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
@@ -29,14 +29,16 @@ namespace CreownTutorWeb.Controllers
             teacher.User = teacherrepo.GetTeachers(id);
             return View(teacher);
         }
-
-        public ActionResult EditProfile(int id = 4)
+        [HttpGet]
+        public ActionResult EditProfile(HttpPostedFileBase file, int id = 4)
         {
+
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
             teacher.User = teacherrepo.GetTeachers(id);
+            teacher.User = teacherrepo.FileUpload(file);
             return View(teacher);
         }
-
     }
+        
 }

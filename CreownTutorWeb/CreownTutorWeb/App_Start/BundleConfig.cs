@@ -45,6 +45,12 @@ namespace CreownTutorWeb
                       "~/css/responsive.css",
                       "~/css/colors/theme-skin-color-set-1.css"
                       ));
+
+            //bundles.Add(new ScriptBundle("~/bundles/jqueryui")
+            //     .Include("~/Scripts/jquery-ui-{version}.js"));
+
+            //bundles.Add(new StyleBundle("~/Content/jqueryui")
+            //   .Include("~/Content/themes/base/all.css"));
         }
     }
 }
