@@ -5,23 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c1dc4ddd957d4aa4ae1ce9bb180845ec" Name="Diagram1" ZoomLevel="52">
-        <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="7.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="5.25" PointY="6" />
-        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="7.5" PointY="1.75" />
-        <AssociationConnector Association="CreownTutorModel.fk_courseid" />
-        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="5.25" PointY="8.875" />
-        <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="5.25" PointY="8.125" />
+        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="3" PointY="4.25" />
+        <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="9.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="9.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="4.25" />
+        <AssociationConnector Association="CreownTutorModel.fk_courseid" />
         <AssociationConnector Association="CreownTutorModel.fk_createdby_user" />
         <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
         <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" />
-        <AssociationConnector Association="CreownTutorModel.UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

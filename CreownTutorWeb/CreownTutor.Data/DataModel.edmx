@@ -260,10 +260,6 @@
             <End Role="UserDetail" EntitySet="UserDetails" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="UsersInRoles" Association="CreownTutorModel.UsersInRoles">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="UserDetail" EntitySet="UserDetails" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CartInfomation">
           <Key>
@@ -349,7 +345,6 @@
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserDetails" Relationship="CreownTutorModel.UsersInRoles" FromRole="Role" ToRole="UserDetail" />
         </EntityType>
         <EntityType Name="SessionStatu">
           <Key>
@@ -417,7 +412,6 @@
           <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_user" FromRole="UserDetail" ToRole="Course" />
           <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="UserDetail" ToRole="CourseRegistration" />
           <NavigationProperty Name="Reviews" Relationship="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" FromRole="UserDetail" ToRole="Review" />
-          <NavigationProperty Name="Roles" Relationship="CreownTutorModel.UsersInRoles" FromRole="UserDetail" ToRole="Role" />
         </EntityType>
         <Association Name="fk_courseid">
           <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="0..1" />
@@ -466,10 +460,6 @@
               <PropertyRef Name="ReviewAddedBy" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRoles">
-          <End Type="CreownTutorModel.Role" Role="Role" Multiplicity="*" />
-          <End Type="CreownTutorModel.UserDetail" Role="UserDetail" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
