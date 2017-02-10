@@ -1,0 +1,14 @@
+﻿@model CreownTutor.Data.Model.Teacher
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>EditProfile</h2>
+@using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Change your Profile Image:</label>
+    <input type="file" name="file" id="file" style="width: 100%;" />
+    <br />
+    <input type="submit" value="Upload" class="submit" />
+}
