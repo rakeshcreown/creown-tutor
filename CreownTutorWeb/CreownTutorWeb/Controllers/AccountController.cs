@@ -43,10 +43,12 @@ namespace CreownTutorWeb.Controllers
             }
             if(getrolebyid == 1)
             {
+              Session["user"] = "Student";
               return RedirectToAction("Index");
             }
             else if(getrolebyid == 2)
             {
+                Session["user"] = "Teacher";
                 TeacherController teacher = new TeacherController();
                 return RedirectToAction("TeacherDashboard", "teacher");
             }

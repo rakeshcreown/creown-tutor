@@ -1198,7 +1198,16 @@
                     <ul class="pull-right flip hidden-sm hidden-xs">
                         <li>
                             <!-- Modal: Book Now Starts -->
-                            <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"  href="/Account">Login/Register</a>
+                            @if (Session["user"] == null)
+                            {
+                            <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15"  href="/Account" id="loginbtn">Login/Register</a>
+                            }
+                            else
+                            {
+                            <a class="btn btn-colored btn-flat bg-theme-color-2 text-white font-14 bs-modal-ajax-load mt-0 p-25 pr-15 pl-15" href="/Account" id="logoutbtn">Log Out</a>
+                                Session.Abandon();
+                                Session.RemoveAll();
+                            }
                             <!-- Modal: Book Now End -->
                         </li>
                     </ul>
