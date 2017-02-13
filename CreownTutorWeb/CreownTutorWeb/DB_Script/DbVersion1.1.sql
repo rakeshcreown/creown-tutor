@@ -554,4 +554,7 @@ GO
 ALTER TABLE [dbo].[UsersInRoles] CHECK CONSTRAINT [FK_UsersInRoles_UserDetails]
 GO
 
+/*Created by Apurva*/
+alter table UserDetails
+add UpdatedPassword varchar(50)
 

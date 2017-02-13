@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CreownTutor.Data;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
 
@@ -29,14 +30,23 @@ namespace CreownTutorWeb.Controllers
             teacher.User = teacherrepo.GetTeachers(id);
             return View(teacher);
         }
-        [HttpGet]
-        public ActionResult EditProfile(HttpPostedFileBase file, int id = 4)
+       
+        public ActionResult EditProfile(int id = 4)
         {
-
+            Session["user"] = "Teacher";
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
             teacher.User = teacherrepo.GetTeachers(id);
-            teacher.User = teacherrepo.FileUpload(file);
+            return View(teacher);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(Teacher model,int id=4)
+        {
+            Session["user"] = "Teacher";
+            Teacher teacher = new Teacher();
+            TeacherRepository teacherrepo = new TeacherRepository();
+            teacherrepo.UpdateData(model, id);
             return View(teacher);
         }
     }

@@ -37,6 +37,7 @@ namespace CreownTutor.Data
         public string ExperienceInfo { get; set; }
         public string BioGraphInfo { get; set; }
         public string ProfileImage { get; set; }
+        public string UpdatedPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }

@@ -12,14 +12,14 @@
         });
 </script>
 <h2>EditProfile</h2>
-@using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
+@*@using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{*@
     <section class="">
         <div class="container">
             <div class="section-content">
                 <div class="row">
                     <div class="col-sx-12 col-sm-4 col-md-4">
-                        <label for="file">@Model.User.ProfileImage</label>
+                        @*<label for="file">@Model.User.ProfileImage</label>*@
                         <input type="file" name="file" id="file" style="width: 100%;" />
                         <br />
                         <input type="submit" value="Upload" class="submit" />
@@ -37,6 +37,8 @@
                             <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
                             <div class="row">
                                 <div class="form-group col-md-6">
+                                    @Html.HiddenFor(m => m.User.Username)
+                                    @Html.HiddenFor(m => m.User.Password)
                                     <label>Name</label>
                                     @Html.TextBoxFor(m => m.User.Name, new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.User.Name, "Please enter User Name")
@@ -66,10 +68,10 @@
                                     @Html.ValidationMessageFor(m => m.User.Location, "Please enter Address")
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
-                            </div>
-                        }
+                            </div>*@
+
                         <hr class="mt-70 mb-70">
 
                         <form name="editprofile-form" method="post">
@@ -85,29 +87,30 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Choose Password</label>
-                                    <input name="form_choose_password" class="form-control" type="text">
+                                    @Html.TextBoxFor(m => m.User.UpdatedPassword, new { @class = "form-control" })
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Re-enter Password</label>
-                                    <input name="form_re_enter_password" class="form-control" type="text">
+                                    @Html.TextBox("resetpassword", "", new { @class = "form-control", @id = "newpwd" })
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label>Old Password</label>
-                                    <input name="form_old_password" class="form-control" type="text">
+                                    @Html.TextBoxFor(m => m.User.Password, new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
                             </div>
                         </form>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </section>
-}
+@*}*@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,37 +28,53 @@ namespace CreownTutor.Data.Repository
             return dbEntity.Reviews.Where(c => c.UserID == userid).OrderByDescending(c => c.AddedTime).ToList();
         }
 
-        public UserDetail FileUpload(HttpPostedFileBase file)
+
+        //public UserDetail FileUpload(HttpPostedFileBase file)
+        //{
+            
+        //        string imagename = System.IO.Path.GetFileName(file.FileName);
+        //        string physicalpath = /*Server.MapPath("~/images/" + imagename);*/
+        //        System.Web.HttpContext.Current.Server.MapPath("~/images/" + imagename);
+        //        file.SaveAs(physicalpath);
+        //        UserDetail userinfo = new UserDetail();
+        //        userinfo.ProfileImage = imagename;
+        //        dbEntity.UserDetails.Add(userinfo);
+        //        dbEntity.SaveChanges();
+        //    return userinfo;
+        //}
+
+        public void UpdateData(Teacher model,int id)
         {
             
-                string imagename = System.IO.Path.GetFileName(file.FileName);
-                string physicalpath = /*Server.MapPath("~/images/" + imagename);*/
-                System.Web.HttpContext.Current.Server.MapPath("~/images/" + imagename);
-                file.SaveAs(physicalpath);
-                UserDetail userinfo = new UserDetail();
-                userinfo.ProfileImage = imagename;
-                dbEntity.UserDetails.Add(userinfo);
+            try
+            {
+                UserDetail userinfo = dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
+                //userinfo.Username = model.User.Username;
+                userinfo.Name = model.User.Name;
+                userinfo.EmailAddress = model.User.EmailAddress;
+                //userinfo.Password = model.User.Password;
+                userinfo.ContactNumber = model.User.ContactNumber;
+                userinfo.DateOfBirth = model.User.DateOfBirth;
+                userinfo.Location = model.User.Location;
+                userinfo.UpdatedPassword = model.User.UpdatedPassword;
+                userinfo.Password = model.User.UpdatedPassword;
+                dbEntity.UserDetails.Attach(userinfo);
+
+                var entry = dbEntity.Entry(userinfo);
+                entry.State = EntityState.Modified;
+                entry.Property(e => e.Name).IsModified = true;
+                entry.Property(e => e.EmailAddress).IsModified = true;
+                entry.Property(e => e.ContactNumber).IsModified = true;
+                entry.Property(e => e.DateOfBirth).IsModified = true;
+                entry.Property(e => e.Location).IsModified = true;
+                entry.Property(e => e.UpdatedPassword).IsModified = true;
                 dbEntity.SaveChanges();
-            return userinfo;
-        }
+            }
+            catch (Exception ex)
+            {
 
-        public void UpdateData(Teacher teacher)
-        {
-            //UserDetail userinfo = new UserDetail();
-            //userinfo.UserID = teacher.User.UserID;
-            //userinfo.Name= teacher.User.Name;
-            //userinfo.EmailAddress= teacher.User.EmailAddress;
-            //userinfo.ContactNumber= teacher.User.ContactNumber;
-            //userinfo.DateOfBirth= teacher.User.DateOfBirth;
-            //userinfo.Location= teacher.User.Location;
-            //dbEntity.Entry(userinfo).State = System.Data.Entity.EntityState.Modified;
-            //dbEntity.SaveChanges();
+            }
 
-            //var teacherprofile=dbEntity.UserDetails.Where(m=>m.UserID==teacher.User.UserID)
-            //if (teacherprofile.Any())
-            //{
-
-            //}
 
         }
     }

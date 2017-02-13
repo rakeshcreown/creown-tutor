@@ -34,6 +34,7 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult Detail(int id)
         {
+            Session["user"] = "Teacher";
             bool isenrolled =Convert.ToBoolean(TempData["isenrolled"]);
             return View(courseRepo.GetCourseDetail(id,isenrolled));
         }

@@ -879,15 +879,15 @@
     <Content Include="js\vertical-timeline\img\cd-icon-picture.svg" />
     <Content Include="js\webrtc\firebase.js" />
     <Content Include="js\webrtc\RTCMultiConnection.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
-    <Content Include="Scripts\jquery-1.12.4.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.12.1.js" />
-    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="obj\Scripts\bootstrap.js" />
+    <Content Include="obj\Scripts\bootstrap.min.js" />
+    <None Include="obj\Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="obj\Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="obj\Scripts\jquery-1.12.4.js" />
+    <Content Include="obj\Scripts\jquery-1.12.4.min.js" />
+    <Content Include="obj\Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="obj\Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="obj\Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -946,7 +946,7 @@
     <Content Include="Views\Course\Registration.cshtml" />
     <Content Include="Views\Teacher\TeacherDashboard.cshtml" />
     <Content Include="Views\Teacher\EditProfile.cshtml" />
-    <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="obj\Scripts\jquery-1.12.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
