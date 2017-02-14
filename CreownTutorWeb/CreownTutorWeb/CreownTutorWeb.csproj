@@ -901,6 +901,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -947,6 +948,7 @@
     <Content Include="Views\Teacher\TeacherDashboard.cshtml" />
     <Content Include="Views\Teacher\EditProfile.cshtml" />
     <Content Include="obj\Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Views\Student\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

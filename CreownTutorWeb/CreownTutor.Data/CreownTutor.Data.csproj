@@ -100,6 +100,7 @@
     <Compile Include="Model\LoginRegistrationViewModel.cs" />
     <Compile Include="Model\ReviewModel.cs" />
     <Compile Include="Model\RootObject.cs" />
+    <Compile Include="Model\Student.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Model\TestViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Repository\CourseRepository.cs" />
     <Compile Include="Repository\EnrollmentRepository.cs" />
     <Compile Include="Repository\ReviewRepository.cs" />
+    <Compile Include="Repository\StudentRepository.cs" />
     <Compile Include="Repository\TeacherRepository.cs" />
     <Compile Include="Repository\TestRepository.cs" />
     <Compile Include="Review.cs">

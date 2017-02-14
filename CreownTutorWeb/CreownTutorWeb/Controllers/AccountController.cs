@@ -44,7 +44,7 @@ namespace CreownTutorWeb.Controllers
             if(getrolebyid == 1)
             {
               Session["user"] = "Student";
-              return RedirectToAction("Index");
+              return RedirectToAction("Index","Student");
             }
             else if(getrolebyid == 2)
             {
