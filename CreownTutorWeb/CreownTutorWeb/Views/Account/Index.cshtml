@@ -5,6 +5,130 @@
 }
 
 <!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="images/bg/bg3.jpg" style="background-image: url(&quot;images/bg/bg3.jpg&quot;); background-position: 50% -103px;">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Login/Register</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Login/Register</a></li>
+                        <li class="active text-gray-silver">Login/Register</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#login-tab" data-toggle="tab" aria-expanded="true">Login</a></li>
+                    <li class=""><a href="#register-tab" data-toggle="tab" aria-expanded="false">Register</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade p-15 active in" id="login-tab">
+                        <h4 class="text-gray mt-0 pt-5"> Login</h4>
+                        <hr>
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "clearfix" }))
+                        {
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="form_username_email">Username/Email</label>
+                                    @Html.TextBoxFor(m => m.LoginUserName, new { @id = "form_username_email", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.LoginUserName, "Please enter User Name")
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="form_password">Password</label>
+                                    @Html.TextBoxFor(m => m.LoginPassword, new { @id = "form_password", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.LoginPassword, "Please enter Password")
+                                </div>
+                            </div>
+                            <div class="checkbox pull-left mt-15">
+                                <label for="form_checkbox">
+                                    <input id="form_checkbox" name="form_checkbox" type="checkbox">
+                                    Remember me
+                                </label>
+                            </div>
+                            <div class="form-group pull-right mt-10">
+                                <button type="submit" class="btn btn-dark btn-sm">Login</button>
+                            </div>
+                            <div class="clear text-center pt-10">
+                                <a class="text-theme-colored font-weight-600 font-12" href="#">Forgot Your Password?</a>
+                            </div>
+                            <div class="clear text-center pt-10">
+                                <a class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15" href="#" data-bg-color="#3b5998" style="background: rgb(59, 89, 152) !important;">Login with facebook</a>
+                                <a class="btn btn-dark btn-lg btn-block no-border" href="#" data-bg-color="#00acee" style="background: rgb(0, 172, 238) !important;">Login with twitter</a>
+                            </div>
+                        }
+                    </div>
+                    <div class="tab-pane fade p-15" id="register-tab">
+                       @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "register-form" }))
+                       {
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="pe-7s-users"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Don't have an Account? Register Now.</h4>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_name">Name</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @id = "form_name", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Name, "Please enter Name")
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Email Address</label>
+                                    @Html.TextBoxFor(m => m.EmailAddress, new { @id = "form_email", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.EmailAddress, "Please enter Email")
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_choose_username">Choose Username</label>
+                                    @Html.TextBoxFor(m => m.RegistrationUserName, new { @id = "form_choose_username", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.RegistrationUserName, "Please enter User Name")
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="form_chooserole">Choose Role</label>
+                                    @Html.DropDownListFor(m => m.RoleID, Model.RoleList, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.RoleID, "Please select a Role")
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="form_choose_password">Choose Password</label>
+                                    @Html.TextBoxFor(m => m.RegistrationPassword, new { @id = "form_choose_password", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.RegistrationPassword, "Please enter Password")
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Re-enter Password</label>
+                                    @Html.TextBoxFor(m => m.RegistrationNewPassword, new { @id = "form_re_enter_password", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.RegistrationNewPassword, "Please enter Password")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Register Now</button>
+                            </div>
+                       }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@*<!-- Section: inner-header -->
 <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg/bg3.jpg">
     <div class="container pt-70 pb-20">
         <!-- Section Content -->
@@ -119,8 +243,5 @@
             </div>
         </div>
     </div>
-</section>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+</section>*@
 
