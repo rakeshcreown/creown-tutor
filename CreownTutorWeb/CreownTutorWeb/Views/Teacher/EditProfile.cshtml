@@ -19,10 +19,13 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-sx-12 col-sm-4 col-md-4">
+                    @using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { @class = "clearfix" }))
+                    {
                         @*<label for="file">@Model.User.ProfileImage</label>*@
                         <input type="file" name="file" id="file" style="width: 100%;" />
                         <br />
                         <input type="submit" value="Upload" class="submit" />
+                    }
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8">
                         @using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { @class = "clearfix" }))
@@ -34,7 +37,6 @@
                                 <h4 class="text-gray pt-10 mt-0 mb-30">Edit Profile</h4>
                             </div>
                             <hr>
-                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     @Html.HiddenFor(m => m.User.Username)
@@ -82,8 +84,6 @@
                                 <h4 class="text-gray pt-10 mt-0 mb-30">Change Password</h4>
                             </div>
                             <hr>
-                            <p class="text-gray">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi id perspiciatis facilis nulla possimus quasi, amet qui. Ea rerum officia, aspernatur nulla neque nesciunt alias.</p>
-
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Choose Password</label>
