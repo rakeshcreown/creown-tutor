@@ -3,6 +3,7 @@
     ViewBag.Title = "TeacherDashboard";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+
 <section>
     <h2>TeacherDashboard</h2>
     <div class="container">
@@ -17,18 +18,44 @@
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="small">
-                            <table class="table table-bordered">
+                            <input class="form-control search-input" type="text" id="search" placeholder="Search for a Course or Student">
+                            <script type="text/javascript">
+                                $("#search").on("keyup", function() {
+                                    var value = $(this).val();
+                                    alert(value)
+                                    $("#table1 #tbody1 #tr1").each(function(index) {
+                                        if (index !== 0) {
+                                            alert(index)
+                                            $row = $(this);
+
+                                            var id = $row.find("td a").text();
+                                            alert(id)
+                                            if (id.indexOf(value) !== 0) {
+                                                $row.hide();
+                                            }
+                                            else {
+                                                $row.show();
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+                            <br />
+                            <hr />
+                            <table class="table table-bordered" id="table1">
                                 <tr>
                                     <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Activities</td>
                                 </tr>
-                                @*<tr> <th>Coures Type</th> <th>Class time</th> <th>Course Duration</th> <th>Price</th> </tr>
-                                <tbody>
-                                    <tr> <th scope="row">Applied Psychology</th> <td>45 minutes</td> <td>3 years</td> <td>$810</td> </tr>
-                                    <tr> <th scope="row">Business Administration (MBA)</th> <td>45 minutes</td> <td>2 years</td> <td>$940</td> </tr>
-                                    <tr> <th scope="row">Computer Science (BSc)</th> <td>1 Hours</td> <td>4 years</td> <td>$1180</td> </tr>
-                                    <tr> <th scope="row">Development Studies (MDS)</th> <td>1 Hours</td> <td>5 years</td> <td>$1400</td> </tr>
-                                    <tr> <th scope="row">Engineering Technology (BSc)</th> <td>30 minutes</td> <td>3 years</td> <td>$600</td> </tr>
-                                </tbody>*@
+                                <tbody id="tbody1">
+                                    @foreach (var item in Model.Courses)
+                                    {
+                                        <tr id="tr1">
+                                            <td>
+                                                A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime 
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="medium">
@@ -91,9 +118,8 @@
                             </ul>
                         </div>
                     </div>
-                    </div>
-                    </div>
                 </div>
+            </div>
+        </div>
+        </div>
 </section>
-
-           
