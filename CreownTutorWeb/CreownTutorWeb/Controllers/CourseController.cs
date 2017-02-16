@@ -69,5 +69,21 @@ namespace CreownTutorWeb.Controllers
             //return RedirectToAction("Detail",new { id = model.Course.CourseID});
             return View("Registration");
         }
+
+        public ActionResult EditCourse(int id=4,bool isenrolled=true)
+        {
+            CourseNewViewModel model = new CourseNewViewModel();
+            LoadCategories(model);
+            courseRepo.GetCourseDetail(id, isenrolled);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditCourse(CourseNewViewModel model ,int id=4)
+        {
+            Session["user"] = "Teacher";
+            courseRepo.UpdateCourseInfo(model, id);
+            return View(model);
+        }
     }
 }
