@@ -952,6 +952,7 @@
     <Content Include="obj\Scripts\jquery-1.12.4.min.map" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
+    <Content Include="Views\Course\EditCourseList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

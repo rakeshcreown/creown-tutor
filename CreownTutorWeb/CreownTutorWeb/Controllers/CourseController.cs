@@ -85,5 +85,13 @@ namespace CreownTutorWeb.Controllers
             courseRepo.UpdateCourseInfo(model, id);
             return View(model);
         }
+
+        public ActionResult EditCourseList(int id=4)
+        {
+            Teacher teacher = new Teacher();
+            TeacherRepository teacherrepo = new TeacherRepository();
+            teacher.Courses = teacherrepo.GetLatestCourseByTeacher(id);
+            return View(teacher);
+        }
     }
 }
