@@ -20,16 +20,17 @@
                             <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Courses</td>
                         </tr>
                         <tr>
-                            <th>Course Name</th><th>Attendence</th><th>Course Price</th><th>Manage Course</th>
+                            <th style="display:none">Course ID</th><th>Course Name</th><th>Attendence</th><th>Course Price</th><th>Manage Course</th>
                         </tr>
                         <tbody>
                             @foreach(var item in Model.Courses)
                             {
                                 <tr>
-                                    <td id="coursetd"><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                    <td style="display:none"><input type="hidden" id="forid">@item.CourseID</td>
+                                    <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
                                     <td>@item.AttendessLimit</td>
                                     <td>@item.CoursePrice</td>
-                                    <td><button id="btnid">Edit Course</button></td>
+                                    <td><button id="btnid" class="btn bg-theme-color-2 btn-sm text-white"><i class="fa fa-edit"></i>Edit Course</button></td>
                                 </tr>
                             }
                         </tbody>
@@ -47,6 +48,8 @@
     $("table tbody tr").on("click", "td:not(:first-child)", function () {
         //var url = $(this).parents('tr').data("~/Course/EditCourse/")
         @*var url = '@Url.Action("Course", "EditCourse", new { id ="@item.CourseID"})';*@
-        window.location.href = '@Url.Content("~/Course/EditCourse/")';
+        var id = $(this).parents('tr').children(':first').text();// I am supposing that id is placed in first td of row then set this value to hidden field
+        $('#forid').val(id);
+        window.location.href = '@Url.Content("~/Course/EditCourse/")'+id;
     });
 </script>

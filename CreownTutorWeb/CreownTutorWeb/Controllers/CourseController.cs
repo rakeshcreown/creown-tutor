@@ -93,5 +93,17 @@ namespace CreownTutorWeb.Controllers
             teacher.Courses = teacherrepo.GetLatestCourseByTeacher(id);
             return View(teacher);
         }
+
+        [HttpPost]
+        public ActionResult EditCourseList(int id,string name)
+        {
+            if(name=="edit")
+            {
+                int courseid = int.Parse(Request["forid"].ToString());
+            }
+            Teacher teacher = new Teacher();
+            return View(teacher);
+
+        }
     }
 }
