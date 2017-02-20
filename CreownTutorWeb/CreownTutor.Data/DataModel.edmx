@@ -147,8 +147,9 @@
           <Property Name="ContactEmail" Type="varchar" MaxLength="20" />
           <Property Name="ExperienceInfo" Type="varchar" MaxLength="100" />
           <Property Name="BioGraphInfo" Type="varchar(max)" />
-          <Property Name="ProfileImage" Type="varchar(max)" />
           <Property Name="UpdatedPassword" Type="varchar" MaxLength="50" />
+          <Property Name="ProfileImage" Type="varbinary(max)" />
+          <Property Name="Imagelength" Type="varchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK__Reviews__ReviewA__5AEE82B9">
           <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1" />
@@ -409,11 +410,12 @@
           <Property Name="ContactEmail" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ExperienceInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="BioGraphInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ProfileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UpdatedPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Courses" Relationship="CreownTutorModel.fk_createdby_user" FromRole="UserDetail" ToRole="Course" />
           <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="UserDetail" ToRole="CourseRegistration" />
           <NavigationProperty Name="Reviews" Relationship="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" FromRole="UserDetail" ToRole="Review" />
-          <Property Name="UpdatedPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Imagelength" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_courseid">
           <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="0..1" />
@@ -607,8 +609,9 @@
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="CreownTutorModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
-                <ScalarProperty Name="UpdatedPassword" ColumnName="UpdatedPassword" />
+                <ScalarProperty Name="Imagelength" ColumnName="Imagelength" />
                 <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="UpdatedPassword" ColumnName="UpdatedPassword" />
                 <ScalarProperty Name="BioGraphInfo" ColumnName="BioGraphInfo" />
                 <ScalarProperty Name="ExperienceInfo" ColumnName="ExperienceInfo" />
                 <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />

@@ -558,3 +558,12 @@ GO
 alter table UserDetails
 add UpdatedPassword varchar(50)
 
+alter table UserDetails
+drop column ProfileImage
+
+alter table UserDetails
+add ProfileImage varbinary(MAX)
+
+/*Created by Apurva on 20 feb */
+alter table UserDetails
+add Imagelength varchar(100);

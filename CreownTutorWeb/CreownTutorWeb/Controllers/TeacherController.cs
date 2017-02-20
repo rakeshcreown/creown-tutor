@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,12 +42,12 @@ namespace CreownTutorWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProfile(Teacher model,int id=4)
+        public ActionResult EditProfile(HttpPostedFileBase file,Teacher model,int id=4)
         {
             Session["user"] = "Teacher";
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
-            teacherrepo.UpdateData(model, id);
+            teacherrepo.UpdateData(file,model,id);
             return View(teacher);
         }
     }
