@@ -102,7 +102,8 @@
                         <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@Model.User.Name</span></h4>
                     </div>
                     <div class="doctor-thumb">
-                        <img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">
+                        @*<img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">*@
+                        <img src="@Url.Content(@Model.User.Imagelength)" alt="" style="height:470px; width:400px;">
                     </div>
                     <button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Teacher",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>
                     <div class="widget">
