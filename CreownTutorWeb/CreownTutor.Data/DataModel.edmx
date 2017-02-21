@@ -49,6 +49,7 @@
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RegisteredDateTime" Type="datetime" />
           <Property Name="IsEnrolled" Type="bit" />
+          <Property Name="SessionID" Type="int" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -163,6 +164,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Course_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Course1" Type="Self.Course" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Course1">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_courseid">
           <End Role="Course" Type="Self.Course" Multiplicity="0..1" />
           <End Role="LiveSession" Type="Self.LiveSession" Multiplicity="*" />
@@ -172,6 +185,42 @@
             </Principal>
             <Dependent Role="LiveSession">
               <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_Course">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_CourseRegistration">
+          <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="1" />
+          <End Role="CourseRegistration1" Type="Self.CourseRegistration" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CourseRegistration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseRegistration1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_SessionStatus">
+          <End Role="SessionStatus" Type="Self.SessionStatus" Multiplicity="0..1" />
+          <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="SessionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,6 +248,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SessionStatus_SessionStatus">
+          <End Role="SessionStatus" Type="Self.SessionStatus" Multiplicity="1" />
+          <End Role="SessionStatus1" Type="Self.SessionStatus" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SessionStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SessionStatus1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CreownTutorModelStoreContainer">
           <EntitySet Name="CartInfomation" EntityType="Self.CartInfomation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -216,9 +277,25 @@
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
+          <AssociationSet Name="FK_Course_Course" Association="Self.FK_Course_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Course1" EntitySet="Course" />
+          </AssociationSet>
           <AssociationSet Name="fk_courseid" Association="Self.fk_courseid">
             <End Role="Course" EntitySet="Course" />
             <End Role="LiveSession" EntitySet="LiveSession" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_Course" Association="Self.FK_CourseRegistration_Course">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_CourseRegistration" Association="Self.FK_CourseRegistration_CourseRegistration">
+            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
+            <End Role="CourseRegistration1" EntitySet="CourseRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_SessionStatus" Association="Self.FK_CourseRegistration_SessionStatus">
+            <End Role="SessionStatus" EntitySet="SessionStatus" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseRegistration_UserDetails" Association="Self.FK_CourseRegistration_UserDetails">
             <End Role="UserDetails" EntitySet="UserDetails" />
@@ -227,6 +304,10 @@
           <AssociationSet Name="fk_createdby_user" Association="Self.fk_createdby_user">
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionStatus_SessionStatus" Association="Self.FK_SessionStatus_SessionStatus">
+            <End Role="SessionStatus" EntitySet="SessionStatus" />
+            <End Role="SessionStatus1" EntitySet="SessionStatus" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -261,6 +342,26 @@
           <AssociationSet Name="FK__Reviews__ReviewA__5AEE82B9" Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9">
             <End Role="UserDetail" EntitySet="UserDetails" />
             <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Course" Association="CreownTutorModel.FK_Course_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Course1" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_Course" Association="CreownTutorModel.FK_CourseRegistration_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_CourseRegistration" Association="CreownTutorModel.FK_CourseRegistration_CourseRegistration">
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
+            <End Role="CourseRegistration1" EntitySet="CourseRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_SessionStatus" Association="CreownTutorModel.FK_CourseRegistration_SessionStatus">
+            <End Role="SessionStatu" EntitySet="SessionStatus" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SessionStatus_SessionStatus" Association="CreownTutorModel.FK_SessionStatus_SessionStatus">
+            <End Role="SessionStatu" EntitySet="SessionStatus" />
+            <End Role="SessionStatu1" EntitySet="SessionStatus" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CartInfomation">
@@ -299,6 +400,9 @@
           <Property Name="CoursePrice" Type="Double" />
           <NavigationProperty Name="LiveSessions" Relationship="CreownTutorModel.fk_courseid" FromRole="Course" ToRole="LiveSession" />
           <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.fk_createdby_user" FromRole="Course" ToRole="UserDetail" />
+          <NavigationProperty Name="Course1" Relationship="CreownTutorModel.FK_Course_Course" FromRole="Course" ToRole="Course1" />
+          <NavigationProperty Name="Course2" Relationship="CreownTutorModel.FK_Course_Course" FromRole="Course1" ToRole="Course" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
         </EntityType>
         <EntityType Name="CourseRegistration">
           <Key>
@@ -310,6 +414,11 @@
           <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
           <Property Name="IsEnrolled" Type="Boolean" />
           <NavigationProperty Name="UserDetail" Relationship="CreownTutorModel.FK_CourseRegistration_UserDetails" FromRole="CourseRegistration" ToRole="UserDetail" />
+          <NavigationProperty Name="Course" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
+          <NavigationProperty Name="CourseRegistration1" Relationship="CreownTutorModel.FK_CourseRegistration_CourseRegistration" FromRole="CourseRegistration" ToRole="CourseRegistration1" />
+          <NavigationProperty Name="CourseRegistration2" Relationship="CreownTutorModel.FK_CourseRegistration_CourseRegistration" FromRole="CourseRegistration1" ToRole="CourseRegistration" />
+          <Property Name="SessionID" Type="Int32" />
+          <NavigationProperty Name="SessionStatu" Relationship="CreownTutorModel.FK_CourseRegistration_SessionStatus" FromRole="CourseRegistration" ToRole="SessionStatu" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -354,6 +463,9 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_SessionStatus" FromRole="SessionStatu" ToRole="CourseRegistration" />
+          <NavigationProperty Name="SessionStatus1" Relationship="CreownTutorModel.FK_SessionStatus_SessionStatus" FromRole="SessionStatu" ToRole="SessionStatu1" />
+          <NavigationProperty Name="SessionStatu1" Relationship="CreownTutorModel.FK_SessionStatus_SessionStatus" FromRole="SessionStatu1" ToRole="SessionStatu" />
         </EntityType>
         <EntityType Name="SessionUser">
           <Key>
@@ -465,6 +577,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Course_Course">
+          <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="CreownTutorModel.Course" Role="Course1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="Course1">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_Course">
+          <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_CourseRegistration">
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CourseRegistration">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseRegistration1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_SessionStatus">
+          <End Type="CreownTutorModel.SessionStatu" Role="SessionStatu" Multiplicity="0..1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SessionStatus_SessionStatus">
+          <End Type="CreownTutorModel.SessionStatu" Role="SessionStatu" Multiplicity="1" />
+          <End Type="CreownTutorModel.SessionStatu" Role="SessionStatu1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SessionStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SessionStatu1">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -512,6 +684,7 @@
           <EntitySetMapping Name="CourseRegistrations">
             <EntityTypeMapping TypeName="CreownTutorModel.CourseRegistration">
               <MappingFragment StoreEntitySet="CourseRegistration">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
                 <ScalarProperty Name="IsEnrolled" ColumnName="IsEnrolled" />
                 <ScalarProperty Name="RegisteredDateTime" ColumnName="RegisteredDateTime" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />

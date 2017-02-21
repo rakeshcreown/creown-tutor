@@ -21,6 +21,11 @@
         <AssociationConnector Association="CreownTutorModel.fk_createdby_user" />
         <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
         <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" />
+        <AssociationConnector Association="CreownTutorModel.FK_Course_Course" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_Course" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_CourseRegistration" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_SessionStatus" />
+        <AssociationConnector Association="CreownTutorModel.FK_SessionStatus_SessionStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

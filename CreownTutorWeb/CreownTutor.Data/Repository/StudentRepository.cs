@@ -23,5 +23,10 @@ namespace CreownTutor.Data.Repository
             var value= dbEntity.CourseRegistrations.Where(m => m.UserID == id).Select(m => m.IsEnrolled).Distinct();
             return value != null;
         }
+
+        public List<CourseRegistration> GetRegisteredCourses(bool isEnrolled)
+        {
+            return dbEntity.CourseRegistrations.Where(c => c.IsEnrolled == true).ToList();
+        }
     }
 }

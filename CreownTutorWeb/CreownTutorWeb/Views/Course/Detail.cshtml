@@ -34,10 +34,9 @@
                    {
                     @Html.HiddenFor(x => x.Course.CourseID)
                     <h3 class="text-theme-colored line-bottom text-theme-colored">@Model.Course.CourseName
-                        <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"  ><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
+                        <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
                     </h3>
                     <div id="myModal" class="modal">
-
                         <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
@@ -220,7 +219,7 @@
                 modal.style.display = "none";
             }
     }
-     //Open window when showpopup is true
+    //Open window when showpopup is true
     window.onload=function (event) {
         if(showpopup==true||showpopup=="True"){
             modal.style.display = "block";

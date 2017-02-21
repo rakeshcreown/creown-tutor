@@ -60,14 +60,27 @@ namespace CreownTutorWeb.Controllers
             return View(model);
         }
 
+        public ActionResult Registration(bool isEnrolled=false,int id=2)
+        {
+            Session["user"] = "Student";
+            Student student = new Student();
+            StudentRepository studentrepo = new StudentRepository();
+            student.Courses = studentrepo.GetLatestCourseByTeacher(id);
+            student.User = studentrepo.GetStudents(id);
+            student.CourseRegistrations = studentrepo.GetRegisteredCourses(isEnrolled);
+            return View(student);
+        }
+
         [HttpPost]
         public ActionResult Registration(Enrollment model)
         {
+            Session["user"] = "Student";
             EnrollmentRepository er = new EnrollmentRepository();
             er.Enroll(model);
             TempData["isenrolled"] = true;
             //return RedirectToAction("Detail",new { id = model.Course.CourseID});
-            return View("Registration");
+            //return View("Registration");
+            return RedirectToAction("Registration");
         }
 
         public ActionResult EditCourse(int id=4,bool isenrolled=true)

@@ -10,6 +10,6 @@ namespace CreownTutor.Data.Model
    {
         public UserDetail User { get; set; }
         public List<Course> Courses { get; set; }
-        public CourseRegistration CourseRegistration { get; set; }
+        public List<CourseRegistration> CourseRegistrations { get; set; }
     }
 }

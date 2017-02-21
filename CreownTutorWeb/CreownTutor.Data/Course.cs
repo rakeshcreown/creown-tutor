@@ -18,6 +18,7 @@ namespace CreownTutor.Data
         public Course()
         {
             this.LiveSessions = new HashSet<LiveSession>();
+            this.CourseRegistrations = new HashSet<CourseRegistration>();
         }
     
         public int CourseID { get; set; }
@@ -37,5 +38,9 @@ namespace CreownTutor.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LiveSession> LiveSessions { get; set; }
         public virtual UserDetail UserDetail { get; set; }
+        public virtual Course Course1 { get; set; }
+        public virtual Course Course2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }
 }

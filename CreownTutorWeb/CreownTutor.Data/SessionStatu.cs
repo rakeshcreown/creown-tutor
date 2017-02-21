@@ -14,7 +14,18 @@ namespace CreownTutor.Data
     
     public partial class SessionStatu
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SessionStatu()
+        {
+            this.CourseRegistrations = new HashSet<CourseRegistration>();
+        }
+    
         public int ID { get; set; }
         public string Status { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual SessionStatu SessionStatus1 { get; set; }
+        public virtual SessionStatu SessionStatu1 { get; set; }
     }
 }

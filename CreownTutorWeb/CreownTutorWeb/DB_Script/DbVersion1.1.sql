@@ -567,3 +567,7 @@ add ProfileImage varbinary(MAX)
 /*Created by Apurva on 20 feb */
 alter table UserDetails
 add Imagelength varchar(100);
+
+/*Created by Apurva on 21st feb*/
+alter table CourseRegistration 
+add SessionID int

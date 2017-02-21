@@ -266,6 +266,7 @@
     <Content Include="images\apple-touch-icon-144x144.png" />
     <Content Include="images\apple-touch-icon-72x72.png" />
     <Content Include="images\apple-touch-icon.png" />
+    <Content Include="images\bearish.svg" />
     <Content Include="images\bg-flower6.html" />
     <Content Include="images\bg\bg1.jpg" />
     <Content Include="images\bg\bg15.html" />
@@ -287,6 +288,7 @@
     <Content Include="images\blog\comment1.jpg" />
     <Content Include="images\blog\comment2.jpg" />
     <Content Include="images\blog\comment3.jpg" />
+    <Content Include="images\bullish.svg" />
     <Content Include="images\clients\1.png" />
     <Content Include="images\clients\2.png" />
     <Content Include="images\clients\3.png" />
@@ -718,6 +720,7 @@
     <Content Include="images\magazine\wn2-sm3.jpg" />
     <Content Include="images\magazine\wn2-sm4.jpg" />
     <Content Include="images\map-marker.png" />
+    <Content Include="images\neutral_trading.svg" />
     <Content Include="images\pattern1.png" />
     <Content Include="images\pattern2.png" />
     <Content Include="images\pattern3.png" />
