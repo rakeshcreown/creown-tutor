@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using CreownTutor.Data;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
+using PagedList;
 
 namespace CreownTutorWeb.Controllers
 {
@@ -23,13 +24,15 @@ namespace CreownTutorWeb.Controllers
             return View(teacher);
         }
 
-        public ActionResult TeacherDashboard(int id = 4)
+        public ActionResult TeacherDashboard(int? page,int id = 4)
         {
             Teacher teacher = new Teacher();
             TeacherRepository teacherrepo = new TeacherRepository();
             teacher.Courses = teacherrepo.GetLatestCourseByTeacher(id);
             teacher.User = teacherrepo.GetTeachers(id);
-            return View(teacher);
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(teacher.ToPagedList(pageNumber, pageSize));
         }
        
         public ActionResult EditProfile(int id = 4)

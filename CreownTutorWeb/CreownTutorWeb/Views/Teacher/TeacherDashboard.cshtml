@@ -1,4 +1,4 @@
-﻿@model CreownTutor.Data.Model.Teacher
+﻿@model PagedList.IPagedList<CreownTutor.Data.Model.Teacher>
 @{
     ViewBag.Title = "TeacherDashboard";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -58,6 +58,36 @@
                                     }
                                 </tbody>
                             </table>
+                            <div>
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount
+
+                                @if (Model.HasPreviousPage)
+                                {
+                                    @Html.ActionLink("<<", "TeacherDashboard", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                    @Html.Raw(" ");
+                                    @Html.ActionLink("< Prev", "TeacherDashboard", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                }
+                                else
+                                {
+                                    @:<<
+                                    @Html.Raw(" ");
+                                    @:< Prev
+    }
+
+                                @if (Model.HasNextPage)
+                                {
+                                    @Html.ActionLink("Next >", "TeacherDashboard", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                    @Html.Raw(" ");
+                                    @Html.ActionLink(">>", "TeacherDashboard", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                }
+                                else
+                                {
+                                    @:Next >
+                                    @Html.Raw(" ")
+                                    @:>>
+    }
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="medium">
                             <table class="table table-bordered">
