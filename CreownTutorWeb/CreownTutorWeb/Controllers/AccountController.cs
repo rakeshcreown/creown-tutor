@@ -11,53 +11,49 @@ namespace CreownTutorWeb.Controllers
 {
     public class AccountController : Controller
     {
+        AccountRepository repo = new AccountRepository();
         // GET: Login
         [HttpGet]
         public ActionResult Index(LoginRegistrationViewModel model = null)
         {
-            AccountRepository repo = new AccountRepository();
             ModelState.Clear();
             var roles = repo.GetRoles();
-            Role role = new Role();
-            role.RoleName = "Select";
-            role.RoleID = 0;
-            roles.Insert(0, role);
-            SelectList objmodeldata = new SelectList(roles, "RoleID", "RoleName", 0);
-            /*Assign value to model*/
-            model.RoleList = objmodeldata;
+            roles.Insert(0, new Role() { RoleID = 0, RoleName = "Select" });
+            model.RoleList = new SelectList(roles, "RoleID", "RoleName", 0);
+
             if (TempData["LoginError"] != null)
             {
                 model.ErrorMsg = TempData["LoginError"].ToString();
             }
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult Login(LoginRegistrationViewModel model)
         {
-            AccountRepository repo = new AccountRepository();
-            var getrolebyid = repo.GetRoleById(model);
-            if (!repo.Login(model))
+            var user = repo.GetUserByUserNameAndPassword(model.LoginUserName, model.LoginPassword);
+
+            if (user == null)
             {
                 TempData["LoginError"] = "Invalid Username and Password";
             }
-            if(getrolebyid == 1)
+            else
             {
-              Session["user"] = "Student";
-              return RedirectToAction("Index","Student");
-            }
-            else if(getrolebyid == 2)
-            {
-                Session["user"] = "Teacher";
-                TeacherController teacher = new TeacherController();
-                return RedirectToAction("TeacherDashboard", "teacher");
+                SessionManager.SetSession(user);
+                switch (user.RoleID)
+                {
+                    case (int)Enums.Role.Student:
+                        return RedirectToAction("Index", "Student");
+                    case (int)Enums.Role.Teacher:
+                        return RedirectToAction("TeacherDashboard", "teacher");
+                }
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult Registration(LoginRegistrationViewModel model)
         {
-            AccountRepository repo = new AccountRepository();
             repo.Register(model);
             return RedirectToAction("Index");
         }

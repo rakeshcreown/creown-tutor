@@ -45,10 +45,15 @@ namespace CreownTutor.Data.Repository
         {
             int query = (from s in dbEntity.Roles
                          join c in dbEntity.UserDetails on s.RoleID equals c.RoleID
-                         where c.Username==model.LoginUserName && c.Password==model.LoginPassword
+                         where c.Username == model.LoginUserName && c.Password == model.LoginPassword
                          select s.RoleID).FirstOrDefault();
-           
+
             return query;
+        }
+
+        public UserDetail GetUserByUserNameAndPassword(string userName, string password)
+        {
+            return dbEntity.UserDetails.FirstOrDefault(u => u.Username == userName && u.Password == password);
         }
     }
 }

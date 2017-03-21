@@ -1,13 +1,14 @@
-﻿@model PagedList.IPagedList<CreownTutor.Data.Model.Teacher>
+﻿@model CreownTutor.Data.Model.Teacher
 @{
-    ViewBag.Title = "TeacherDashboard";
+    ViewBag.Title = "Teacher Dashboard";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <section>
-    <h2>TeacherDashboard</h2>
+    
     <div class="container">
         <div class="row">
+            <h2>Teacher Dashboard</h2>
             <div class="col-md-8 blog-pull-right">
                 <div class="single-service">
                     @*<h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>*@
@@ -59,7 +60,7 @@
                                 </tbody>
                             </table>
                             <div>
-                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
                                 of @Model.PageCount
 
                                 @if (Model.HasPreviousPage)
@@ -86,7 +87,7 @@
                                     @:Next >
                                     @Html.Raw(" ")
                                     @:>>
-    }
+    }*@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="medium">
@@ -134,7 +135,7 @@
                     </div>
                     <div class="doctor-thumb">
                         @*<img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">*@
-                        <img src="@Url.Content(@Model.User.Imagelength)" alt="" style="height:300px; width:400px;">
+                        @*<img src="@Url.Content(Model.User.Imagelength)" alt="" style="height:300px; width:400px;">*@
                     </div>
                     <br />
                     <button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Teacher",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>

@@ -10,8 +10,8 @@ namespace CreownTutor.Data
     {
         public enum Role
         {
-            Teacher = 1,
-            Student = 2,
+            Teacher = 2,
+            Student = 1,
             Admin = 3
         }
     }

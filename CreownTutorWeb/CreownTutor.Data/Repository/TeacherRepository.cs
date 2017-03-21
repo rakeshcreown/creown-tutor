@@ -10,18 +10,16 @@ using CreownTutor.Data.Model;
 
 namespace CreownTutor.Data.Repository
 {
-    public class TeacherRepository:BaseRepository
+    public class TeacherRepository : BaseRepository
     {
         public List<Course> GetLatestCourseByTeacher(int id)
         {
-          return dbEntity.Courses.Where(c => c.CreatedBy == id).OrderByDescending(c=>c.CreatedDateAndTime).ToList();
+            return dbEntity.Courses.Where(c => c.CreatedBy == id).OrderByDescending(c => c.CreatedDateAndTime).ToList();
         }
 
         public UserDetail GetTeachers(int id)
         {
-           
-           return dbEntity.UserDetails.FirstOrDefault(m => m.UserID==id);
-           
+            return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
         }
 
         public List<Review> GetReview(int userid)
@@ -32,7 +30,7 @@ namespace CreownTutor.Data.Repository
 
         //public UserDetail FileUpload(HttpPostedFileBase file)
         //{
-            
+
         //        string imagename = System.IO.Path.GetFileName(file.FileName);
         //        string physicalpath = /*Server.MapPath("~/images/" + imagename);*/
         //        System.Web.HttpContext.Current.Server.MapPath("~/images/" + imagename);
@@ -44,9 +42,9 @@ namespace CreownTutor.Data.Repository
         //    return userinfo;
         //}
 
-        public void UpdateData(HttpPostedFileBase file, Teacher model,int id)
+        public void UpdateData(HttpPostedFileBase file, Teacher model, int id)
         {
-            
+
             try
             {
 
