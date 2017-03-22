@@ -1,0 +1,169 @@
+﻿@model CreownTutor.Data.Model.ReviewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(".rating-star-block .star").mouseleave(function () {
+                //alert("leave");
+                $("#" + $(this).parent().attr('id') + " .star").each(function () {
+                    $(this).addClass("outline");
+                    $(this).removeClass("filled");
+                });
+            });
+            $(".rating-star-block .star").mouseenter(function () {
+                var hoverVal = $(this).attr('rating');
+                $(this).prevUntil().addClass("filled");
+                $(this).addClass("filled");
+                $("#RAT").html(hoverVal);
+            });
+            $(".rating-star-block .star").click(function () {
+
+                var v = $(this).attr('rating');
+                var newScore = 0;
+                //var updateP = "#" + $(this).parent().attr('id') + ' .CurrentScore';
+                var updateP = 5;
+                var artID = 1;
+                $("#Rating").val(v);
+                $("#" + $(this).parent().attr('id') + " .star").hide();
+                $("#" + $(this).parent().attr('id') + " .yourScore").html("Your Score is : &nbsp;<b style='color:#ff9900; font-size:15px'>" + v + "</b>");
+                //$.ajax({
+                //    type: "POST",
+                //    url: "/Review/SaveRating",
+                //    data: "{articleID: '" + artID + "',rate: '" + v + "'}",
+                //    contentType: "application/json; charset=utf-8",
+                //    dataType: "json",
+                //    success: function (data) {
+                //        setNewScore(updateP, data.d);
+                //    },
+                //    error: function (data) {
+                //        alert(data);
+                //    }
+                //});
+            });
+        });
+        function setNewScore(container, data) {
+            $(container).html(data);
+            $("#myElem").show('1000').delay(2000).queue(function (n) {
+                $(this).hide(); n();
+            });
+        }
+</script>
+<style type="text/css">
+    .rating-star-block .star.outline {
+        background: url("/images/star-empty-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .rating-star-block .star.filled {
+        background: url("/images/star-fill-lg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+
+    .rating-star-block .star {
+        color: rgba(0,0,0,0);
+        display: inline-block;
+        height: 24px;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 24px;
+    }
+
+    a {
+        color: #005782;
+        text-decoration: none;
+    }
+</style>
+
+<h2>Review</h2>
+<section>
+    <div class="container">
+        <div class="row">
+           
+            <div class="col-md-7 col-md-offset-1">
+                @using (Html.BeginForm("SaveRating", "Review", FormMethod.Post, new { @class = "review-form" }))
+                {
+                    <div class="icon-box mb-0 p-0">
+                        <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                            <i class="pe-7s-users"></i>
+                        </a>
+                        <h4 class="text-gray pt-10 mt-0 mb-30">Write a review</h4>
+                    </div>
+                    <hr>
+                    @Html.HiddenFor(m => m.Rating)
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="form_choose_username">Rating</label>
+                            <div id="xy" class="rating-star-block">
+                                <div class="yourScore">Your Score : </div> 
+                                <a class="star outline" href="#" rating="1" title="vote 1"> vote 1</a>
+                                <a class="star outline" href="#" rating="2" title="vote 2"> vote 2</a>
+                                <a class="star outline" href="#" rating="3" title="vote 3"> vote 3</a>
+                                <a class="star outline" href="#" rating="4" title="vote 4"> vote 4</a>
+                                <a class="star outline" href="#" rating="5" title="vote 5"> vote 5</a>
+
+                            </div>
+                           
+                            @*@Html.TextBoxFor(m => m.Rating, new { @id = "form_choose_username", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Rating, "Please enter User Name")*@
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-10">
+                            <label for="form_name">Your Review</label>
+                            @Html.TextAreaFor(m => m.ReviewComment, new { @id = "form_name", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ReviewComment, "Please enter Name")
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Submit</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+<section>
+    @*<div class="col-md-7 col-md-offset-1">
+        @using (Html.BeginForm("Index", "Review", FormMethod.Post, new { @class = "review-form" }))
+        {
+            <div class="icon-box mb-0 p-0">
+                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                    <i class="pe-7s-users"></i>
+                </a>
+                <h4 class="text-gray pt-10 mt-0 mb-30">Write a review</h4>
+            </div>
+                    <hr>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="form_choose_username">Rating</label>
+                    @Html.TextBoxFor(m => m.Rating, new { @id = "form_choose_username", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Rating, "Please enter User Name")
+                </div>
+
+                  </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="form_name">Your Review</label>
+                            @Html.TextBoxFor(m => m.ReviewComment, new { @id = "form_name", @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.ReviewComment, "Please enter Name")
+                        </div>
+                        
+                    </div>
+                    
+                   
+                    <div class="form-group">
+                            <button class="btn btn-dark btn-lg btn-block mt-15" type="submit">Submit</button>
+                    </div>
+        }
+    </div>*@
+
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

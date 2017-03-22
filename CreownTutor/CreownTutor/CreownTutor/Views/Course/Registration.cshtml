@@ -1,0 +1,120 @@
+﻿@model CreownTutor.Data.Model.Student
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>My Enrolled Courses</h2>
+<!--<div id="myModal" class="modal">-->
+<!-- Modal content -->
+<!--<div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Congratulations!!! You have been enrolled to the course.</p>
+    </div>
+
+</div>-->
+<section class="">
+    <div class="container">
+        <div class="section-content">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-8">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#orders" aria-controls="orders" role="tab" data-toggle="tab" class="font-15 text-uppercase">My Free Courses<span class="badge">@Html.ViewBag</span></a></li>
+                        <li><a href="#medium" aria-controls="orders" role="tab" data-toggle="tab" class="font-15 text-uppercase">My Paid Courses<span class="badge">5</span></a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="orders">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Course Name</th>
+                                            <th>Date Enrolled</th>
+                                            <th>Free Courses</th>
+                                            <th>Progress</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{int i = 0;}
+                                        @foreach (var item in Model.CourseRegistrations)
+                                        {
+                                            <tr>
+                                                <td>@item.Course.CourseName</td>
+                                                <td>@item.RegisteredDateTime</td>
+                                                @if (@item.Course.TypeOfCourse == "Free")
+                                                {
+                                                <td>Free</td>
+                                                }
+                                                @if (@item.SessionID == 1)
+                                                {
+                                                    <td>
+                                                        <img alt="" src="@Url.Content("~/images/flat-color-icons-svg/bearish.svg")" style="height:30px;width:30px;" title="Not Started">Not Started
+                                                    </td>
+                                                }
+                                                else if (@item.SessionID == 2)
+                                                {
+                                                    <td><img alt="" src="@Url.Content("~/images/flat-color-icons-svg/neutral_trading.svg")" style="height:30px;width:30px;" title="In Progress">In Progress</td>
+                                                }
+                                                else if (@item.SessionID == 3)
+                                                {
+                                                    <td><img alt="" src="@Url.Content("~/images/flat-color-icons-svg/bullish.svg")" style="height:30px;width:30px;" title="Completed">Completed</td>
+                                                }
+                                            </tr>
+                                            i++;
+                                            ViewBag.data = i;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="medium">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Course Name</th>
+                                            <th>Date Enrolled</th>
+                                            <th>Paid Courses</th>
+                                            <th>Progress</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{int j = 0;}
+                                        @foreach (var item in Model.CourseRegistrations)
+                                        {
+                                            <tr>
+                                                <td>@item.Course.CourseName</td>
+                                                <td>@item.RegisteredDateTime</td>
+                                                <td>@item.Course.CoursePrice$</td>
+                                                @if (@item.SessionID == 1)
+                                                {
+                                                    <td>
+                                                        <img alt="" src="@Url.Content("~/images/flat-color-icons-svg/bearish.svg")" style="height:30px;width:30px;" title="Not Started">Not Started
+                                                    </td>
+                                                }
+                                                else if (@item.SessionID == 2)
+                                                {
+                                                    <td><img alt="" src="@Url.Content("~/images/flat-color-icons-svg/neutral_trading.svg")" style="height:30px;width:30px;" title="In Progress">In Progress</td>
+                                                }
+                                                else if (@item.SessionID == 3)
+                                                {
+                                                    <td><img alt="" src="@Url.Content("~/images/flat-color-icons-svg/bullish.svg")" style="height:30px;width:30px;" title="Completed">Completed</td>
+                                                }
+                                                @*<td><img alt="" src="@Url.Content("~/images/flat-color-icons-svg/neutral_trading.svg")" style="height:30px;width:30px;" title="In Progress">In Progress</td>*@
+                                            </tr>
+                                            i++;
+                                            ViewBag.data = j;
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

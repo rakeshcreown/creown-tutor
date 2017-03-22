@@ -1,0 +1,133 @@
+﻿@model CreownTutor.Data.Model.TestViewModel
+@{
+    ViewBag.Title = "CreateTest";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Create Test</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active text-gray-silver">Create Test</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Job Apply Form -->
+<section class="divider">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-push-0">
+                <div class="border-1px p-30 mb-0">
+                    <h3 class="text-theme-colored mt-0 pt-5">Create New Test</h3>
+                    <hr>
+
+                    <form id="job_apply_form" name="job_apply_form" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 col-md-push-0">
+                                <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Test Title<small>*</small></label>
+                                            @Html.TextBoxFor(m => m.TestName, new { @class = "form-control", @placeholder = "Enter Name" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Test Description <small>*</small></label>
+                                    @Html.TextAreaFor(m => m.TestDescription, new { @rows = "5", @class = "form-control" })
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label>Test Category <small>*</small></label>
+                                   @Html.DropDownListFor(m => m.Category, Model.Categories, "Please select", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label>Test Instructions <small>*</small></label>
+                                    @Html.TextAreaFor(m => m.TestInstructions, new { @rows = "5", @class = "form-control" })
+                                   
+                                </div>
+                                <div class="form-group">
+                                    <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                                    <button type="submit" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10" data-loading-text="Please wait...">Save</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-md-push-0">
+                                <p>Lorem ipsum dolor sit amet, consectetur elit.</p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Allow viewing answer during test?<small>*</small></label>
+                                            <select name="form_sex" class="form-control required">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Is the test Time Based? Allow Timer?<small>*</small></label>
+                                            <select name="form_sex" class="form-control required">
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label>Please select the duration of the Test:-</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+
+                                                <label>Hour<small>*</small></label>
+                                                @Html.DropDownList("Hour",(SelectList)ViewBag.ddlist)
+                                                @*<select name="form_hour" class="form-control required">
+                                                    @for (var i = 0; i < 24; i++)
+                                                    {
+                                                        <option>@i</option>
+                                                    }
+                                                </select>*@
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Minutes<small>*</small></label>
+                                                <select name="form_minute" class="form-control required">
+                                                    @for (var i = 0; i < 60; i++)
+                                                    {
+                                                        <option>@i</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Seconds<small>*</small></label>
+                                                <select name="form_second" class="form-control required">
+                                                    @for (var i = 0; i < 60; i++)
+                                                    {
+                                                        <option>@i</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                           </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,166 @@
+﻿@model CreownTutor.Data.Model.CourseNewViewModel
+@{
+    ViewBag.Title = "CreateCourse";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="title text-white">Create Course</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active text-gray-silver">Create Course</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section: Job Apply Form -->
+<section class="divider">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-md-push-0">
+                <div class="border-1px p-30 mb-0">
+                    <h3 class="text-theme-colored mt-0 pt-5">Create New Course</h3>
+                    <hr>
+                    @using (Html.BeginForm("CreateCourse","Course",FormMethod.Post, new { @class = "clearfix" }))
+                    {
+                    @*<form id="job_apply_form" name="job_apply_form" method="post" enctype="multipart/form-data">*@
+                        <div class="row">
+                            <div class="col-md-6 col-md-push-0">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Course Title<small>*</small></label>
+                                            @Html.TextBoxFor(m => m.CourseName, new { @class = "form-control", @placeholder = "Enter Course Title" })
+                                            @Html.ValidationMessageFor(m => m.CourseName, "Please enter Course Title")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Course Description <small>*</small></label>
+                                    @Html.TextAreaFor(m => m.Description, new { @rows = "5", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Description, "Please enter Course Description")
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Category <small>*</small></label>
+                                            @Html.DropDownListFor(m => m.Category, Model.Categories, "Please select", new { @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Course Date And Time <small>*</small></label>
+                                            <div class='input-group date' id='datetimepicker1'>
+                                                @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(m => m.Date, "Please select Course Date and Time")
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Course Price<small>*</small></label>
+                                            @Html.TextBoxFor(m => m.Price, new { @class = "form-control", @placeholder = "Enter Price" })
+                                            @Html.ValidationMessageFor(m => m.Price, "Please enter Course Price")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Course Attendess limit</label>
+                                            @Html.TextBoxFor(m => m.AttendessLimit, new { @class = "form-control", @placeholder = "Enter Attendees Limit" })
+                                            @Html.ValidationMessageFor(m => m.AttendessLimit, "Please enter Course Attendence limit")
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Message <small>*</small></label>
+                                    <textarea name="form_message" class="form-control required" rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
+                                </div>
+                                @*<div class="form-group">
+                                        <label>C/V Upload</label>
+                                        <input name="form_attachment" class="file" type="file" multiple data-show-upload="false" data-show-caption="true">
+                                        <small>Maximum upload file size: 12 MB</small>
+                                    </div>*@
+                                <div class="form-group">
+                                    <input name="form_botcheck" class="form-control" type="hidden" value="" />
+                                    <button type="submit" onclick="return createcourse();" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10" data-loading-text="Please wait...">Save</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-md-push-0">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label>Name <small>*</small></label>
+                                        @Html.TextBoxFor(m => m.CourseName,new { @class="form-control",@placeholder="Enter Name"})
+                                        @Html.ValidationMessageFor(m=>m.CourseName,"Please enter Course Name")
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description <small>*</small></label>
+                                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @placeholder = "Enter Name" })
+                                        @Html.ValidationMessageFor(m => m.Description, "Please enter Course Description")
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Start Time <small>*</small></label>
+                                        <div class='input-group date datetimepicker1' id='datetimepicker12'>
+                                            <input name="form_name" id="sstartdate" type="text" placeholder="Enter Start Time" required="" class="form-control">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>End Time <small>*</small></label>
+                                        <div class='input-group date datetimepicker1' id='datetimepicker12'>
+                                            <input name="form_name" id="senddate" type="text" placeholder="Enter End Time" required="" class="form-control">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <a href="javascript:void();" id="addsession" class="btn btn-block btn-dark btn-theme-colored btn-sm mt-20 pt-10 pb-10">Add Session</a>
+                                    </div>
+                                    <table id="tblsession" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">All Session Data</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Start Time</th>
+                                                <th>End Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbd"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @Html.HiddenFor(m => m.SessionData)
+                        </div>
+                    }
+                    @*</form>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

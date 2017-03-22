@@ -1,0 +1,108 @@
+﻿@model CreownTutor.Data.Model.Teacher
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#EnterDate").datepicker();
+        });
+</script>
+<h2>EditProfile</h2>
+@using (Html.BeginForm("EditProfile", "Teacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <section class="">
+        <div class="container">
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-sx-12 col-sm-4 col-md-4">
+                        <input type="file" name="file" id="file" style="width: 100%;" />
+                        <br />
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-8">
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="fa fa-user"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Edit Profile</h4>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    @Html.HiddenFor(m => m.User.Username)
+                                    @Html.HiddenFor(m => m.User.Password)
+                                    <label>Name</label>
+                                    @Html.TextBoxFor(m => m.User.Name, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.User.Name, "Please enter User Name")
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Email</label>
+                                    @Html.TextBoxFor(m => m.User.EmailAddress, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.User.EmailAddress, "Please enter Email")
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Phone</label>
+                                    @Html.TextBoxFor(m => m.User.ContactNumber, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.User.ContactNumber, "Please enter Phone")
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Date of Birth</label>
+                                   @Html.TextBoxFor(m => m.User.DateOfBirth, new { @id = "EnterDate", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.User.DateOfBirth, "Please enter Date of Birth")
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Address</label>
+                                    @Html.TextBoxFor(m => m.User.Location, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.User.Location, "Please enter Address")
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                            </div>*@
+
+                        <hr class="mt-70 mb-70">
+
+                        <form name="editprofile-form" method="post">
+                            <div class="icon-box mb-0 p-0">
+                                <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                    <i class="fa fa-key"></i>
+                                </a>
+                                <h4 class="text-gray pt-10 mt-0 mb-30">Change Password</h4>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Choose Password</label>
+                                    @Html.TextBoxFor(m => m.User.UpdatedPassword, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Re-enter Password</label>
+                                    @Html.TextBox("resetpassword", "", new { @class = "form-control", @id = "newpwd" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label>Old Password</label>
+                                    @Html.TextBoxFor(m => m.User.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-dark btn-lg mt-15" type="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
