@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
 using CreownTutor.Data;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace CreownTutorWeb.Controllers
 {
@@ -40,7 +42,8 @@ namespace CreownTutorWeb.Controllers
             }
             else
             {
-                SessionManager.SetSession(user);
+                Session["User"] = user;
+                //new SessionManager().SetSession(user);
                 switch (user.RoleID)
                 {
                     case (int)Enums.Role.Student:
@@ -56,6 +59,21 @@ namespace CreownTutorWeb.Controllers
         {
             repo.Register(model);
             return RedirectToAction("Index");
+        }
+
+        private void SignIn(List<Claim> claims)//Mind!!! This is System.Security.Claims not WIF claims
+        {
+            var claimsIdentity = new DemoIdentity(claims,
+            DefaultAuthenticationTypes.ApplicationCookie);
+
+            //This uses OWIN authentication
+
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties()
+            { IsPersistent = true }, claimsIdentity);
+
+            HttpContext.User = new DemoPrincipal
+             (AuthenticationManager.AuthenticationResponseGrant.Principal);
         }
     }
 }

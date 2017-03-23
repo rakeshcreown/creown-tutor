@@ -1,11 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using CreownTutor.Models;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
-
+using CreownTutor.Data;
 namespace CreownTutorWeb.Controllers
 {
     [Authorize(Roles = "Student")]
@@ -17,7 +23,7 @@ namespace CreownTutorWeb.Controllers
             Session["user"] = "Student";
             Student student = new Student();
             StudentRepository studentrepo = new StudentRepository();
-            student.Courses = studentrepo.GetLatestCourseByTeacher(id);
+            student.Courses = studentrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
             student.User = studentrepo.GetStudents(id);
             //student.CourseRegistrations = studentrepo.GetRegisteredCourses(isEnrolled);
             return View(student);

@@ -29,7 +29,7 @@ namespace CreownTutor.Data.Model
         [Required]
         public string RegistrationNewPassword { get; set; }
         [Required]
-        public int RoleID { get; set; }
+        public string Role { get; set; }
         public SelectList RoleList { get; set; }
         public string ErrorMsg { get; set; }
     }

@@ -16,14 +16,18 @@ namespace CreownTutor.Data.Repository
         {
             try
             {
-                UserDetail userInformation = new UserDetail();
-                userInformation.Username = model.RegistrationUserName;
-                userInformation.EmailAddress = model.EmailAddress;
-                userInformation.Password = model.RegistrationPassword;
-                userInformation.Name = model.Name;
-                userInformation.RoleID = model.RoleID;
-                dbEntity.UserDetails.Add(userInformation);
-                dbEntity.SaveChanges();
+
+                //AspNetUser userInformation = new AspNetUser();
+                //userInformation.Email = model.RegistrationUserName;
+                //userInformation.Email = model.EmailAddress;
+                //userInformation.EmailConfirmed= true;
+
+                //userInformation. = model.RegistrationPassword;
+                //userInformation.Name = model.Name;
+                //userInformation.RoleID = model.RoleID;
+                //dbEntity.AspNetUsers.Add(new AspNetUser() {  })
+                //dbEntity.UserDetails.Add(userInformation);
+                //dbEntity.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -36,9 +40,9 @@ namespace CreownTutor.Data.Repository
             return user != null;
         }
 
-        public List<Role> GetRoles()
+        public List<AspNetRole> GetRoles()
         {
-            return dbEntity.Roles.ToList();
+            return dbEntity.AspNetRoles.Where(r => r.Name != "Admin").ToList();
         }
 
         public int GetRoleById(LoginRegistrationViewModel model)

@@ -17,8 +17,6 @@ namespace CreownTutor.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserDetail()
         {
-            this.Courses = new HashSet<Course>();
-            this.CourseRegistrations = new HashSet<CourseRegistration>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -40,10 +38,6 @@ namespace CreownTutor.Data
         public byte[] ProfileImage { get; set; }
         public string Imagelength { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
     }

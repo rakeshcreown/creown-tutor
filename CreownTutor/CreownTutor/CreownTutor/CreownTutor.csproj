@@ -208,6 +208,43 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703230847414_Location.cs" />
+    <Compile Include="Migrations\201703230847414_Location.Designer.cs">
+      <DependentUpon>201703230847414_Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230909527_DateOfBirth.cs" />
+    <Compile Include="Migrations\201703230909527_DateOfBirth.Designer.cs">
+      <DependentUpon>201703230909527_DateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230911032_ContactDetails.cs" />
+    <Compile Include="Migrations\201703230911032_ContactDetails.Designer.cs">
+      <DependentUpon>201703230911032_ContactDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230934199_Gender.cs" />
+    <Compile Include="Migrations\201703230934199_Gender.Designer.cs">
+      <DependentUpon>201703230934199_Gender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230935251_ContactNumber.cs" />
+    <Compile Include="Migrations\201703230935251_ContactNumber.Designer.cs">
+      <DependentUpon>201703230935251_ContactNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230936447_ContactEmail.cs" />
+    <Compile Include="Migrations\201703230936447_ContactEmail.Designer.cs">
+      <DependentUpon>201703230936447_ContactEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230938256_ExperienceInfo.cs" />
+    <Compile Include="Migrations\201703230938256_ExperienceInfo.Designer.cs">
+      <DependentUpon>201703230938256_ExperienceInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230940248_BioGraphInfo.cs" />
+    <Compile Include="Migrations\201703230940248_BioGraphInfo.Designer.cs">
+      <DependentUpon>201703230940248_BioGraphInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703230944582_Imagelength.cs" />
+    <Compile Include="Migrations\201703230944582_Imagelength.Designer.cs">
+      <DependentUpon>201703230944582_Imagelength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -405,6 +442,35 @@
       <Project>{b89715bc-e244-4e3a-a6e5-c4d51b77978a}</Project>
       <Name>CreownTutor.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201703230847414_Location.resx">
+      <DependentUpon>201703230847414_Location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230909527_DateOfBirth.resx">
+      <DependentUpon>201703230909527_DateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230911032_ContactDetails.resx">
+      <DependentUpon>201703230911032_ContactDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230934199_Gender.resx">
+      <DependentUpon>201703230934199_Gender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230935251_ContactNumber.resx">
+      <DependentUpon>201703230935251_ContactNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230936447_ContactEmail.resx">
+      <DependentUpon>201703230936447_ContactEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230938256_ExperienceInfo.resx">
+      <DependentUpon>201703230938256_ExperienceInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230940248_BioGraphInfo.resx">
+      <DependentUpon>201703230940248_BioGraphInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703230944582_Imagelength.resx">
+      <DependentUpon>201703230944582_Imagelength.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

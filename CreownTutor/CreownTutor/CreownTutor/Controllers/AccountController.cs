@@ -12,6 +12,7 @@ using CreownTutor.Models;
 using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
 using CreownTutor.Data;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CreownTutor.Controllers
 {
@@ -31,8 +32,7 @@ namespace CreownTutor.Controllers
         {
             ModelState.Clear();
             var roles = repo.GetRoles();
-            roles.Insert(0, new Role() { RoleID = 0, RoleName = "Select" });
-            model.RoleList = new SelectList(roles, "RoleID", "RoleName", 0);
+            model.RoleList = new SelectList(roles, "Name", "Name", 0);
 
             if (TempData["LoginError"] != null)
             {
@@ -44,14 +44,20 @@ namespace CreownTutor.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginRegistrationViewModel model)
         {
-
+            ModelState.Clear();
             var result = SignInManager.PasswordSignIn(model.LoginUserName, model.LoginPassword, false, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
                     var userid = User.Identity.GetUserId();
+
+                    if (userid == null)
+                    {
+                        userid = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
+                    }
                     if (UserManager.IsInRole(userid, CreoConstants.Roles.STUDENT))
                     {
                         return RedirectToAction("Index", "Student");
@@ -65,15 +71,31 @@ namespace CreownTutor.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
+                    TempData["LoginError"] = "Invalid login attempt. Userid or Password may be wrong. try again.";
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return RedirectToAction("Index", "Account");
             }
         }
 
         [AllowAnonymous]
-        public ActionResult Registration(LoginRegistrationViewModel model)
+        public async Task<ActionResult> Registration(LoginRegistrationViewModel model)
         {
             repo.Register(model);
+            using (var context = new ApplicationDbContext())
+            {
+                var user = new ApplicationUser { UserName = model.RegistrationUserName, Email = model.EmailAddress };
+
+                var result = await UserManager.CreateAsync(user, model.RegistrationNewPassword);
+
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                userManager.AddToRole(user.Id, model.Role);
+
+                if (result.Succeeded)
+                {
+
+                }
+            }
             return RedirectToAction("Index");
         }
 
@@ -191,41 +213,41 @@ namespace CreownTutor.Controllers
 
         //
         //GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
 
         //
         // POST: /Account/Register
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        //            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //            // Send an email with this link
+        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
-            }
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        AddErrors(result);
+        //    }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
-        }
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
 
         //
         // GET: /Account/ConfirmEmail
@@ -447,7 +469,7 @@ namespace CreownTutor.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Account");
         }
 
         //

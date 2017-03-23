@@ -14,7 +14,7 @@ namespace CreownTutor.Data.Repository
         {
             CourseRegistration courseregis = new CourseRegistration();
             courseregis.CourseID = enrollment.Course.CourseID;
-            courseregis.UserID =2;//TODO:This needs to be changed
+           // courseregis.UserID =2;//TODO:This needs to be changed
             courseregis.RegisteredDateTime =DateTime.Now;
             dbEntity.CourseRegistrations.Add(courseregis);
             dbEntity.SaveChanges();

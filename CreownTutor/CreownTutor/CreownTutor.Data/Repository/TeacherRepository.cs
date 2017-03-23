@@ -12,7 +12,7 @@ namespace CreownTutor.Data.Repository
 {
     public class TeacherRepository : BaseRepository
     {
-        public List<Course> GetLatestCourseByTeacher(int id)
+        public List<Course> GetLatestCourseByTeacher(string id)
         {
             return dbEntity.Courses.Where(c => c.CreatedBy == id).OrderByDescending(c => c.CreatedDateAndTime).ToList();
         }
@@ -22,7 +22,7 @@ namespace CreownTutor.Data.Repository
             return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
         }
 
-        public List<Review> GetReview(int userid)
+        public List<Review> GetReview(string userid)
         {
             return dbEntity.Reviews.Where(c => c.UserID == userid).OrderByDescending(c => c.AddedTime).ToList();
         }

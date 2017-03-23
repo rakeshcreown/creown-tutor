@@ -4,28 +4,34 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c1dc4ddd957d4aa4ae1ce9bb180845ec" Name="Diagram1" ZoomLevel="52">
+      <Diagram DiagramId="c1dc4ddd957d4aa4ae1ce9bb180845ec" Name="Diagram1" ZoomLevel="101">
         <EntityTypeShape EntityType="CreownTutorModel.CartInfomation" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.Category" Width="1.5" PointX="5.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="3" PointY="7.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="3" PointY="1.375" />
         <EntityTypeShape EntityType="CreownTutorModel.LiveSession" Width="1.5" PointX="5.25" PointY="8.125" />
-        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="3" PointY="4.25" />
         <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="7.75" PointY="6.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="12.375" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="4.125" />
-        <AssociationConnector Association="CreownTutorModel.fk_courseid" />
-        <AssociationConnector Association="CreownTutorModel.fk_createdby_user" />
-        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_UserDetails" />
-        <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__5AEE82B9" />
-        <AssociationConnector Association="CreownTutorModel.FK_Course_Course" />
-        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_Course" />
-        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_CourseRegistration" />
-        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_SessionStatus" />
         <AssociationConnector Association="CreownTutorModel.FK_SessionStatus_SessionStatus" />
+        <EntityTypeShape EntityType="CreownTutorModel.C__MigrationHistory" Width="1.5" PointX="12.625" PointY="9.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.AspNetRole" Width="1.5" PointX="6" PointY="10.5" />
+        <EntityTypeShape EntityType="CreownTutorModel.AspNetUserClaim" Width="1.5" PointX="6" PointY="15.625" />
+        <EntityTypeShape EntityType="CreownTutorModel.AspNetUserLogin" Width="1.5" PointX="6" PointY="13" />
+        <EntityTypeShape EntityType="CreownTutorModel.Course" Width="1.5" PointX="4.375" PointY="4.375" />
+        <AssociationConnector Association="CreownTutorModel.FK_Course_Course" />
+        <AssociationConnector Association="CreownTutorModel.fk_courseid" />
+        <EntityTypeShape EntityType="CreownTutorModel.CourseRegistration" Width="1.5" PointX="12" PointY="5" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_Course" />
+        <AssociationConnector Association="CreownTutorModel.FK_CourseRegistration_SessionStatus" />
+        <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__2D27B809" />
+        <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="9.375" PointY="8.75" />
+        <EntityTypeShape EntityType="CreownTutorModel.AspNetUser" Width="1.5" PointX="8.25" PointY="14.375" />
+        <AssociationConnector Association="CreownTutorModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CreownTutorModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CreownTutorModel.FK__Course__CreatedB__59063A47" />
+        <AssociationConnector Association="CreownTutorModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

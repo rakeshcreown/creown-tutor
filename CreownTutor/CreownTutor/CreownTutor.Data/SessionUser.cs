@@ -16,7 +16,7 @@ namespace CreownTutor.Data
     {
         public int ID { get; set; }
         public int SessionID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public Nullable<bool> IsPresenter { get; set; }
     }
 }

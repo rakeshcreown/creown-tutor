@@ -31,16 +31,16 @@ namespace CreownTutor.Data
         public string Language { get; set; }
         public string Category { get; set; }
         public Nullable<System.DateTime> CreatedDateAndTime { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
         public Nullable<int> AttendessLimit { get; set; }
         public Nullable<double> CoursePrice { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LiveSession> LiveSessions { get; set; }
-        public virtual UserDetail UserDetail { get; set; }
         public virtual Course Course1 { get; set; }
         public virtual Course Course2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LiveSession> LiveSessions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

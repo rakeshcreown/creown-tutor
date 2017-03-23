@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace CreownTutor.Models
 {
@@ -16,6 +17,15 @@ namespace CreownTutor.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public string Location { get; set; }
+        public DateTime? DateOfBirth{ get; set; }
+        public string ContactDetails { get; set; }
+        public string Gender { get; set; }
+        public string ContactNumber { get; set; }
+        public string ContactEmail { get; set; }
+        public string ExperienceInfo { get; set; }
+        public string BioGraphInfo { get; set; }
+        public string Imagelength { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

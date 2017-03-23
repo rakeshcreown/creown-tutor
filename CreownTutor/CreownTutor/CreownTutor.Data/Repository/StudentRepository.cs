@@ -8,9 +8,9 @@ namespace CreownTutor.Data.Repository
 {
     public class StudentRepository:BaseRepository
     {
-        public List<Course> GetLatestCourseByTeacher(int id)
+        public List<Course> GetLatestCourseByTeacher(string userid)
         {
-            return dbEntity.Courses.Where(c => c.CreatedBy == id).OrderByDescending(c => c.CreatedDateAndTime).ToList();
+            return dbEntity.Courses.Where(c => c.CreatedBy == userid).OrderByDescending(c => c.CreatedDateAndTime).ToList();
         }
 
         public UserDetail GetStudents(int id)
@@ -18,7 +18,7 @@ namespace CreownTutor.Data.Repository
            return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
         }
 
-        public bool GetEnrolledStudents(int id)
+        public bool GetEnrolledStudents(string id)
         {
             var value= dbEntity.CourseRegistrations.Where(m => m.UserID == id).Select(m => m.IsEnrolled).Distinct();
             return value != null;

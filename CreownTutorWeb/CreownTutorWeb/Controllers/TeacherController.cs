@@ -16,7 +16,6 @@ namespace CreownTutorWeb.Controllers
     {
         TeacherRepository teacherrepo = new TeacherRepository();
 
-        // GET: Teacher
         [AuthorizationFilter]
         public ActionResult Index()
         {
@@ -27,7 +26,7 @@ namespace CreownTutorWeb.Controllers
             return View(teacher);
         }
 
-        [AuthorizationFilter]
+        [AuthorizeActionFilterAttribute]
         public ActionResult TeacherDashboard()
         {
             Teacher teacher = new Teacher();

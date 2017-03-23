@@ -15,7 +15,7 @@ namespace CreownTutor.Data.Repository
             
             dbEntity.Reviews.Add(new Review
             {
-                    UserID = 1,
+                   // UserID = 1,
                     ReviewRating = model.Rating,
                     ReviewComments = model.ReviewComment,
                     CourseID=1,

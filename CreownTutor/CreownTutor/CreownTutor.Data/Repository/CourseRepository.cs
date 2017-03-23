@@ -52,7 +52,7 @@ namespace CreownTutor.Data.Repository
             if (course != null)
             {
                 model.Course = course;
-                model.User = course.UserDetail;
+               // model.User = course.UserDetail;
                 model.Sessions = dbEntity.LiveSessions.Where(s => s.CourseID == id).ToList();
                 model.IsEnrolled = isenrolled;
                 // TODO - Registered users will be shown only to Teacher Account

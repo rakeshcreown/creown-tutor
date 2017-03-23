@@ -17,7 +17,7 @@ namespace CreownTutor.Data
         public int ReviewId { get; set; }
         public int ReviewRating { get; set; }
         public string ReviewComments { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public Nullable<int> CourseID { get; set; }
         public Nullable<int> SessionID { get; set; }
         public Nullable<System.DateTime> AddedTime { get; set; }

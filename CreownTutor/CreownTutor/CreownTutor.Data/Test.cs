@@ -24,7 +24,7 @@ namespace CreownTutor.Data
         public decimal Percentage { get; set; }
         public bool Result { get; set; }
         public bool PaymentType { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string Category { get; set; }
         public Nullable<int> Hour { get; set; }
         public Nullable<int> Minutes { get; set; }
