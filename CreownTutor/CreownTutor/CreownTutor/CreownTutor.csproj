@@ -423,7 +423,7 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Teacher\EditProfile.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
     <Content Include="Views\Teacher\TeacherDashboard.cshtml" />
     <Content Include="Views\Test\CreateTest.cshtml" />

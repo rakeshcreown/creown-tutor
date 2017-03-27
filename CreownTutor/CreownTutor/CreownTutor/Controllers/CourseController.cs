@@ -41,8 +41,7 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult Detail(int id)
         {
-            Session["user"] = "Teacher";
-            bool isenrolled = Convert.ToBoolean(TempData["isenrolled"]);
+            string isenrolled = TempData["isenrolled"] != null ? TempData["isenrolled"].ToString() : string.Empty;
             return View(courseRepo.GetCourseDetail(id, isenrolled));
         }
 
@@ -69,7 +68,6 @@ namespace CreownTutorWeb.Controllers
 
         public ActionResult Registration(bool isEnrolled = false, int id = 2)
         {
-            Session["user"] = "Student";
             Student student = new Student();
             StudentRepository studentrepo = new StudentRepository();
             student.Courses = studentrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
@@ -81,16 +79,18 @@ namespace CreownTutorWeb.Controllers
         [HttpPost]
         public ActionResult Registration(Enrollment model)
         {
-            Session["user"] = "Student";
             EnrollmentRepository er = new EnrollmentRepository();
-            er.Enroll(model);
-            TempData["isenrolled"] = true;
-            //return RedirectToAction("Detail",new { id = model.Course.CourseID});
-            //return View("Registration");
+            model.Course.UserID = User.Identity.GetUserId();
+            bool enrolled = er.Enroll(model);
+            TempData["isenrolled"] = enrolled ? "true" : "enrolled";
+            if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(User.Identity.GetUserId()))
+            {
+                return RedirectToAction("Detail", new { id = model.Course.CourseID });
+            }
             return RedirectToAction("Registration");
         }
 
-        public ActionResult EditCourse(int id = 4, bool isenrolled = true)
+        public ActionResult EditCourse(int id = 4, string isenrolled = "true")
         {
             CourseNewViewModel model = new CourseNewViewModel();
             LoadCategories(model);
@@ -101,7 +101,6 @@ namespace CreownTutorWeb.Controllers
         [HttpPost]
         public ActionResult EditCourse(CourseNewViewModel model, int id = 4)
         {
-            Session["user"] = "Teacher";
             courseRepo.UpdateCourseInfo(model, id);
             return View(model);
         }
@@ -123,7 +122,6 @@ namespace CreownTutorWeb.Controllers
             }
             Teacher teacher = new Teacher();
             return View(teacher);
-
         }
     }
 }

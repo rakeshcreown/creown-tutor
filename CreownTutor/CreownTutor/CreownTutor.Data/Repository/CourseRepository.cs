@@ -45,7 +45,7 @@ namespace CreownTutor.Data.Repository
             return dbEntity.Courses.OrderByDescending(c => c.CreatedDateAndTime).ToList().Take(ct).ToList();
         }
 
-        public CourseDetailViewModel GetCourseDetail(int id,bool isenrolled)
+        public CourseDetailViewModel GetCourseDetail(int id,string isenrolled)
         {
             CourseDetailViewModel model = new CourseDetailViewModel();
             var course = dbEntity.Courses.FirstOrDefault(c => c.CourseID == id);

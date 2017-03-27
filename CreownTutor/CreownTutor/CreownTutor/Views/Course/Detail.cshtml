@@ -30,21 +30,28 @@
             <div class="col-md-8 blog-pull-right">
                 <div class="single-service">
                     <img src="/images/services/lg6.jpg" alt="">
-                  @using (Html.BeginForm("Registration", "Course", FormMethod.Post, new { @class = "enrollment-form" }))
-                   {
-                    @Html.HiddenFor(x => x.Course.CourseID)
-                    <h3 class="text-theme-colored line-bottom text-theme-colored">@Model.Course.CourseName
-                        <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
-                    </h3>
-                    <div id="myModal" class="modal">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Congratulations!!! You have been enrolled to the course.</p>
+                    @using (Html.BeginForm("Registration", "Course", FormMethod.Post, new { @class = "enrollment-form" }))
+                    {
+                        @Html.HiddenFor(x => x.Course.CourseID)
+                        <h3 class="text-theme-colored line-bottom text-theme-colored">
+                            @Model.Course.CourseName
+                            <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
+                        </h3>
+                        <div id="myEnrolledModal" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Sorry!!! You are already enrolled to this course.</p>
+                            </div>
                         </div>
-
-                    </div>
-                  }                   
+                        <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Congratulations!!! You have been enrolled to the course.</p>
+                            </div>
+                        </div>
+                    }
                     <h4 class="mt-0"><span class="text-theme-color-2">Price :</span> $@Model.Course.CoursePrice</h4>
                     <ul class="review_text list-inline">
                         <li>
@@ -81,8 +88,7 @@
                                             <td>@item.Description</td>
                                             <td class="fromdate">@item.FromDateTime</td>
                                             <td class="todate">@item.ToDateTime</td>
-                                            <td class="timercount">
-                                            </td>
+                                            <td class="timercount"></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -104,9 +110,9 @@
                                         @foreach (var item in Model.RegisteredUsers)
                                         {
                                             <tr>
-                                                <th scope="row">@item.UserDetail.Username</th>
+                                                @*<th scope="row">@item.UserDetail.Username</th>*@
                                                 <td>@item.RegisteredDateTime</td>
-                                                <td>@item.UserDetail.EmailAddress</td>
+                                                @*<td>@item.UserDetil.EmailAddress</td>*@
                                             </tr>
                                         }
                                     </tbody>
@@ -201,10 +207,14 @@
     </div>
 </section>
 <script type="text/javascript">
-    var showpopup='@Model.IsEnrolled';
+    var showpopup = '@Model.IsEnrolled';
 
     // Get the modal
     var modal = document.getElementById('myModal');
+    alert(showpopup);
+    if (showpopup == "enrolled") {
+        modal = document.getElementById('myEnrolledModal');
+    }
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -215,20 +225,20 @@
     }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
     //Open window when showpopup is true
-    window.onload=function (event) {
-        if(showpopup==true||showpopup=="True"){
+    window.onload = function (event) {
+        if (showpopup == true || showpopup == "True" || showpopup == "true" || showpopup == "enrolled") {
             modal.style.display = "block";
         }
         updatetimer();
     }
-   
+
     function updatetimer() {
-    //TODO:Remainning code for timer
+        //TODO:Remainning code for timer
         //$('.table tr.trsessiondata').each(function (i, item) {
         //    var fromdate = $(item).find('td.fromdate');
         //    alert(fromdate)
@@ -241,18 +251,18 @@
         //    var timestart = Date.parse((item).find('td.fromdate'));
         //    var timeend = new Date().getTime();
         //    var hourDiff = timeend - timestart;
-        //    var secDiff = hourDiff / 1000; 
+        //    var secDiff = hourDiff / 1000;
         //    var minDiff = hourDiff / 60 / 1000;
-        //    var hDiff = hourDiff / 3600 / 1000; 
+        //    var hDiff = hourDiff / 3600 / 1000;
         //    var humanReadable = {};
         //    humanReadable.hours = Math.floor(hDiff);
         //    humanReadable.minutes = minDiff - 60 * humanReadable.hours;
-        //    alert(humanReadable); 
+        //    alert(humanReadable);
         //    $('td.timercount').innerHTML = humanReadable;
         //});
 
     }
-        @*var fromdate="";
+    @*var fromdate="";
         @foreach (var items in Model.Sessions)
         {
             var fromdate = @items.FromDateTime;

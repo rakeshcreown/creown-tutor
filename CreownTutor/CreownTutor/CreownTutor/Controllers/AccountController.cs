@@ -13,6 +13,7 @@ using CreownTutor.Data.Model;
 using CreownTutor.Data.Repository;
 using CreownTutor.Data;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.IO;
 
 namespace CreownTutor.Controllers
 {
@@ -40,6 +41,73 @@ namespace CreownTutor.Controllers
             }
 
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult EditProfile()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View(user);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult EditProfile(HttpPostedFileBase file, ApplicationUser model)
+        {
+            UpdateData(file, model);
+            //teacherrepo.UpdateData(file, model, id);
+            return View(model);
+        }
+
+        public void UpdateData(HttpPostedFileBase file, ApplicationUser model)
+        {
+            try
+            {
+                var dbEntity = new DataEntities();
+                var userinfo = dbEntity.AspNetUsers.FirstOrDefault(m => m.Id == model.Id);
+                //userinfo.Username = model.User.Username;
+                if (userinfo != null)
+                {
+                    //userinfo.Name = model.User.Name;
+                    userinfo.Email = model.Email;
+                    //userinfo.Password = model.User.Password;
+                    userinfo.ContactNumber = model.ContactNumber;
+                    userinfo.DateOfBirth = model.DateOfBirth;
+                    userinfo.Location = model.Location;
+                    //userinfo.UpdatedPassword = model.User.UpdatedPassword;
+                    //userinfo. = model.User.UpdatedPassword;
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var guid = Guid.NewGuid().ToString();
+                        var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/uploads"), guid + fileName);
+                        file.SaveAs(path);
+                        string fl = path.Substring(path.LastIndexOf("\\"));
+                        string[] split = fl.Split('\\');
+                        string newpath = split[1];
+                        string imagepath = "~/uploads/" + newpath;
+                        //model.User.Imagelength = imagepath;
+                        userinfo.Imagelength = imagepath;
+                    }
+                    //dbEntity.UserDetails.Attach(userinfo);
+                    //var entry = dbEntity.Entry(userinfo);
+                    //entry.State = EntityState.Modified;
+                    //entry.Property(e => e.Name).IsModified = true;
+                    //entry.Property(e => e.EmailAddress).IsModified = true;
+                    //entry.Property(e => e.ContactNumber).IsModified = true;
+                    //entry.Property(e => e.DateOfBirth).IsModified = true;
+                    //entry.Property(e => e.Location).IsModified = true;
+                    //entry.Property(e => e.UpdatedPassword).IsModified = true;
+                    //entry.Property(e => e.Imagelength).IsModified = true;
+                    dbEntity.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
         }
 
         [HttpPost]
