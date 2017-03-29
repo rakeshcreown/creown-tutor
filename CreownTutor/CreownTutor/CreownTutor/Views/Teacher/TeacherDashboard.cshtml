@@ -4,163 +4,163 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 @using Microsoft.AspNet.Identity.Owin;
-    @using Microsoft.AspNet.Identity
-    <section>
+@using Microsoft.AspNet.Identity
+<section>
 
-        <div class="container">
-            <div class="row">
-                <h2>Teacher Dashboard</h2>
-                <div class="col-md-8 blog-pull-right">
-                    <div class="single-service">
-                        @*<h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>*@
-                        <ul id="myTab" class="nav nav-tabs boot-tabs">
-                            <li class="active"><a href="#small" data-toggle="tab">Recent Activities</a></li>
-                            <li><a href="#medium" data-toggle="tab">My Courses</a></li>
-                            <li><a href="#large" data-toggle="tab">My Tests</a></li>
-                        </ul>
-                        <div id="myTabContent" class="tab-content">
-                            <div class="tab-pane fade in active" id="small">
-                                <input class="form-control search-input" type="text" id="search" placeholder="Search for a Course or Student" onkeyup="myFunction()">
-                                <script type="text/javascript">
-                                    function myFunction() {
-                                        // Declare variables
-                                        var input, filter, table, tr, td, i;
-                                        input = document.getElementById("search");
-                                        filter = input.value.toUpperCase();
-                                        table = document.getElementById("table1");
-                                        tr = table.getElementsByClassName("tr1");
+    <div class="container">
+        <div class="row">
+            <h2>Teacher Dashboard</h2>
+            <div class="col-md-8 blog-pull-right">
+                <div class="single-service">
+                    @*<h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>*@
+                    <ul id="myTab" class="nav nav-tabs boot-tabs">
+                        <li class="active"><a href="#small" data-toggle="tab">Recent Activities</a></li>
+                        <li><a href="#medium" data-toggle="tab">My Courses</a></li>
+                        <li><a href="#large" data-toggle="tab">My Tests</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="small">
+                            <input class="form-control search-input" type="text" id="search" placeholder="Search for a Course or Student" onkeyup="myFunction()">
+                            <script type="text/javascript">
+                                function myFunction() {
+                                    // Declare variables
+                                    var input, filter, table, tr, td, i;
+                                    input = document.getElementById("search");
+                                    filter = input.value.toUpperCase();
+                                    table = document.getElementById("table1");
+                                    tr = table.getElementsByClassName("tr1");
 
-                                        // Loop through all table rows, and hide those who don't match the search query
-                                        for (i = 0; i < tr.length; i++) {
-                                            td = tr[i].getElementsByTagName("a")[0];
-                                            if (td) {
-                                                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                                                    tr[i].style.display = "";
-                                                } else {
-                                                    tr[i].style.display = "none";
-                                                }
+                                    // Loop through all table rows, and hide those who don't match the search query
+                                    for (i = 0; i < tr.length; i++) {
+                                        td = tr[i].getElementsByTagName("a")[0];
+                                        if (td) {
+                                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                                tr[i].style.display = "";
+                                            } else {
+                                                tr[i].style.display = "none";
                                             }
                                         }
                                     }
-                                </script>
-                                <br />
-                                <hr />
-                                <table class="table table-bordered" id="table1">
-                                    <tr>
-                                        <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Activities</td>
-                                    </tr>
-                                    <tbody id="tbody1">
-                                        @foreach (var item in Model.Courses)
-                                        {
-                                            <tr class="tr1">
-                                                <td>
-                                                    A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                                <div>
-                                    @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
-                                                                    of @Model.PageCount
+                                }
+                            </script>
+                            <br />
+                            <hr />
+                            <table class="table table-bordered" id="table1">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Activities</td>
+                                </tr>
+                                <tbody id="tbody1">
+                                    @foreach (var item in Model.Courses)
+                                    {
+                                        <tr class="tr1">
+                                            <td>
+                                                A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div>
+                                @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                                                of @Model.PageCount
 
-                                                                    @if (Model.HasPreviousPage)
-                                                                    {
-                                                                        @Html.ActionLink("<<", "TeacherDashboard", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                                                                        @Html.Raw(" ");
-                                                                        @Html.ActionLink("< Prev", "TeacherDashboard", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @:<<
-                                                                        @Html.Raw(" ");
-                                                                        @:< Prev
-                                        }
+                                                                @if (Model.HasPreviousPage)
+                                                                {
+                                                                    @Html.ActionLink("<<", "TeacherDashboard", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                                                    @Html.Raw(" ");
+                                                                    @Html.ActionLink("< Prev", "TeacherDashboard", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @:<<
+                                                                    @Html.Raw(" ");
+                                                                    @:< Prev
+                                    }
 
-                                                                    @if (Model.HasNextPage)
-                                                                    {
-                                                                        @Html.ActionLink("Next >", "TeacherDashboard", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                                                                        @Html.Raw(" ");
-                                                                        @Html.ActionLink(">>", "TeacherDashboard", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @:Next >
-                                                                        @Html.Raw(" ")
-                                                                        @:>>
-                                        }*@
-                                </div>
+                                                                @if (Model.HasNextPage)
+                                                                {
+                                                                    @Html.ActionLink("Next >", "TeacherDashboard", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                                                    @Html.Raw(" ");
+                                                                    @Html.ActionLink(">>", "TeacherDashboard", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+                                                                }
+                                                                else
+                                                                {
+                                                                    @:Next >
+                                                                    @Html.Raw(" ")
+                                                                    @:>>
+                                    }*@
                             </div>
-                            <div class="tab-pane fade" id="medium">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Courses</td>
-                                    </tr>
-                                    <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
-                                    <tbody>
-                                        @foreach (var item in Model.Courses)
-                                        {
-                                            <tr>
-                                                <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                                <td>@item.CreatedDateAndTime</td>
-                                                <td>@item.DurationOfCourse</td>
-                                                <td>@item.CoursePrice</td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="tab-pane fade" id="large">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Test Papers</td>
-                                    </tr>
-                                    <tr> <th>Test Name</th> <th>Test Created Date</th> <th>No. of Enrolled Students</th> <th>Overall Review</th> </tr>
-                                    <tbody>
-                                        <tr> <th scope="row">Applied Psychology</th> <td>45 minutes</td> <td>3 years</td> <td>$810</td> </tr>
-                                        <tr> <th scope="row">Business Administration (MBA)</th> <td>45 minutes</td> <td>2 years</td> <td>$940</td> </tr>
-                                        <tr> <th scope="row">Computer Science (BSc)</th> <td>1 Hours</td> <td>4 years</td> <td>$1180</td> </tr>
-                                        <tr> <th scope="row">Development Studies (MDS)</th> <td>1 Hours</td> <td>5 years</td> <td>$1400</td> </tr>
-                                        <tr> <th scope="row">Engineering Technology (BSc)</th> <td>30 minutes</td> <td>3 years</td> <td>$600</td> </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="medium">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Courses</td>
+                                </tr>
+                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
+                                <tbody>
+                                    @foreach (var item in Model.Courses)
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                            <td>@item.CreatedDateAndTime</td>
+                                            <td>@item.DurationOfCourse</td>
+                                            <td>@item.CoursePrice</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="large">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Test Papers</td>
+                                </tr>
+                                <tr> <th>Test Name</th> <th>Test Created Date</th> <th>No. of Enrolled Students</th> <th>Overall Review</th> </tr>
+                                <tbody>
+                                    <tr> <th scope="row">Applied Psychology</th> <td>45 minutes</td> <td>3 years</td> <td>$810</td> </tr>
+                                    <tr> <th scope="row">Business Administration (MBA)</th> <td>45 minutes</td> <td>2 years</td> <td>$940</td> </tr>
+                                    <tr> <th scope="row">Computer Science (BSc)</th> <td>1 Hours</td> <td>4 years</td> <td>$1180</td> </tr>
+                                    <tr> <th scope="row">Development Studies (MDS)</th> <td>1 Hours</td> <td>5 years</td> <td>$1400</td> </tr>
+                                    <tr> <th scope="row">Engineering Technology (BSc)</th> <td>30 minutes</td> <td>3 years</td> <td>$600</td> </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
-                    @*<h3 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:deeppink">Welcome User, @Model.User.Name</h3>*@
-                    <div class="sidebar sidebar-left mt-sm-30 ml-40">
-                        <div class="widget">
-                            <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
-                        </div>
-                        <div class="doctor-thumb">
-                            @*<img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">*@
-                            @{
-                                var img = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(User.Identity.GetUserId()).Result.Imagelength;
-                                string imgpath = !string.IsNullOrEmpty(img) ? img : "/images/blog/author.jpg";
-                            }
-                            <img src="@Url.Content(imgpath)" alt="" style="height:300px; width:400px;">
-                        </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                @*<h3 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:deeppink">Welcome User, @Model.User.Name</h3>*@
+                <div class="sidebar sidebar-left mt-sm-30 ml-40">
+                    <div class="widget">
+                        <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
+                    </div>
+                    <div class="doctor-thumb">
+                        @*<img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">*@
+                        @{
+                            var img = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(User.Identity.GetUserId()).Result.Imagelength;
+                            string imgpath = !string.IsNullOrEmpty(img) ? img : "/images/blog/author.jpg";
+                        }
+                        <img src="@Url.Content(imgpath)" alt="" style="height:150px; width:170px;">
+                    </div>
+                    <br />
+                    @*<button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Teacher",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>*@
+                    <a class="btn bg-theme-color-2 btn-xl text-white" href=@Url.Action("EditProfile", "Account")><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</a>
+                    <div class="widget">
                         <br />
-                        @*<button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Teacher",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>*@
-                        <a class="btn bg-theme-color-2 btn-xl text-white" href=@Url.Action("EditProfile", "Account")><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</a>
-                        <div class="widget">
-                            <br />
-                            <h4 class="widget-title line-bottom">Teacher's<span class="text-theme-color-2"> Activities</span></h4>
-                            <div class="services-list">
-                                <ul class="list list-border angle-double-right">
-                                    <li class="active"><a href=@Url.Action("CreateCourse","Course")>Create Courses</a></li>
-                                    <li><a href=@Url.Action("EditCourseList", "Course")>Manage Courses</a></li>
-                                    <li><a href=@Url.Action("CreateTest","Test")>Create Tests</a></li>
-                                    <li><a href="page-courses-development-studies.html">Manage Tests</a></li>
-                                    <li><a href="page-courses-electrical-electronic.html">Schedule Live Class</a></li>
-                                    <li><a href="page-courses-modern-languages.html">Manage Live Class</a></li>
-                                </ul>
-                            </div>
+                        <h4 class="widget-title line-bottom">Teacher's<span class="text-theme-color-2"> Activities</span></h4>
+                        <div class="services-list">
+                            <ul class="list list-border angle-double-right">
+                                <li class="active"><a href=@Url.Action("CreateCourse","Course")>Create Courses</a></li>
+                                <li><a href=@Url.Action("EditCourseList", "Course")>Manage Courses</a></li>
+                                <li><a href=@Url.Action("CreateTest","Test")>Create Tests</a></li>
+                                <li><a href="page-courses-development-studies.html">Manage Tests</a></li>
+                                <li><a href="page-courses-electrical-electronic.html">Schedule Live Class</a></li>
+                                <li><a href="page-courses-modern-languages.html">Manage Live Class</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>

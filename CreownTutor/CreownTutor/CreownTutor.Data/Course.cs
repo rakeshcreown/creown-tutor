@@ -39,8 +39,8 @@ namespace CreownTutor.Data
         public virtual Course Course2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LiveSession> LiveSessions { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -21,6 +21,7 @@ namespace CreownTutor.Data
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Courses = new HashSet<Course>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.CourseRegistrations = new HashSet<CourseRegistration>();
         }
     
         public string Id { get; set; }
@@ -44,6 +45,7 @@ namespace CreownTutor.Data
         public string ExperienceInfo { get; set; }
         public string BioGraphInfo { get; set; }
         public string Imagelength { get; set; }
+        public string Address { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -53,5 +55,7 @@ namespace CreownTutor.Data
         public virtual ICollection<Course> Courses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }
 }

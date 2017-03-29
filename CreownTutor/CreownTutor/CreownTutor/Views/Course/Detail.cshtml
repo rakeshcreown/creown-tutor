@@ -32,25 +32,28 @@
                     <img src="/images/services/lg6.jpg" alt="">
                     @using (Html.BeginForm("Registration", "Course", FormMethod.Post, new { @class = "enrollment-form" }))
                     {
-                        @Html.HiddenFor(x => x.Course.CourseID)
-                        <h3 class="text-theme-colored line-bottom text-theme-colored">
-                            @Model.Course.CourseName
-                            <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
-                        </h3>
-                        <div id="myEnrolledModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Sorry!!! You are already enrolled to this course.</p>
-                            </div>
+                    @Html.HiddenFor(x => x.Course.CourseID)
+                    <h3 class="text-theme-colored line-bottom text-theme-colored">
+                        @Model.Course.CourseName
+                        @if (Model.ShowEnroll)
+                        {
+                        <button class="btn bg-theme-color-2 btn-xl text-white" type="submit"><i class="fa fa-pencil">&nbsp;&nbsp;&nbsp;</i>Enroll</button>
+                        }
+                    </h3>
+                    <div id="myEnrolledModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Sorry!!! You are already enrolled to this course.</p>
                         </div>
-                        <div id="myModal" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <p>Congratulations!!! You have been enrolled to the course.</p>
-                            </div>
+                    </div>
+                    <div id="myModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Congratulations!!! You have been enrolled to the course.</p>
                         </div>
+                    </div>
                     }
                     <h4 class="mt-0"><span class="text-theme-color-2">Price :</span> $@Model.Course.CoursePrice</h4>
                     <ul class="review_text list-inline">
@@ -62,9 +65,10 @@
                     <h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>
                     <ul id="myTab" class="nav nav-tabs boot-tabs">
                         <li class="active"><a href="#small" data-toggle="tab">Sessions</a></li>
-                        @if (Model.RegisteredUsers != null)
+                        @if (Model.RegisteredUsers.Count > 0)
                         {
-                            <li><a href="#medium" data-toggle="tab">Registered Users</a></li>
+                        <li><a href="#medium" data-toggle="tab">Registered Users</a></li>
+
                         }
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -83,40 +87,43 @@
                                 <tbody>
                                     @foreach (var item in Model.Sessions)
                                     {
-                                        <tr class="trsessiondata">
-                                            <th scope="row">@item.Title</th>
-                                            <td>@item.Description</td>
-                                            <td class="fromdate">@item.FromDateTime</td>
-                                            <td class="todate">@item.ToDateTime</td>
-                                            <td class="timercount"></td>
-                                        </tr>
+                                    <tr class="trsessiondata">
+                                        <th scope="row">@item.Title</th>
+                                        <td>@item.Description</td>
+                                        <td class="fromdate">@item.FromDateTime</td>
+                                        <td class="todate">@item.ToDateTime</td>
+                                        <td class="timercount"></td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                         <div class="tab-pane fade" id="medium">
-                            @if (Model.RegisteredUsers != null)
+                            @if (Model.RegisteredUsers.Count > 0 )
                             {
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">All Registered User Data</td>
-                                    </tr>
-                                    <tr>
-                                        <th>User Name</th>
-                                        <th>Registered On</th>
-                                        <th>User Email</th>
-                                    </tr>
-                                    <tbody>
-                                        @foreach (var item in Model.RegisteredUsers)
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">All Registered User Data</td>
+                                </tr>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Registered On</th>
+                                    <th>User Email</th>
+                                </tr>
+                                <tbody>
+                                    @foreach (var item in Model.RegisteredUsers)
+                                    {
+                                        if (item.AspNetUser != null)
                                         {
-                                            <tr>
-                                                @*<th scope="row">@item.UserDetail.Username</th>*@
-                                                <td>@item.RegisteredDateTime</td>
-                                                @*<td>@item.UserDetil.EmailAddress</td>*@
-                                            </tr>
+                                    <tr>
+                                        <td>@item.AspNetUser.UserName</td>
+                                        <td>@item.RegisteredDateTime</td>
+                                        <td>@item.AspNetUser.Email</td>
+                                    </tr>
                                         }
-                                    </tbody>
-                                </table>
+                                    }
+                                </tbody>
+                            </table>
                             }
                         </div>
                     </div>
@@ -125,66 +132,65 @@
 
             <div class="col-sm-12 col-md-4">
                 <div class="sidebar sidebar-left mt-sm-30 ml-40">
-                    @if (Model.User != null)
+                    @if (Model.Course != null && Model.Course.AspNetUser != null)
                     {
-                        <div class="widget">
-                            <div class="">
-                                <h4 class="line-bottom">About Me:</h4>
-                                <div class="volunteer-address">
-                                    <ul>
-                                        <li>
-                                            <div class="bg-light media border-bottom p-15 mb-20">
-                                                <div class="media-left">
-                                                    <i class="pe-7s-user text-theme-colored font-24 mt-5"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-0">Name:</h5>
-                                                    <p>@User.Identity.Name</p>
-                                                </div>
+                    <div class="widget">
+                        <div class="">
+                            <h4 class="line-bottom">About Me:</h4>
+                            <div class="volunteer-address">
+                                <ul>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="pe-7s-user text-theme-colored font-24 mt-5"></i>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="bg-light media border-bottom p-15 mb-20">
-                                                <div class="media-left">
-                                                    <i class="pe-7s-pen text-theme-colored font-24 mt-5"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-0">Experiences:</h5>
-                                                    <p>@Model.User.ExperienceInfo</p>
-                                                </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Name:</h5>
+                                                <p>@Model.Course.AspNetUser.UserName</p>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="bg-light media border-bottom p-15 mb-20">
-                                                <div class="media-left">
-                                                    <i class="fa fa-map-marker text-theme-colored font-24 mt-5"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-0">Address:</h5>
-                                                    <p>@Model.User.ContactDetails</p>
-                                                </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="pe-7s-pen text-theme-colored font-24 mt-5"></i>
                                             </div>
-                                        </li>
-                                        <li>
-                                            <div class="bg-light media border-bottom p-15">
-                                                <div class="media-left">
-                                                    <i class="fa fa-phone text-theme-colored font-24 mt-5"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h5 class="mt-0 mb-0">Contact:</h5>
-                                                    <p><span>Phone:</span>@Model.User.ContactNumber<br><span>Email:</span> @Model.User.ContactEmail</p>
-                                                </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Experiences:</h5>
+                                                <p>@Model.Course.AspNetUser.ExperienceInfo</p>
                                             </div>
-                                        </li>
-                                        <li>
-                                            @*<button type="submit" class="btn btn-theme-colored btn-flat btn-xs btn-quick-contact text-white pt-5 pb-5" data-loading-text="Please wait..." onclick="@("window.location.href='"+Url.Action("Index","Teacher")+"'")">View Details</button>*@
-                                            <a href="/Teacher">View Details</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15 mb-20">
+                                            <div class="media-left">
+                                                <i class="fa fa-map-marker text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Address:</h5>
+                                                <p>@Model.Course.AspNetUser.Address</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="bg-light media border-bottom p-15">
+                                            <div class="media-left">
+                                                <i class="fa fa-phone text-theme-colored font-24 mt-5"></i>
+                                            </div>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-0">Contact:</h5>
+                                                <p><span>Phone:</span>@Model.Course.AspNetUser.PhoneNumber<br><span>Email:</span> @Model.Course.AspNetUser.Email</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a href="/Teacher">View Details</a>
+                                    </li>
+                                </ul>
                             </div>
-
                         </div>
+
+                    </div>
                     }
                     <div class="widget">
                         <h4 class="widget-title line-bottom">Quick <span class="text-theme-color-2">Contact</span></h4>
@@ -208,10 +214,9 @@
 </section>
 <script type="text/javascript">
     var showpopup = '@Model.IsEnrolled';
-
     // Get the modal
     var modal = document.getElementById('myModal');
-    alert(showpopup);
+    //alert(showpopup);
     if (showpopup == "enrolled") {
         modal = document.getElementById('myEnrolledModal');
     }
@@ -236,68 +241,4 @@
         }
         updatetimer();
     }
-
-    function updatetimer() {
-        //TODO:Remainning code for timer
-        //$('.table tr.trsessiondata').each(function (i, item) {
-        //    var fromdate = $(item).find('td.fromdate');
-        //    alert(fromdate)
-        //    var dateTime=new Date().toLocaleString();
-        //    var diff = fromdate - dateTime
-        //    alert(diff)
-        //    $('td.timercount').innerHTML = diff;
-        //});
-        //$('.table tr.trsessiondata').each(function (i, item) {
-        //    var timestart = Date.parse((item).find('td.fromdate'));
-        //    var timeend = new Date().getTime();
-        //    var hourDiff = timeend - timestart;
-        //    var secDiff = hourDiff / 1000;
-        //    var minDiff = hourDiff / 60 / 1000;
-        //    var hDiff = hourDiff / 3600 / 1000;
-        //    var humanReadable = {};
-        //    humanReadable.hours = Math.floor(hDiff);
-        //    humanReadable.minutes = minDiff - 60 * humanReadable.hours;
-        //    alert(humanReadable);
-        //    $('td.timercount').innerHTML = humanReadable;
-        //});
-
-    }
-    @*var fromdate="";
-        @foreach (var items in Model.Sessions)
-        {
-            var fromdate = @items.FromDateTime;
-        }
-        var dt =fromdate;
-        var dateAr = dt.split('/');
-        var newDate = dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2];
-
-        var end = new Date(dateAr[1] + '/' + dateAr[0] + '/' + dateAr[2]);
-
-        var _second = 1000;
-        var _minute = _second * 60;
-        var _hour = _minute * 60;
-        var _day = _hour * 24;
-        var timer;
-
-        function showRemaining() {
-            var now = new Date();
-            var distance = end - now;
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById('timecountdown').innerHTML = 'Count Down Ends!';
-                window.location.href = '/Course/Detail/5';
-
-                return;
-            }
-            var days = Math.floor(distance / _day);
-            var _hours = Math.floor((distance % _day) / _hour);
-            var _minutes = Math.floor((distance % _hour) / _minute);
-            var _seconds = Math.floor((distance % _minute) / _second);
-
-            document.getElementById('timecountdown').innerHTML = ' Hrs: ' + _hours;
-            document.getElementById('timecountdown').innerHTML += ' Mins: ' + _minutes;
-            document.getElementById('timecountdown').innerHTML += ' Secs: ' + _seconds;
-        }
-        timer = setInterval(showRemaining, 1000);
-    }*@
 </script>

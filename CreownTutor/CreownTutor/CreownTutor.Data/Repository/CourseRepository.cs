@@ -45,18 +45,16 @@ namespace CreownTutor.Data.Repository
             return dbEntity.Courses.OrderByDescending(c => c.CreatedDateAndTime).ToList().Take(ct).ToList();
         }
 
-        public CourseDetailViewModel GetCourseDetail(int id,string isenrolled)
+        public CourseDetailViewModel GetCourseDetail(int id, string isenrolled)
         {
             CourseDetailViewModel model = new CourseDetailViewModel();
             var course = dbEntity.Courses.FirstOrDefault(c => c.CourseID == id);
             if (course != null)
             {
                 model.Course = course;
-               // model.User = course.UserDetail;
                 model.Sessions = dbEntity.LiveSessions.Where(s => s.CourseID == id).ToList();
                 model.IsEnrolled = isenrolled;
-                // TODO - Registered users will be shown only to Teacher Account
-                //model.RegisteredUsers = dbEntity.CourseRegistrations.Where(r => r.CourseID == id).ToList();
+                model.RegisteredUsers = dbEntity.CourseRegistrations.Where(r => r.CourseID == id).ToList();
             }
             return model;
         }
@@ -93,7 +91,7 @@ namespace CreownTutor.Data.Repository
 
         }
 
-        public void UpdateCourseInfo(CourseNewViewModel model,int id)
+        public void UpdateCourseInfo(CourseNewViewModel model, int id)
         {
             try
             {
@@ -115,7 +113,7 @@ namespace CreownTutor.Data.Repository
                 entry.Property(e => e.CreatedDateAndTime).IsModified = true;
                 dbEntity.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             { }
         }
     }

@@ -89,25 +89,12 @@ namespace CreownTutor.Controllers
                         //model.User.Imagelength = imagepath;
                         userinfo.Imagelength = imagepath;
                     }
-                    //dbEntity.UserDetails.Attach(userinfo);
-                    //var entry = dbEntity.Entry(userinfo);
-                    //entry.State = EntityState.Modified;
-                    //entry.Property(e => e.Name).IsModified = true;
-                    //entry.Property(e => e.EmailAddress).IsModified = true;
-                    //entry.Property(e => e.ContactNumber).IsModified = true;
-                    //entry.Property(e => e.DateOfBirth).IsModified = true;
-                    //entry.Property(e => e.Location).IsModified = true;
-                    //entry.Property(e => e.UpdatedPassword).IsModified = true;
-                    //entry.Property(e => e.Imagelength).IsModified = true;
                     dbEntity.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-
             }
-
-
         }
 
         [HttpPost]

@@ -3,7 +3,8 @@
     ViewBag.Title = "Student Dashboard";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+@using Microsoft.AspNet.Identity.Owin;
+@using Microsoft.AspNet.Identity
 <h2>Student Dashboard</h2>
 <section>
     <div class="container">
@@ -101,11 +102,18 @@
                         <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
                     </div>
                     <div class="doctor-thumb">
-                        <img src="~/images/project/myers_2010_360_423_90.jpg" alt="" style="max-width:65%">
+                        @{
+                            var img = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(User.Identity.GetUserId()).Result.Imagelength;
+                            string imgpath = !string.IsNullOrEmpty(img) ? img : "/images/blog/author.jpg";
+                        }
+                        <img src="@Url.Content(imgpath)" alt="" style="height:150px; width:170px;">
                     </div>
-                    <button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Account",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>
+                    <br/><br />
+                    <a class="btn bg-theme-color-2 btn-xl text-white" href=@Url.Action("EditProfile", "Account")><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</a>
+                    <br/>
+                    <br />
                     <div class="widget">
-                        <h4 class="widget-title line-bottom">Student's<span class="text-theme-color-2">Activities</span></h4>
+                        <h4 class="widget-title line-bottom">Student's<span class="text-theme-color-2"> Activities</span></h4>
                         <div class="services-list">
                             <ul class="list list-border angle-double-right">
                                 <li class="active"><a href=@Url.Action("CreateCourse","Course")>Enrolled Courses</a></li>

@@ -74,6 +74,7 @@
           <Property Name="ExperienceInfo" Type="nvarchar(max)" />
           <Property Name="BioGraphInfo" Type="nvarchar(max)" />
           <Property Name="Imagelength" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CartInfomation">
           <Key>
@@ -222,6 +223,18 @@
           <Property Name="ProfileImage" Type="varbinary(max)" />
           <Property Name="Imagelength" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="CourseRegistration_UserID_FK">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="CourseRegistration" Type="Self.CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Course__CreatedB__59063A47">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -381,6 +394,10 @@
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CourseRegistration_UserID_FK" Association="Self.CourseRegistration_UserID_FK">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistration" />
+          </AssociationSet>
           <AssociationSet Name="FK__Course__CreatedB__59063A47" Association="Self.FK__Course__CreatedB__59063A47">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Course" EntitySet="Course" />
@@ -455,15 +472,6 @@
             <End Role="Course" EntitySet="Courses" />
             <End Role="LiveSession" EntitySet="LiveSessions" />
           </AssociationSet>
-          <EntitySet Name="CourseRegistrations" EntityType="CreownTutorModel.CourseRegistration" />
-          <AssociationSet Name="FK_CourseRegistration_Course" Association="CreownTutorModel.FK_CourseRegistration_Course">
-            <End Role="Course" EntitySet="Courses" />
-            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CourseRegistration_SessionStatus" Association="CreownTutorModel.FK_CourseRegistration_SessionStatus">
-            <End Role="SessionStatu" EntitySet="SessionStatus" />
-            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
-          </AssociationSet>
           <EntitySet Name="Reviews" EntityType="CreownTutorModel.Review" />
           <AssociationSet Name="FK__Reviews__ReviewA__2D27B809" Association="CreownTutorModel.FK__Reviews__ReviewA__2D27B809">
             <End Role="UserDetail" EntitySet="UserDetails" />
@@ -487,6 +495,19 @@
           <AssociationSet Name="AspNetUserRoles" Association="CreownTutorModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="CourseRegistrations" EntityType="CreownTutorModel.CourseRegistration" />
+          <AssociationSet Name="CourseRegistration_UserID_FK" Association="CreownTutorModel.CourseRegistration_UserID_FK">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_Course" Association="CreownTutorModel.FK_CourseRegistration_Course">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseRegistration_SessionStatus" Association="CreownTutorModel.FK_CourseRegistration_SessionStatus">
+            <End Role="SessionStatu" EntitySet="SessionStatus" />
+            <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CartInfomation">
@@ -641,8 +662,8 @@
           <NavigationProperty Name="Course1" Relationship="CreownTutorModel.FK_Course_Course" FromRole="Course" ToRole="Course1" />
           <NavigationProperty Name="Course2" Relationship="CreownTutorModel.FK_Course_Course" FromRole="Course1" ToRole="Course" />
           <NavigationProperty Name="LiveSessions" Relationship="CreownTutorModel.fk_courseid" FromRole="Course" ToRole="LiveSession" />
-          <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
           <NavigationProperty Name="AspNetUser" Relationship="CreownTutorModel.FK__Course__CreatedB__59063A47" FromRole="Course" ToRole="AspNetUser" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="Course" ToRole="CourseRegistration" />
         </EntityType>
         <Association Name="FK_Course_Course">
           <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="1" />
@@ -665,43 +686,6 @@
             </Principal>
             <Dependent Role="LiveSession">
               <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="CourseRegistration">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
-          <Property Name="IsEnrolled" Type="Boolean" />
-          <Property Name="SessionID" Type="Int32" />
-          <NavigationProperty Name="Course" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
-          <NavigationProperty Name="SessionStatu" Relationship="CreownTutorModel.FK_CourseRegistration_SessionStatus" FromRole="CourseRegistration" ToRole="SessionStatu" />
-        </EntityType>
-        <Association Name="FK_CourseRegistration_Course">
-          <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="1" />
-          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Course">
-              <PropertyRef Name="CourseID" />
-            </Principal>
-            <Dependent Role="CourseRegistration">
-              <PropertyRef Name="CourseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CourseRegistration_SessionStatus">
-          <End Type="CreownTutorModel.SessionStatu" Role="SessionStatu" Multiplicity="0..1" />
-          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SessionStatu">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CourseRegistration">
-              <PropertyRef Name="SessionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -789,6 +773,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="CreownTutorModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Courses" Relationship="CreownTutorModel.FK__Course__CreatedB__59063A47" FromRole="AspNetUser" ToRole="Course" />
           <NavigationProperty Name="AspNetRoles" Relationship="CreownTutorModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CourseRegistrations" Relationship="CreownTutorModel.CourseRegistration_UserID_FK" FromRole="AspNetUser" ToRole="CourseRegistration" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="CreownTutorModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -833,6 +819,56 @@
         <Association Name="AspNetUserRoles">
           <End Type="CreownTutorModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="CreownTutorModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CourseRegistration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CourseID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RegisteredDateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsEnrolled" Type="Boolean" />
+          <Property Name="SessionID" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="CreownTutorModel.CourseRegistration_UserID_FK" FromRole="CourseRegistration" ToRole="AspNetUser" />
+          <NavigationProperty Name="Course" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
+          <NavigationProperty Name="SessionStatu" Relationship="CreownTutorModel.FK_CourseRegistration_SessionStatus" FromRole="CourseRegistration" ToRole="SessionStatu" />
+        </EntityType>
+        <Association Name="CourseRegistration_UserID_FK">
+          <End Type="CreownTutorModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_Course">
+          <End Type="CreownTutorModel.Course" Role="Course" Multiplicity="1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="CourseID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="CourseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseRegistration_SessionStatus">
+          <End Type="CreownTutorModel.SessionStatu" Role="SessionStatu" Multiplicity="0..1" />
+          <End Type="CreownTutorModel.CourseRegistration" Role="CourseRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SessionStatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CourseRegistration">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -979,18 +1015,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CourseRegistrations">
-            <EntityTypeMapping TypeName="CreownTutorModel.CourseRegistration">
-              <MappingFragment StoreEntitySet="CourseRegistration">
-                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
-                <ScalarProperty Name="IsEnrolled" ColumnName="IsEnrolled" />
-                <ScalarProperty Name="RegisteredDateTime" ColumnName="RegisteredDateTime" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="CreownTutorModel.Review">
               <MappingFragment StoreEntitySet="Reviews">
@@ -1039,6 +1063,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="CreownTutorModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Imagelength" ColumnName="Imagelength" />
                 <ScalarProperty Name="BioGraphInfo" ColumnName="BioGraphInfo" />
                 <ScalarProperty Name="ExperienceInfo" ColumnName="ExperienceInfo" />
@@ -1071,6 +1096,18 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="CourseRegistrations">
+            <EntityTypeMapping TypeName="CreownTutorModel.CourseRegistration">
+              <MappingFragment StoreEntitySet="CourseRegistration">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="IsEnrolled" ColumnName="IsEnrolled" />
+                <ScalarProperty Name="RegisteredDateTime" ColumnName="RegisteredDateTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

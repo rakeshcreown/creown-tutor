@@ -20,10 +20,9 @@ namespace CreownTutorWeb.Controllers
         // GET: Student
         public ActionResult Index(int id = 6)
         {
-            Session["user"] = "Student";
             Student student = new Student();
             StudentRepository studentrepo = new StudentRepository();
-            student.Courses = studentrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
+            student.Courses = studentrepo.GetCourseForStudents(User.Identity.GetUserId());
             student.User = studentrepo.GetStudents(id);
             //student.CourseRegistrations = studentrepo.GetRegisteredCourses(isEnrolled);
             return View(student);

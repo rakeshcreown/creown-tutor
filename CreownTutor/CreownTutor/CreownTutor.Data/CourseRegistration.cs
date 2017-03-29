@@ -21,6 +21,7 @@ namespace CreownTutor.Data
         public Nullable<bool> IsEnrolled { get; set; }
         public Nullable<int> SessionID { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Course Course { get; set; }
         public virtual SessionStatu SessionStatu { get; set; }
     }

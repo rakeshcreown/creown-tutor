@@ -42,7 +42,19 @@ namespace CreownTutorWeb.Controllers
         public ActionResult Detail(int id)
         {
             string isenrolled = TempData["isenrolled"] != null ? TempData["isenrolled"].ToString() : string.Empty;
-            return View(courseRepo.GetCourseDetail(id, isenrolled));
+            var model = courseRepo.GetCourseDetail(id, isenrolled);
+            //when teacher opens the course detail page, registered users will be shown only if the course is belong to him
+            if (User.Identity.IsAuthenticated && !string.IsNullOrEmpty(User.Identity.GetUserId()))
+            {
+                model.RegisteredUsers = model.RegisteredUsers.Where(r => r.Course.CreatedBy == User.Identity.GetUserId()).ToList();
+                //model.RegUsers
+            }
+            else
+            {
+                model.RegisteredUsers = new System.Collections.Generic.List<CourseRegistration>();
+            }
+            model.ShowEnroll = model.Course.CreatedBy != User.Identity.GetUserId();
+            return View(model);
         }
 
         public ActionResult CreateCourse()

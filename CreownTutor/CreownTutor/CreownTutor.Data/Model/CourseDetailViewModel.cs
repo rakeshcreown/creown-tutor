@@ -9,10 +9,12 @@ namespace CreownTutor.Data.Model
 {
     public class CourseDetailViewModel
     {
-        public UserDetail User { get; set; }
+        public AspNetUser User { get; set; }
         public Course Course { get; set; }
         public List<LiveSession> Sessions { get; set; }
         public List<CourseRegistration> RegisteredUsers { get; set; }
+        public List<AspNetUser> RegUsers { get; set; }
         public string IsEnrolled { get; set; }
+        public bool ShowEnroll { get; set; }
     }
 }
