@@ -22,15 +22,15 @@
                             <script type="text/javascript">
                                 $("#search").on("keyup", function () {
                                     var value = $(this).val();
-                                    alert(value);
+                                    //alert(value);
                                     $("#recentactTable #secondtr").each(function (index) {
-                                       alert(index)
+                                       //alert(index)
                                         if (index !== 0) {
                                             $row = $(this);
-                                            alert($row)
+                                            //alert($row)
                                             var id = $row.find("td a").text();
-                                            alert(id)
-                                            alert(id.indexOf(value))
+                                            //alert(id)
+                                            //alert(id.indexOf(value))
                                             if (id.indexOf(value) !== 0) {
                                                 $row.hide();
                                             }

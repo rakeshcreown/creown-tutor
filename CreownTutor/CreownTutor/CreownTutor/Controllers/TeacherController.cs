@@ -23,7 +23,6 @@ namespace CreownTutorWeb.Controllers
         {
             Teacher teacher = new Teacher();
             teacher.Courses = teacherrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
-            //teacher.User = User;
             teacher.Reviews = teacherrepo.GetReview(User.Identity.GetUserId());
             return View(teacher);
         }
@@ -32,15 +31,12 @@ namespace CreownTutorWeb.Controllers
         {
             Teacher teacher = new Teacher();
             teacher.Courses = teacherrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
-            //teacher.User = User;
             return View(teacher);
         }
 
         public ActionResult EditProfile()
         {
-            Teacher teacher = new Teacher();
-            //teacher.User = User;
-            return View(teacher);
+            return View(new Teacher());
         }
 
         [HttpPost]

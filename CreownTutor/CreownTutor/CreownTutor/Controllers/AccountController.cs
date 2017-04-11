@@ -55,7 +55,6 @@ namespace CreownTutor.Controllers
         public ActionResult EditProfile(HttpPostedFileBase file, ApplicationUser model)
         {
             UpdateData(file, model);
-            //teacherrepo.UpdateData(file, model, id);
             return View(model);
         }
 
@@ -65,7 +64,6 @@ namespace CreownTutor.Controllers
             {
                 var dbEntity = new DataEntities();
                 var userinfo = dbEntity.AspNetUsers.FirstOrDefault(m => m.Id == model.Id);
-                //userinfo.Username = model.User.Username;
                 if (userinfo != null)
                 {
                     //userinfo.Name = model.User.Name;

@@ -23,7 +23,9 @@
     @Styles.Render("~/Content/css")
 
     <style type="text/css">
-        .field-validation-valid { display:none; }
+        .field-validation-valid {
+            display: none;
+        }
     </style>
 
     <!-- external javascripts -->
@@ -48,22 +50,34 @@
             <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
         </div>
         <!-- Header -->
-       @{ Html.RenderPartial("_Menu");}
+        @{ Html.RenderPartial("_Menu");}
 
         <!-- Start main-content -->
         <div class="main-content">
             @RenderBody()
         </div>
         <!-- end main-content -->
-
         <!-- Footer -->
         @{Html.RenderPartial("_Footer"); }
-       
+
         <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
     </div>
     <!-- Footer Scripts -->
     <!-- JS | Custom script for all pages -->
     @RenderSection("scripts", required: false)
     <script src="/js/custom.js"></script>
+    <script>
+        $(function () {
+            setInterval(ShowTime, 1000);
+        });
+       // setInterval(ShowTime(), 1);
+
+        function ShowTime() {
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+            //console.log("time", time);
+            $('.currenttime').html(time);
+        }
+    </script>
 </body>
 </html>

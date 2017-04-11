@@ -17,14 +17,14 @@ namespace CreownTutorWeb.Controllers
     [Authorize(Roles = "Student")]
     public class StudentController : Controller
     {
+        StudentRepository studentrepo = new StudentRepository();
+
         // GET: Student
         public ActionResult Index(int id = 6)
         {
             Student student = new Student();
-            StudentRepository studentrepo = new StudentRepository();
             student.Courses = studentrepo.GetCourseForStudents(User.Identity.GetUserId());
             student.User = studentrepo.GetStudents(id);
-            //student.CourseRegistrations = studentrepo.GetRegisteredCourses(isEnrolled);
             return View(student);
         }
     }

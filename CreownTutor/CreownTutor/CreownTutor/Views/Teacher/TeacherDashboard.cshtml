@@ -12,7 +12,6 @@
             <h2>Teacher Dashboard</h2>
             <div class="col-md-8 blog-pull-right">
                 <div class="single-service">
-                    @*<h4 class="line-bottom mt-20 mb-20 text-theme-colored">All Courses Idea</h4>*@
                     <ul id="myTab" class="nav nav-tabs boot-tabs">
                         <li class="active"><a href="#small" data-toggle="tab">Recent Activities</a></li>
                         <li><a href="#medium" data-toggle="tab">My Courses</a></li>
@@ -52,11 +51,11 @@
                                 <tbody id="tbody1">
                                     @foreach (var item in Model.Courses)
                                     {
-                                        <tr class="tr1">
-                                            <td>
-                                                A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
-                                            </td>
-                                        </tr>
+                                    <tr class="tr1">
+                                        <td>
+                                            A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
+                                        </td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -92,13 +91,42 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="medium">
+                            @*<ul id="">
+                                    <li> <a class="#pastcourse" data-toggle="tab" /></li>
+                                    <li> <a class="#presentcourse" data-toggle="tab" /></li>
+                                </ul>
+                                <div id="pastcourse" class="tab-content">
+                                    <p>ad</p>
+                                </div>
+                                <div id="presentcourse" class="tab-content">
+                                    <p>adaaa</p>
+                                </div>*@
+
                             <table class="table table-bordered">
                                 <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Courses</td>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Today's Courses</td>
+                                </tr>
+                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th></tr>
+                                <tbody>
+                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && c.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && c.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day))
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                            <td>@item.CreatedDateAndTime</td>
+                                            <td>@item.DurationOfCourse</td>
+                                            <td>@item.CoursePrice</td>
+                                            <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn" value="Launch" /></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Present Upcoming Courses</td>
                                 </tr>
                                 <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
                                 <tbody>
-                                    @foreach (var item in Model.Courses)
+                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
                                     {
                                         <tr>
                                             <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
@@ -109,6 +137,24 @@
                                     }
                                 </tbody>
                             </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Past Courses</td>
+                                </tr>
+                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
+                                <tbody>
+                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                            <td>@item.CreatedDateAndTime</td>
+                                            <td>@item.DurationOfCourse</td>
+                                            <td>@item.CoursePrice</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
                         </div>
                         <div class="tab-pane fade" id="large">
                             <table class="table table-bordered">
@@ -164,3 +210,26 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+    $(function () {
+        setInterval(ShowLaunch, 1000);
+    });
+
+    function ShowLaunch() {
+        $.each($(".coursecreateddate"), function (i, item) {
+            var dt = $(item).attr("crdate");
+            var arr = dt.split(' ');
+            var orgdate = new Date(arr[0] + "T" + arr[1]);
+            var date = new Date(arr[0] + "T" + arr[1]);
+            date.setMinutes(date.getMinutes() - 15);
+            var currentdate = new Date();
+
+            if (currentdate >= date && currentdate <= orgdate) {
+                $(".btnLaunch").show();
+            }
+            else {
+                $(".btnLaunch").hide();
+            }
+        });
+    }
+</script>
