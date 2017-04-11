@@ -19,28 +19,6 @@
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="small">
                             <input class="form-control search-input" type="text" id="search" placeholder="Search for a Course or Teacher">
-                            <script type="text/javascript">
-                                $("#search").on("keyup", function () {
-                                    var value = $(this).val();
-                                    //alert(value);
-                                    $("#recentactTable #secondtr").each(function (index) {
-                                       //alert(index)
-                                        if (index !== 0) {
-                                            $row = $(this);
-                                            //alert($row)
-                                            var id = $row.find("td a").text();
-                                            //alert(id)
-                                            //alert(id.indexOf(value))
-                                            if (id.indexOf(value) !== 0) {
-                                                $row.hide();
-                                            }
-                                            else {
-                                                $row.show();
-                                            }
-                                        }
-                                    });
-                                });
-                            </script>
                             <br />
                             <hr />
                             <table class="table table-bordered" id="recentactTable">
@@ -62,11 +40,46 @@
                         <div class="tab-pane fade" id="medium">
                             <table class="table table-bordered">
                                 <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Recent Courses</td>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Today's Courses</td>
                                 </tr>
                                 <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
                                 <tbody>
-                                    @foreach (var item in Model.Courses)
+                                  @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && c.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && c.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day))
+                                  {
+                                        <tr>
+                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                            <td>@item.CreatedDateAndTime</td>
+                                            <td>@item.DurationOfCourse</td>
+                                            <td>@item.CoursePrice</td>
+                                            <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime.Value).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn"  courseid='@item.CourseID' value="Launch" /></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Present Upcoming Courses</td>
+                                </tr>
+                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
+                                <tbody>
+                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
+                                    {
+                                        <tr>
+                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                            <td>@item.CreatedDateAndTime</td>
+                                            <td>@item.DurationOfCourse</td>
+                                            <td>@item.CoursePrice</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Past Courses</td>
+                                </tr>
+                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
+                                <tbody>
+                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
                                     {
                                         <tr>
                                             <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
@@ -99,7 +112,7 @@
             <div class="col-sm-12 col-md-4">
                 <div class="sidebar sidebar-left mt-sm-30 ml-40">
                     <div class="widget">
-                        <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
+                        <h4 class="widget-title line-bottom">Welcome Student,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
                     </div>
                     <div class="doctor-thumb">
                         @{
@@ -131,4 +144,7 @@
         </div>
     </div>
 </section>
-
+<script type="text/javascript">
+    var currentuserid = '@User.Identity.GetUserId()';
+</script>
+<script type="text/javascript" src="/js/launch.js"></script>

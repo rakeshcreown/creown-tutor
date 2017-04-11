@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -112,7 +113,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EmailLog.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enums.cs" />
+    <Compile Include="Functions.cs" />
     <Compile Include="LiveSession.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -131,6 +136,7 @@
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CourseRepository.cs" />
+    <Compile Include="Repository\EmailRepository.cs" />
     <Compile Include="Repository\EnrollmentRepository.cs" />
     <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\StudentRepository.cs" />

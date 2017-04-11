@@ -16,8 +16,8 @@ function createcourse() {
 }
 
 $("#addsession").click(function () {
-    var sname = $("#sname").val();
-    var desc = $("#sdesc").val();
+    var sname = $("#CourseName").val();
+    var desc = $("#Description").val();
     var sstartdate = $("#sstartdate").val();
     var senddate = $("#senddate").val();
     if (sname != undefined && sname != '' && desc != undefined && desc != '' && desc != undefined && desc != '' && sstartdate != undefined && sstartdate != '' && senddate != undefined && senddate != '') {

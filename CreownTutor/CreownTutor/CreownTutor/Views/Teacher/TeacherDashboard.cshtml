@@ -51,11 +51,11 @@
                                 <tbody id="tbody1">
                                     @foreach (var item in Model.Courses)
                                     {
-                                    <tr class="tr1">
-                                        <td>
-                                            A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
-                                        </td>
-                                    </tr>
+                                        <tr class="tr1">
+                                            <td>
+                                                A course <a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="color:deeppink">@item.CourseName</a> was created on @item.CreatedDateAndTime
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -91,20 +91,9 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="medium">
-                            @*<ul id="">
-                                    <li> <a class="#pastcourse" data-toggle="tab" /></li>
-                                    <li> <a class="#presentcourse" data-toggle="tab" /></li>
-                                </ul>
-                                <div id="pastcourse" class="tab-content">
-                                    <p>ad</p>
-                                </div>
-                                <div id="presentcourse" class="tab-content">
-                                    <p>adaaa</p>
-                                </div>*@
-
                             <table class="table table-bordered">
                                 <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Today's Courses</td>
+                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="5">Today's Courses</td>
                                 </tr>
                                 <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th></tr>
                                 <tbody>
@@ -115,7 +104,7 @@
                                             <td>@item.CreatedDateAndTime</td>
                                             <td>@item.DurationOfCourse</td>
                                             <td>@item.CoursePrice</td>
-                                            <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn" value="Launch" /></td>
+                                            <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn" courseid='@item.CourseID' value="Launch" /></td>
                                         </tr>
                                     }
                                 </tbody>
@@ -128,12 +117,12 @@
                                 <tbody>
                                     @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
                                     {
-                                        <tr>
-                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                            <td>@item.CreatedDateAndTime</td>
-                                            <td>@item.DurationOfCourse</td>
-                                            <td>@item.CoursePrice</td>
-                                        </tr>
+                                    <tr>
+                                        <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                        <td>@item.CreatedDateAndTime</td>
+                                        <td>@item.DurationOfCourse</td>
+                                        <td>@item.CoursePrice</td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -145,12 +134,12 @@
                                 <tbody>
                                     @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
                                     {
-                                        <tr>
-                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                            <td>@item.CreatedDateAndTime</td>
-                                            <td>@item.DurationOfCourse</td>
-                                            <td>@item.CoursePrice</td>
-                                        </tr>
+                                    <tr>
+                                        <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                        <td>@item.CreatedDateAndTime</td>
+                                        <td>@item.DurationOfCourse</td>
+                                        <td>@item.CoursePrice</td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>
@@ -175,13 +164,12 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
-                @*<h3 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;color:deeppink">Welcome User, @Model.User.Name</h3>*@
+
                 <div class="sidebar sidebar-left mt-sm-30 ml-40">
                     <div class="widget">
                         <h4 class="widget-title line-bottom">Welcome User,<span class="text-theme-color-2">@User.Identity.Name</span></h4>
                     </div>
                     <div class="doctor-thumb">
-                        @*<img src="~/images/project/profile1.jpg" alt="" style="max-width:65%">*@
                         @{
                             var img = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindByIdAsync(User.Identity.GetUserId()).Result.Imagelength;
                             string imgpath = !string.IsNullOrEmpty(img) ? img : "/images/blog/author.jpg";
@@ -189,7 +177,6 @@
                         <img src="@Url.Content(imgpath)" alt="" style="height:150px; width:170px;">
                     </div>
                     <br />
-                    @*<button class="btn bg-theme-color-2 btn-xl text-white" type="submit" onclick="window.location.href='@Url.Action("EditProfile","Teacher",new { id = 4 })'"><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</button>*@
                     <a class="btn bg-theme-color-2 btn-xl text-white" href=@Url.Action("EditProfile", "Account")><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</a>
                     <div class="widget">
                         <br />
@@ -211,25 +198,6 @@
     </div>
 </section>
 <script type="text/javascript">
-    $(function () {
-        setInterval(ShowLaunch, 1000);
-    });
-
-    function ShowLaunch() {
-        $.each($(".coursecreateddate"), function (i, item) {
-            var dt = $(item).attr("crdate");
-            var arr = dt.split(' ');
-            var orgdate = new Date(arr[0] + "T" + arr[1]);
-            var date = new Date(arr[0] + "T" + arr[1]);
-            date.setMinutes(date.getMinutes() - 15);
-            var currentdate = new Date();
-
-            if (currentdate >= date && currentdate <= orgdate) {
-                $(".btnLaunch").show();
-            }
-            else {
-                $(".btnLaunch").hide();
-            }
-        });
-    }
+    var currentuserid = '@User.Identity.GetUserId()';
 </script>
+<script type="text/javascript" src="/js/launch.js"></script>

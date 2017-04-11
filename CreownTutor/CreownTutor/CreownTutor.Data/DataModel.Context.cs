@@ -42,5 +42,6 @@ namespace CreownTutor.Data
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<CourseRegistration> CourseRegistrations { get; set; }
+        public virtual DbSet<EmailLog> EmailLogs { get; set; }
     }
 }

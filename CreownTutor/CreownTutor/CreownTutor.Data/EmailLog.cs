@@ -12,18 +12,16 @@ namespace CreownTutor.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class CourseRegistration
+    public partial class EmailLog
     {
-        public int ID { get; set; }
-        public int CourseID { get; set; }
+        public int EmailLogId { get; set; }
+        public System.DateTime Date { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public string CC { get; set; }
+        public string BCC { get; set; }
+        public string Subject { get; set; }
         public string UserID { get; set; }
-        public Nullable<System.DateTime> RegisteredDateTime { get; set; }
-        public Nullable<bool> IsEnrolled { get; set; }
-        public Nullable<int> SessionID { get; set; }
-        public Nullable<bool> PreCourseNotified { get; set; }
-    
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual Course Course { get; set; }
-        public virtual SessionStatu SessionStatu { get; set; }
+        public string EmailContent { get; set; }
     }
 }

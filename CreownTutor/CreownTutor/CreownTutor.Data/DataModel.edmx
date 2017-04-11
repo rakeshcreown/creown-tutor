@@ -121,6 +121,21 @@
           <Property Name="RegisteredDateTime" Type="datetime" />
           <Property Name="IsEnrolled" Type="bit" />
           <Property Name="SessionID" Type="int" />
+          <Property Name="PreCourseNotified" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="EmailLogId" />
+          </Key>
+          <Property Name="EmailLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="From" Type="varchar(max)" Nullable="false" />
+          <Property Name="To" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CC" Type="nvarchar(max)" />
+          <Property Name="BCC" Type="nvarchar(max)" />
+          <Property Name="Subject" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" />
+          <Property Name="EmailContent" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="LiveSession">
           <Key>
@@ -386,6 +401,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseRegistration" EntityType="Self.CourseRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailLog" EntityType="Self.EmailLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiveSession" EntityType="Self.LiveSession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -509,6 +525,7 @@
             <End Role="SessionStatu" EntitySet="SessionStatus" />
             <End Role="CourseRegistration" EntitySet="CourseRegistrations" />
           </AssociationSet>
+          <EntitySet Name="EmailLogs" EntityType="CreownTutorModel.EmailLog" />
         </EntityContainer>
         <EntityType Name="CartInfomation">
           <Key>
@@ -833,6 +850,7 @@
           <NavigationProperty Name="AspNetUser" Relationship="CreownTutorModel.CourseRegistration_UserID_FK" FromRole="CourseRegistration" ToRole="AspNetUser" />
           <NavigationProperty Name="Course" Relationship="CreownTutorModel.FK_CourseRegistration_Course" FromRole="CourseRegistration" ToRole="Course" />
           <NavigationProperty Name="SessionStatu" Relationship="CreownTutorModel.FK_CourseRegistration_SessionStatus" FromRole="CourseRegistration" ToRole="SessionStatu" />
+          <Property Name="PreCourseNotified" Type="Boolean" />
         </EntityType>
         <Association Name="CourseRegistration_UserID_FK">
           <End Type="CreownTutorModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -870,6 +888,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="EmailLogId" />
+          </Key>
+          <Property Name="EmailLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="From" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="To" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BCC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="EmailContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1099,12 +1131,28 @@
           <EntitySetMapping Name="CourseRegistrations">
             <EntityTypeMapping TypeName="CreownTutorModel.CourseRegistration">
               <MappingFragment StoreEntitySet="CourseRegistration">
+                <ScalarProperty Name="PreCourseNotified" ColumnName="PreCourseNotified" />
                 <ScalarProperty Name="SessionID" ColumnName="SessionID" />
                 <ScalarProperty Name="IsEnrolled" ColumnName="IsEnrolled" />
                 <ScalarProperty Name="RegisteredDateTime" ColumnName="RegisteredDateTime" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailLogs">
+            <EntityTypeMapping TypeName="CreownTutorModel.EmailLog">
+              <MappingFragment StoreEntitySet="EmailLog">
+                <ScalarProperty Name="EmailContent" ColumnName="EmailContent" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="BCC" ColumnName="BCC" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmailLogId" ColumnName="EmailLogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
