@@ -17,5 +17,6 @@ namespace CreownTutor.Data.Model
         public string desc { get; set; }
         public string sdate { get; set; }
         public string enddate { get; set; }
+        public string id { get; set; }
     }
 }

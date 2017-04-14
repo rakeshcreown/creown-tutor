@@ -57,7 +57,7 @@ namespace CreownTutor.Data.Repository
                 model.Category = course.Category;
                 model.Price = course.CoursePrice.Value;
                 var coursesessions = (from session in course.LiveSessions
-                                      select new { CourseID = session.CourseID, Description = session.Description, FromDateTime = session.FromDateTime.Value, ToDateTime = session.ToDateTime.Value, Title = session.Title }).ToList();
+                                      select new { CourseID = session.CourseID, Description = session.Description, FromDateTime = session.FromDateTime.Value.ToString("dd/MM/yyyy HH:mm:ss"), ToDateTime = session.ToDateTime.Value.ToString("dd/MM/yyyy HH:mm:ss"), Title = session.Title, SessionID = session.SessionID }).ToList();
 
                 var json = JsonConvert.SerializeObject(coursesessions);
                 model.SessionData = json;
@@ -85,7 +85,6 @@ namespace CreownTutor.Data.Repository
             course.CourseName = model.CourseName;
             course.CourseDescription = model.Description;
             course.Category = model.Category;
-            //Set current logged in teacher id
             course.CreatedBy = model.CurrentUserid;
             course.CoursePrice = model.Price;
             course.AttendessLimit = model.AttendessLimit;
@@ -117,8 +116,6 @@ namespace CreownTutor.Data.Repository
                     dbEntity.SaveChanges();
                 }
             }
-
-
         }
 
         public void UpdateCourseInfo(CourseNewViewModel model)
@@ -142,6 +139,12 @@ namespace CreownTutor.Data.Repository
                     foreach (var item in result.jsondata)
                     {
                         LiveSession session = new LiveSession();
+                        int id = 0;
+                        int.TryParse(item.id, out id);
+                        if (id != 0)
+                        {
+                            session = dbEntity.LiveSessions.FirstOrDefault(s => s.SessionID == id);
+                        }
                         session.CourseID = course.CourseID;
                         session.Description = item.desc;
                         session.FromDateTime = Convert.ToDateTime(item.sdate);
@@ -149,7 +152,10 @@ namespace CreownTutor.Data.Repository
                         session.Title = item.name;
                         session.CreatedDate = System.DateTime.Now;
                         session.CreatedBy = model.CurrentUserid;
-                        dbEntity.LiveSessions.Add(session);
+                        if (id == 0)
+                        {
+                            dbEntity.LiveSessions.Add(session);
+                        }
                         dbEntity.SaveChanges();
                     }
                     var coursehours = (Convert.ToDateTime(result.jsondata.Last().enddate) - Convert.ToDateTime(result.jsondata.First().sdate));
