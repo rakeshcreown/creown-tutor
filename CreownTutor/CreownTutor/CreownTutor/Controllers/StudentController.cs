@@ -24,6 +24,7 @@ namespace CreownTutorWeb.Controllers
         {
             Student student = new Student();
             student.Courses = studentrepo.GetCourseForStudents(User.Identity.GetUserId());
+            student.CreatedCourses = studentrepo.GetCreatedCourses(User.Identity.GetUserId());
             student.User = studentrepo.GetStudents(id);
             return View(student);
         }

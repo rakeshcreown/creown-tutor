@@ -67,12 +67,13 @@ namespace CreownTutorWeb.Controllers
         private void LoadCategories(CourseNewViewModel model)
         {
             var categories = courseRepo.GetCategories();
-            model.Categories = new SelectList(categories, "CategoryID", "CategoryName", 0); ;
+            model.Categories = new SelectList(categories, "CategoryID", "CategoryName", model.Category);
         }
 
         [HttpPost]
         public ActionResult CreateCourse(CourseNewViewModel model)
         {
+            model.CurrentUserid = User.Identity.GetUserId();
             courseRepo.CreateCourse(model);
             LoadCategories(model);
             return View(model);
@@ -105,15 +106,15 @@ namespace CreownTutorWeb.Controllers
         public ActionResult EditCourse(int id = 4, string isenrolled = "true")
         {
             CourseNewViewModel model = new CourseNewViewModel();
+            model = courseRepo.GetEditCourseDetail(id, isenrolled);
             LoadCategories(model);
-            courseRepo.GetCourseDetail(id, isenrolled);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult EditCourse(CourseNewViewModel model, int id = 4)
+        public ActionResult EditCourse(CourseNewViewModel model)
         {
-            courseRepo.UpdateCourseInfo(model, id);
+            courseRepo.UpdateCourseInfo(model);
             return View(model);
         }
 

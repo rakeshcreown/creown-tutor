@@ -3,12 +3,11 @@
     ViewBag.Title = "EditCourseList";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
-<h2>EditCourseList</h2>
 <section class="">
     <div class="container">
         <div class="section-content">
             <div class="row">
+                <h2>Course List</h2><br /><br />
                 <div class="icon-box mb-0 p-0">
                     <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
                         <i class="fa fa-list"></i>
@@ -20,36 +19,27 @@
                             <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">My Courses</td>
                         </tr>
                         <tr>
-                            <th style="display:none">Course ID</th><th>Course Name</th><th>Attendence</th><th>Course Price</th><th>Manage Course</th>
+                            <th style="display:none">Course ID</th>
+                            <th>Course Name</th>
+                            <th>Attendence</th>
+                            <th>Course Price</th>
+                            <th>Manage Course</th>
                         </tr>
                         <tbody>
-                            @foreach(var item in Model.Courses)
+                            @foreach (var item in Model.Courses)
                             {
                                 <tr>
                                     <td style="display:none"><input type="hidden" id="forid">@item.CourseID</td>
                                     <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
                                     <td>@item.AttendessLimit</td>
                                     <td>@item.CoursePrice</td>
-                                    <td><button id="btnid" class="btn bg-theme-color-2 btn-sm text-white font-19"><i class="fa fa-edit icon-xs"></i>Edit Course</button></td>
+                                    <td><a id="btnid" href='/Course/EditCourse/@item.CourseID' class="btn bg-theme-color-2 btn-sm text-white font-15">Edit Course</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    </div>
                 </div>
             </div>
         </div>
-    </section>
-<script type="text/javascript">
-    //$('input[type=button]').click(function () {
-    //    var btnid = this.id;
-    //    var trid = $(this).closest('tr').attr('td');
-    //});
-    $("table tbody tr").on("click", "td:not(:first-child)", function () {
-        //var url = $(this).parents('tr').data("~/Course/EditCourse/")
-        @*var url = '@Url.Action("Course", "EditCourse", new { id ="@item.CourseID"})';*@
-        var id = $(this).parents('tr').children(':first').text();// I am supposing that id is placed in first td of row then set this value to hidden field
-        $('#forid').val(id);
-        window.location.href = '@Url.Content("~/Course/EditCourse/")'+id;
-    });
-</script>
+    </div>
+</section>

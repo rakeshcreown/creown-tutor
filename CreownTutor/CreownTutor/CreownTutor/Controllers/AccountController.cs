@@ -74,7 +74,7 @@ namespace CreownTutor.Controllers
                     userinfo.Location = model.Location;
                     //userinfo.UpdatedPassword = model.User.UpdatedPassword;
                     //userinfo. = model.User.UpdatedPassword;
-                    if (file.ContentLength > 0)
+                    if (file != null && file.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(file.FileName);
                         var guid = Guid.NewGuid().ToString();

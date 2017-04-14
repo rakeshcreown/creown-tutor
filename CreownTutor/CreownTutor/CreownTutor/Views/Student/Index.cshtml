@@ -5,16 +5,17 @@
 }
 @using Microsoft.AspNet.Identity.Owin;
 @using Microsoft.AspNet.Identity
-<h2>Student Dashboard</h2>
 <section>
     <div class="container">
         <div class="row">
+            <h2>Student Dashboard</h2><br />
             <div class="col-md-8 blog-pull-right">
                 <div class="single-service">
                     <ul id="myTab" class="nav nav-tabs boot-tabs">
                         <li class="active"><a href="#small" data-toggle="tab">Recent Activities</a></li>
-                        <li><a href="#medium" data-toggle="tab">My Courses</a></li>
+                        <li><a href="#medium" data-toggle="tab">My Subscribed Courses</a></li>
                         <li><a href="#large" data-toggle="tab">My Tests</a></li>
+                        <li><a href="#large2" data-toggle="tab">My Created Tests</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="small">
@@ -38,58 +39,93 @@
                             </table>
                         </div>
                         <div class="tab-pane fade" id="medium">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Today's Courses</td>
-                                </tr>
-                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
-                                <tbody>
-                                  @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && c.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && c.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day))
-                                  {
+                            <ul class="nav nav-tabs boot-tabs">
+                                <li class="active"><a href="#small1" data-toggle="tab">Today's Courses</a></li>
+                                <li><a href="#medium1" data-toggle="tab">Upcoming Courses</a></li>
+                                <li><a href="#large1" data-toggle="tab">Past Courses</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="small1" class="tab-pane fade in active">
+                                    <table class="table table-bordered">
                                         <tr>
-                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                            <td>@item.CreatedDateAndTime</td>
-                                            <td>@item.DurationOfCourse</td>
-                                            <td>@item.CoursePrice</td>
-                                            <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime.Value).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn"  courseid='@item.CourseID' value="Launch" /></td>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="6">Today's Courses</td>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Present Upcoming Courses</td>
-                                </tr>
-                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
-                                <tbody>
-                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
-                                    {
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th><th>Sessions</th></tr>
+                                        <tbody>
+                                            @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && c.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && c.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day))
+                                            {
+                                                if ((item.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && item.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && item.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day) || item.LiveSessions.Where(l => l.FromDateTime.Value.Year == DateTime.Today.Date.Year && l.FromDateTime.Value.Month == DateTime.Today.Date.Month && l.FromDateTime.Value.Day == DateTime.Today.Date.Day) != null)
+                                                {
+                                                    <tr>
+                                                        <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                        <td>@item.CreatedDateAndTime</td>
+                                                        <td>@item.DurationOfCourse</td>
+                                                        <td>@item.CoursePrice</td>
+                                                        @{ string endate = item.LiveSessions.Last() != null ? item.LiveSessions.Last().ToDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty; }
+                                                        <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn" courseid='@item.CourseID' value="Launch" /></td>
+                                                        <td>
+                                                            @foreach (var coursession in item.LiveSessions)
+                                                            {
+                                                                <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                                }
+                                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="medium1" class="tab-pane fade">
+                                    <table class="table table-bordered">
                                         <tr>
-                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                            <td>@item.CreatedDateAndTime</td>
-                                            <td>@item.DurationOfCourse</td>
-                                            <td>@item.CoursePrice</td>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="5">Present Upcoming Courses</td>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <tr>
-                                    <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="4">Past Courses</td>
-                                </tr>
-                                <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Course Status</th> <th>Price</th> </tr>
-                                <tbody>
-                                    @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
-                                    {
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th><th>Sessions</th> </tr>
+                                        <tbody>
+                                            @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
+                                            {
+                                                <tr>
+                                                    <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                    <td>@item.CreatedDateAndTime</td>
+                                                    <td>@item.DurationOfCourse</td>
+                                                    <td>@item.CoursePrice</td>
+                                                    <td>
+                                                        @foreach (var coursession in item.LiveSessions)
+                                                        {
+                                                            <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="large1" class="tab-pane fade">
+                                    <table class="table table-bordered">
                                         <tr>
-                                            <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
-                                            <td>@item.CreatedDateAndTime</td>
-                                            <td>@item.DurationOfCourse</td>
-                                            <td>@item.CoursePrice</td>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="5">Past Courses</td>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th><th>Sessions</th> </tr>
+                                        <tbody>
+                                            @foreach (var item in Model.Courses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
+                                            {
+                                                <tr>
+                                                    <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                    <td>@item.CreatedDateAndTime</td>
+                                                    <td>@item.DurationOfCourse</td>
+                                                    <td>@item.CoursePrice</td>
+                                                    <td>
+                                                        @foreach (var coursession in item.LiveSessions)
+                                                        {
+                                                            <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="large">
                             <table class="table table-bordered">
@@ -106,6 +142,95 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="tab-pane fade" id="large2">
+                            <ul class="nav nav-tabs boot-tabs">
+                                <li class="active"><a href="#small2" data-toggle="tab">Today's Courses</a></li>
+                                <li><a href="#medium2" data-toggle="tab">Upcoming Courses</a></li>
+                                <li><a href="#large3" data-toggle="tab">Past Courses</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="small2" class="tab-pane fade in active">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="6">Today's Courses</td>
+                                        </tr>
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th><th>Sessions</th></tr>
+                                        <tbody>
+                                            @foreach (var item in Model.CreatedCourses.Where(c => c.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && c.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && c.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day))
+                                            {
+                                                if ((item.CreatedDateAndTime.Value.Year == DateTime.Today.Date.Year && item.CreatedDateAndTime.Value.Month == DateTime.Today.Date.Month && item.CreatedDateAndTime.Value.Day == DateTime.Today.Date.Day) || item.LiveSessions.Where(l => l.FromDateTime.Value.Year == DateTime.Today.Date.Year && l.FromDateTime.Value.Month == DateTime.Today.Date.Month && l.FromDateTime.Value.Day == DateTime.Today.Date.Day) != null)
+                                                {
+                                                    <tr>
+                                                        <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                        <td>@item.CreatedDateAndTime</td>
+                                                        <td>@item.DurationOfCourse</td>
+                                                        <td>@item.CoursePrice</td>
+                                                        @{ string endate = item.LiveSessions.Count > 0 && item.LiveSessions.Last() != null ? item.LiveSessions.Last().ToDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty; }
+                                                        <td class="coursecreateddate" crdate='@Convert.ToDateTime(item.CreatedDateAndTime).ToString("yyyy-MM-dd HH:mm:ss")'><input type="button" class="btnLaunch btn" courseid='@item.CourseID' value="Launch" /></td>
+                                                        <td>
+                                                            @foreach (var coursession in item.LiveSessions)
+                                                            {
+                                                                <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                                }
+                                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="medium2" class="tab-pane fade">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="5">Present Upcoming Courses</td>
+                                        </tr>
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th><th>Sessions</th> </tr>
+                                        <tbody>
+                                            @foreach (var item in Model.CreatedCourses.Where(c => c.CreatedDateAndTime.Value.Date > DateTime.Today.Date))
+                                            {
+                                                <tr>
+                                                    <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                    <td>@item.CreatedDateAndTime</td>
+                                                    <td>@item.DurationOfCourse</td>
+                                                    <td>@item.CoursePrice</td>
+                                                    <td>
+                                                        @foreach (var coursession in item.LiveSessions)
+                                                        {
+                                                            <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="large3" class="tab-pane fade">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td class="text-center font-16 font-weight-600 bg-theme-color-2 text-white" colspan="5">Past Courses</td>
+                                        </tr>
+                                        <tr> <th>Course Name</th> <th>Course Created Date</th> <th>Total Course Duration</th> <th>Price</th> <th>Sessions</th> </tr>
+                                        <tbody>
+                                            @foreach (var item in Model.CreatedCourses.Where(c => c.CreatedDateAndTime.Value < DateTime.Today.Date))
+                                            {
+                                                <tr>
+                                                    <td><a href="@Url.Action("Detail","Course",new { id = @item.CourseID })" style="text-decoration:underline">@item.CourseName</a></td>
+                                                    <td>@item.CreatedDateAndTime</td>
+                                                    <td>@item.DurationOfCourse</td>
+                                                    <td>@item.CoursePrice</td>
+                                                    <td>
+                                                        @foreach (var coursession in item.LiveSessions)
+                                                        {
+                                                            <p>@coursession.Title - @coursession.FromDateTime to @coursession.ToDateTime</p><br />
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,9 +246,9 @@
                         }
                         <img src="@Url.Content(imgpath)" alt="" style="height:150px; width:170px;">
                     </div>
-                    <br/><br />
+                    <br /><br />
                     <a class="btn bg-theme-color-2 btn-xl text-white" href=@Url.Action("EditProfile", "Account")><i>&nbsp;&nbsp;&nbsp;</i>Edit Profile</a>
-                    <br/>
+                    <br />
                     <br />
                     <div class="widget">
                         <h4 class="widget-title line-bottom">Student's<span class="text-theme-color-2"> Activities</span></h4>

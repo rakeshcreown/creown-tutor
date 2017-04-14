@@ -31,6 +31,7 @@ namespace CreownTutorWeb.Controllers
         {
             Teacher teacher = new Teacher();
             teacher.Courses = teacherrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
+            teacher.MySubscribedCourses = teacherrepo.GetTeacherSubscribedCourses(User.Identity.GetUserId());
             return View(teacher);
         }
 

@@ -27,7 +27,7 @@ function ShowLaunch() {
                     url: '/Ajax/SendPreNotification',
                     type: 'POST',
                     contentType: 'application/json',
-                    done: function () {
+                    success: function () {
                         console.log("success");
                         callnext = true;
                     },

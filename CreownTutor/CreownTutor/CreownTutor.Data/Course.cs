@@ -25,7 +25,7 @@ namespace CreownTutor.Data
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public Nullable<int> NoOfChapters { get; set; }
-        public Nullable<System.DateTime> DurationOfCourse { get; set; }
+        public Nullable<System.TimeSpan> DurationOfCourse { get; set; }
         public Nullable<int> NoOfAttendees { get; set; }
         public string TypeOfCourse { get; set; }
         public string Language { get; set; }
@@ -35,11 +35,11 @@ namespace CreownTutor.Data
         public Nullable<int> AttendessLimit { get; set; }
         public Nullable<double> CoursePrice { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Course Course1 { get; set; }
         public virtual Course Course2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LiveSession> LiveSessions { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CourseRegistration> CourseRegistrations { get; set; }
     }

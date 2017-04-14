@@ -17,6 +17,18 @@ namespace CreownTutor.Data.Repository
             return dbEntity.Courses.Where(c => c.CreatedBy == id).OrderByDescending(c => c.CreatedDateAndTime).ToList();
         }
 
+        public List<Course> GetTeacherSubscribedCourses(string id)
+        {
+            //subscribed courses
+            var courses = (from course in dbEntity.Courses
+                           join user in dbEntity.CourseRegistrations on course.CourseID equals user.CourseID
+                           orderby course.CreatedDateAndTime descending
+                           where user.UserID == id
+                           select course).ToList();
+
+            return courses;
+        }
+
         public UserDetail GetTeachers(int id)
         {
             return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);

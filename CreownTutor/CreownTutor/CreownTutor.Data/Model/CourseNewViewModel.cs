@@ -34,5 +34,9 @@ namespace CreownTutor.Data.Model
         public SelectList Categories { get; set; }
 
         public string SessionData { get; set; }
+
+        public string CurrentUserid { get; set; }
+
+        public int CourseID { get; set; }
     }
 }
