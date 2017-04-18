@@ -25,7 +25,7 @@
                             <li>
                                 <a href="#" class="font-12 text-gray text-uppercase">We are open!</a>
                                 <h5 class="font-13 text-black m-0"> Mon-Fri 8:00-16:00</h5>
-                                <h5 class="font-13 text-black m-0 currenttime" > </h5>
+                                <h5 class="font-13 text-black m-0 currenttime"> </h5>
                             </li>
                         </ul>
                     </div>
@@ -49,8 +49,14 @@
                             {
                                 url = "/teacher/TeacherDashboard";
                             }
-                            <a href="@url">Home</a>
+                            <a href="/Home/Index">Home</a>
                         </li>
+                        @if (url != "#")
+                        {
+                            <li>
+                                <a href="@url">Dashboard</a>
+                            </li>
+                        }
                         <li>
                             <a href="/Course">Courses</a>
                         </li>

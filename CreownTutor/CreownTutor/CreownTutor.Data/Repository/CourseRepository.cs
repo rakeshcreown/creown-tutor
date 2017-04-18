@@ -62,6 +62,7 @@ namespace CreownTutor.Data.Repository
                 var json = JsonConvert.SerializeObject(coursesessions);
                 model.SessionData = json;
             }
+            model.CourseID = id;
             return model;
         }
 
@@ -171,6 +172,16 @@ namespace CreownTutor.Data.Repository
             }
             catch (Exception ex)
             { }
+        }
+
+        public void DeleteSession(int sessionid)
+        {
+            var session = dbEntity.LiveSessions.FirstOrDefault(s => s.SessionID == sessionid);
+            if (session != null)
+            {
+                dbEntity.LiveSessions.Remove(session);
+                dbEntity.SaveChanges();
+            }
         }
     }
 }

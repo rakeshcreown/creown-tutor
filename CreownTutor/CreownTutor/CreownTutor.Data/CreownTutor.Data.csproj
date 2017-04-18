@@ -126,6 +126,7 @@
     <Compile Include="Model\CourseNewViewModel.cs" />
     <Compile Include="Model\CourseViewModel.cs" />
     <Compile Include="Model\Enrollment.cs" />
+    <Compile Include="Model\HomeViewModel.cs" />
     <Compile Include="Model\LoginRegistrationViewModel.cs" />
     <Compile Include="Model\ReviewModel.cs" />
     <Compile Include="Model\RootObject.cs" />
@@ -158,9 +159,6 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Test.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserDetail.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -25,7 +25,7 @@ namespace CreownTutor
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Account"),
+                LoginPath = new PathString("/Home"),
                 ExpireTimeSpan = TimeSpan.FromMinutes(20),// 20 minutes timeout
                 Provider = new CookieAuthenticationProvider
                 {

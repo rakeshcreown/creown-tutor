@@ -32,10 +32,10 @@ namespace CreownTutor.Data.Repository
             return createdcourses.ToList();
         }
 
-        public UserDetail GetStudents(int id)
-        {
-            return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
-        }
+        //public UserDetail GetStudents(int id)
+        //{
+        //    return dbEntity.UserDetails.FirstOrDefault(m => m.UserID == id);
+        //}
 
         public bool GetEnrolledStudents(string id)
         {

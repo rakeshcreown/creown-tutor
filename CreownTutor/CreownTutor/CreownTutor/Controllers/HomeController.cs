@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreownTutor.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,8 @@ namespace CreownTutor.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            HomeViewModel model = new HomeViewModel();
+            return View(model);
         }
 
         public ActionResult About()

@@ -1,31 +1,542 @@
-﻿@{
+﻿@model CreownTutor.Data.Model.HomeViewModel
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+<!-- Revolution Slider 5.x CSS settings -->
+<link href="/js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+<link href="/js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+<link href="/js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!-- Revolution Slider 5.x SCRIPTS -->
+<script src="/js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+<script src="/js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+<section id="home">
+    <div class="container-fluid p-0">
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <!-- Slider Revolution Start -->
+        <div class="rev_slider_wrapper">
+            <div class="rev_slider" data-version="5.0">
+                <ul>
+
+                    <!-- SLIDE 1 -->
+                    <li data-index="rs-1" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg3.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide 1" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="/images/bg/bg3.jpg" alt="" data-bgposition="center 10%" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                        <!-- LAYERS -->
+                        <!-- LAYER NR. 1 -->
+                        <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway"
+                             id="rs-1-layer-1"
+                             data-x="['left']"
+                             data-hoffset="['30']"
+                             data-y="['middle']"
+                             data-voffset="['-110']"
+                             data-fontsize="['100']"
+                             data-lineheight="['110']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:700;">
+                            Education
+                        </div>
+
+                        <!-- LAYER NR. 2 -->
+                        <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent border-left-theme-color-2-6px pl-20 pr-20"
+                             id="rs-1-layer-2"
+                             data-x="['left']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['-25']"
+                             data-fontsize="['35']"
+                             data-lineheight="['54']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:600;">
+                            Education For Everyone
+                        </div>
+
+                        <!-- LAYER NR. 3 -->
+                        <div class="tp-caption tp-resizeme text-white"
+                             id="rs-1-layer-3"
+                             data-x="['left']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['35']"
+                             data-fontsize="['16']"
+                             data-lineheight="['28']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
+                            We provides always our best services for our clients and  always<br> try to achieve our client's trust and satisfaction.
+                        </div>
+
+                        <!-- LAYER NR. 4 -->
+                        <div class="tp-caption tp-resizeme"
+                             id="rs-1-layer-4"
+                             data-x="['left']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['100']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;"
+                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                             data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                             data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                            <a class="btn btn-colored btn-lg btn-flat btn-theme-colored border-left-theme-color-2-6px pl-20 pr-20" href="#">View Details</a>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 2 -->
+                    <li data-index="rs-2" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg2.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide 2" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="/images/bg/bg2.jpg" alt="" data-bgposition="center 40%" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                        <!-- LAYERS -->
+                        <!-- LAYER NR. 1 -->
+                        <div class="tp-caption tp-resizeme text-uppercase  bg-dark-transparent-5 text-white font-raleway border-left-theme-color-2-6px border-right-theme-color-2-6px pl-30 pr-30"
+                             id="rs-2-layer-1"
+                             data-x="['center']"
+                             data-hoffset="['0']"
+                             data-y="['middle']"
+                             data-voffset="['-90']"
+                             data-fontsize="['28']"
+                             data-lineheight="['54']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:400; border-radius: 30px;">
+                            Feed Your Knowledge
+                        </div>
+
+                        <!-- LAYER NR. 2 -->
+                        <div class="tp-caption tp-resizeme text-uppercase bg-theme-colored-transparent text-white font-raleway pl-30 pr-30"
+                             id="rs-2-layer-2"
+                             data-x="['center']"
+                             data-hoffset="['0']"
+                             data-y="['middle']"
+                             data-voffset="['-20']"
+                             data-fontsize="['48']"
+                             data-lineheight="['70']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:700; border-radius: 30px;">
+                            World’s Best University
+                        </div>
+
+                        <!-- LAYER NR. 3 -->
+                        <div class="tp-caption tp-resizeme text-white text-center"
+                             id="rs-2-layer-3"
+                             data-x="['center']"
+                             data-hoffset="['0']"
+                             data-y="['middle']"
+                             data-voffset="['50']"
+                             data-fontsize="['16']"
+                             data-lineheight="['28']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
+                            We provides always our best services for our clients and  always<br> try to achieve our client's trust and satisfaction.
+                        </div>
+
+                        <!-- LAYER NR. 4 -->
+                        <div class="tp-caption tp-resizeme"
+                             id="rs-2-layer-4"
+                             data-x="['center']"
+                             data-hoffset="['0']"
+                             data-y="['middle']"
+                             data-voffset="['115']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;"
+                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                             data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                             data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                            <a class="btn btn-default btn-circled btn-transparent pl-20 pr-20" href="#">Apply Now</a>
+                        </div>
+                    </li>
+
+                    <!-- SLIDE 3 -->
+                    <li data-index="rs-3" data-transition="slidingoverlayhorizontal" data-slotamount="default" data-easein="default" data-easeout="default" data-masterspeed="default" data-thumb="/images/bg/bg4.jpg" data-rotate="0" data-saveperformance="off" data-title="Slide 3" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="/images/bg/bg4.jpg" alt="" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+                        <!-- LAYERS -->
+                        <!-- LAYER NR. 1 -->
+                        <div class="tp-caption tp-resizeme text-uppercase text-white font-raleway bg-theme-colored-transparent border-right-theme-color-2-6px pr-20 pl-20"
+                             id="rs-3-layer-1"
+                             data-x="['right']"
+                             data-hoffset="['30']"
+                             data-y="['middle']"
+                             data-voffset="['-90']"
+                             data-fontsize="['64']"
+                             data-lineheight="['72']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:600;">
+                            Best Education
+                        </div>
+
+                        <!-- LAYER NR. 2 -->
+                        <div class="tp-caption tp-resizeme text-uppercase bg-dark-transparent-6 text-white font-raleway pl-20 pr-20"
+                             id="rs-3-layer-2"
+                             data-x="['right']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['-25']"
+                             data-fontsize="['32']"
+                             data-lineheight="['54']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1000"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 7; white-space: nowrap; font-weight:600;">
+                            For Your Better Future
+                        </div>
+
+                        <!-- LAYER NR. 3 -->
+                        <div class="tp-caption tp-resizeme text-white text-right"
+                             id="rs-3-layer-3"
+                             data-x="['right']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['30']"
+                             data-fontsize="['16']"
+                             data-lineheight="['28']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;s:500"
+                             data-transform_in="y:100;scaleX:1;scaleY:1;opacity:0;"
+                             data-transform_out="x:left(R);s:1000;e:Power3.easeIn;s:1000;e:Power3.easeIn;"
+                             data-mask_in="x:0px;y:0px;s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:0px; font-weight:400;">
+                            We provides always our best services for our clients and  always<br> try to achieve our client's trust and satisfaction.
+                        </div>
+
+                        <!-- LAYER NR. 4 -->
+                        <div class="tp-caption tp-resizeme"
+                             id="rs-3-layer-4"
+                             data-x="['right']"
+                             data-hoffset="['35']"
+                             data-y="['middle']"
+                             data-voffset="['95']"
+                             data-width="none"
+                             data-height="none"
+                             data-whitespace="nowrap"
+                             data-transform_idle="o:1;"
+                             data-transform_in="y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;s:2000;e:Power4.easeInOut;"
+                             data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                             data-mask_in="x:0px;y:[100%];s:inherit;e:inherit;"
+                             data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;"
+                             data-start="1400"
+                             data-splitin="none"
+                             data-splitout="none"
+                             data-responsive_offset="on"
+                             style="z-index: 5; white-space: nowrap; letter-spacing:1px;">
+                            <a class="btn btn-colored btn-lg btn-flat btn-theme-colored btn-theme-colored border-right-theme-color-2-6px pl-20 pr-20" href="#">Apply Now</a>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- end .rev_slider -->
+        </div>
+        <!-- end .rev_slider_wrapper -->
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                $(".rev_slider").revolution({
+                    sliderType: "standard",
+                    sliderLayout: "auto",
+                    dottedOverlay: "none",
+                    delay: 5000,
+                    navigation: {
+                        keyboardNavigation: "off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        onHoverStop: "off",
+                        touch: {
+                            touchenabled: "on",
+                            swipe_threshold: 75,
+                            swipe_min_touches: 1,
+                            swipe_direction: "horizontal",
+                            drag_block_vertical: false
+                        },
+                        arrows: {
+                            style: "zeus",
+                            enable: true,
+                            hide_onmobile: true,
+                            hide_under: 600,
+                            hide_onleave: true,
+                            hide_delay: 200,
+                            hide_delay_mobile: 1200,
+                            tmp: '<div class="tp-title-wrap">    <div class="tp-arr-imgholder"></div> </div>',
+                            left: {
+                                h_align: "left",
+                                v_align: "center",
+                                h_offset: 30,
+                                v_offset: 0
+                            },
+                            right: {
+                                h_align: "right",
+                                v_align: "center",
+                                h_offset: 30,
+                                v_offset: 0
+                            }
+                        },
+                        bullets: {
+                            enable: true,
+                            hide_onmobile: true,
+                            hide_under: 600,
+                            style: "metis",
+                            hide_onleave: true,
+                            hide_delay: 200,
+                            hide_delay_mobile: 1200,
+                            direction: "horizontal",
+                            h_align: "center",
+                            v_align: "bottom",
+                            h_offset: 0,
+                            v_offset: 30,
+                            space: 5,
+                            tmp: '<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
+                        }
+                    },
+                    responsiveLevels: [1240, 1024, 778],
+                    visibilityLevels: [1240, 1024, 778],
+                    gridwidth: [1170, 1024, 778, 480],
+                    gridheight: [650, 768, 960, 720],
+                    lazyType: "none",
+                    parallax: {
+                        origo: "slidercenter",
+                        speed: 1000,
+                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 46, 47, 48, 49, 50, 100, 55],
+                        type: "scroll"
+                    },
+                    shadow: 0,
+                    spinner: "off",
+                    stopLoop: "on",
+                    stopAfterLoops: 0,
+                    stopAtSlide: -1,
+                    shuffle: "off",
+                    autoHeight: "off",
+                    fullScreenAutoWidth: "off",
+                    fullScreenAlignForce: "off",
+                    fullScreenOffsetContainer: "",
+                    fullScreenOffset: "0",
+                    hideThumbsOnMobile: "off",
+                    hideSliderAtLimit: 0,
+                    hideCaptionAtLimit: 0,
+                    hideAllCaptionAtLilmit: 0,
+                    debugMode: false,
+                    fallbacks: {
+                        simplifyAll: "off",
+                        nextSlideOnWindowFocus: "off",
+                        disableFocusListener: false,
+                    }
+                });
+            });
+        </script>
+        <!-- Slider Revolution Ends -->
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+
+<!-- Section: COURSES -->
+<section class="bg-lighter">
+    <div class="container pb-40">
+        <div class="section-title mb-0">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="text-uppercase font-28 line-bottom mt-0 line-height-1">Our <span class="text-theme-color-2 font-weight-400">COURSES</span></h2>
+                    <h4 class="pb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row">
+                @{var courses = Model.Courses.Count >= 8 ? Model.Courses.Take(8) : Model.Courses;}
+                @foreach (var course in courses.OrderByDescending(c => c.CreatedDateAndTime))
+                {
+                    <div class="col-sm-6 col-md-3">
+                        <div class="service-block bg-white">
+                            <div class="thumb">
+                                <img alt="featured project" src="/images/project/4.jpg" class="img-fullwidth">
+                                <h4 class="text-white mt-0 mb-0"><span class="price">$@course.CoursePrice</span></h4>
+                            </div>
+                            <div class="content text-left flip p-25 pt-0">
+                                <h4 class="line-bottom mb-10">@course.CourseName</h4>
+                                <p>@Html.Raw(course.CourseDescription)</p>
+                                <a class="btn btn-dark btn-theme-colored btn-sm text-uppercase mt-10" href="#">view details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+
+<!-- Divider: Funfact -->
+<section class="divider parallax layer-overlay overlay-theme-colored-9" data-bg-img="/images/bg/bg2.jpg" data-parallax-ratio="0.7">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-smile mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="@Model.Students.Count" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">Happy Students</h5>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-note2 mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="@Model.Courses.Count" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">Our Courses</h5>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                <div class="funfact text-center">
+                    <i class="pe-7s-users mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="@Model.Teachers.Count" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">Our Teachers</h5>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 mb-md-0">
+                <div class="funfact text-center">
+                    <i class="pe-7s-cup mt-5 text-theme-color-2"></i>
+                    <h2 data-animation-duration="2000" data-value="24" class="animate-number text-white mt-0 font-38 font-weight-500">0</h2>
+                    <h5 class="text-white text-uppercase mb-0">Awards Won</h5>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+<!-- Section: team -->
+<section>
+    <div class="container pt-60">
+        <div class="section-title mb-0">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="mt-0 text-uppercase font-28 line-bottom">Our <span class="text-theme-color-2 font-weight-400">Teachers</span></h2>
+                    <h4 class="pb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h4>
+                </div>
+            </div>
+        </div>
+        <div class="section-content">
+            <div class="row multi-row-clearfix">
+                @foreach (var teacher in Model.Teachers)
+                {
+                    <div class="col-sm-6 col-md-3 mb-sm-30 sm-text-center">
+                        <div class="team maxwidth400">
+                            <div class="thumb"><img class="img-fullwidth" src="/images/team/team5.jpg" alt=""></div>
+                            <div class="content border-1px p-15 bg-light clearfix">
+                                <h4 class="name text-theme-color-2 mt-0">@teacher.UserName - <small>Teacher</small></h4>
+                                <p class="mb-20">@teacher.BioGraphInfo</p>
+                                <ul class="styled-icons icon-dark icon-circled icon-theme-colored icon-sm pull-left flip">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                                <a class="btn btn-theme-colored btn-sm pull-right flip" href="page-teachers-details.html">view details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

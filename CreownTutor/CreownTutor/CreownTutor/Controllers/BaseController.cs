@@ -9,11 +9,11 @@ namespace CreownTutorWeb.Controllers
 {
     public class BaseController : Controller
     {
-        public UserDetail User { get; set; }
+        //public UserDetail User { get; set; }
 
         public BaseController()
         {
-            this.User = SessionManager.GetSession();
+            //this.User = SessionManager.GetSession();
         }
     }
 }

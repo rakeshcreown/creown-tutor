@@ -44,7 +44,7 @@ namespace CreownTutorWeb.Controllers
         public ActionResult EditProfile(HttpPostedFileBase file, Teacher model, int id = 4)
         {
             Teacher teacher = new Teacher();
-            teacherrepo.UpdateData(file, model, id);
+            //teacherrepo.UpdateData(file, model, id);
             return View(teacher);
         }
     }

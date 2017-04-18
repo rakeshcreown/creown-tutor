@@ -22,7 +22,5 @@ namespace CreownTutor.Data
         public Nullable<int> SessionID { get; set; }
         public Nullable<System.DateTime> AddedTime { get; set; }
         public Nullable<int> ReviewAddedBy { get; set; }
-    
-        public virtual UserDetail UserDetail { get; set; }
     }
 }

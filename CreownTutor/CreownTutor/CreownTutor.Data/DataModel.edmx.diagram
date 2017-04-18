@@ -10,14 +10,12 @@
         <EntityTypeShape EntityType="CreownTutorModel.Role" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="CreownTutorModel.SessionStatu" Width="1.5" PointX="7.75" PointY="3.75" />
         <EntityTypeShape EntityType="CreownTutorModel.SubCategory" Width="1.5" PointX="12.375" PointY="0.75" />
-        <EntityTypeShape EntityType="CreownTutorModel.UserDetail" Width="1.5" PointX="0.75" PointY="4.125" />
         <AssociationConnector Association="CreownTutorModel.FK_SessionStatus_SessionStatus" />
         <EntityTypeShape EntityType="CreownTutorModel.C__MigrationHistory" Width="1.5" PointX="12.625" PointY="9.75" />
         <EntityTypeShape EntityType="CreownTutorModel.AspNetRole" Width="1.5" PointX="6" PointY="10.5" />
         <EntityTypeShape EntityType="CreownTutorModel.AspNetUserClaim" Width="1.5" PointX="6" PointY="15.625" />
         <EntityTypeShape EntityType="CreownTutorModel.AspNetUserLogin" Width="1.5" PointX="6" PointY="13" />
         <EntityTypeShape EntityType="CreownTutorModel.Review" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="CreownTutorModel.FK__Reviews__ReviewA__2D27B809" />
         <EntityTypeShape EntityType="CreownTutorModel.SessionUser" Width="1.5" PointX="7.375" PointY="6.75" />
         <EntityTypeShape EntityType="CreownTutorModel.Test" Width="1.5" PointX="9.375" PointY="8.75" />
         <EntityTypeShape EntityType="CreownTutorModel.AspNetUser" Width="1.5" PointX="8.25" PointY="14.375" />

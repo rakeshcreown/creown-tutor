@@ -24,5 +24,15 @@ namespace CreownTutor.Controllers
             repo.SendPreCourseNotification(cid, userid);
             return View();
         }
+
+        [HttpPost]
+        public ActionResult DeleteSession(string id)
+        {
+            CourseRepository repo = new CourseRepository();
+            int cid = 0;
+            int.TryParse(id, out cid);
+            repo.DeleteSession(cid);
+            return View();
+        }
     }
 }

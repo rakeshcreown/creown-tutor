@@ -8,7 +8,7 @@ namespace CreownTutor.Data.Model
 {
     public class Teacher
     {
-        public UserDetail User { get; set; }
+        //public UserDetail User { get; set; }
         public List<Course> Courses { get; set; }
         public List<Course> MySubscribedCourses { get; set; }
         public List<Review> Reviews { get; set; }

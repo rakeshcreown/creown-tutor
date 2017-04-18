@@ -30,7 +30,6 @@ namespace CreownTutor.Data
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<SessionStatu> SessionStatus { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
-        public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }

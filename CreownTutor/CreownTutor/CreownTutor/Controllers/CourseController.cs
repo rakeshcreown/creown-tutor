@@ -57,6 +57,7 @@ namespace CreownTutorWeb.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult CreateCourse()
         {
             CourseNewViewModel model = new CourseNewViewModel();
@@ -71,6 +72,7 @@ namespace CreownTutorWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult CreateCourse(CourseNewViewModel model)
         {
             model.CurrentUserid = User.Identity.GetUserId();
@@ -79,17 +81,19 @@ namespace CreownTutorWeb.Controllers
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Registration(bool isEnrolled = false, int id = 2)
         {
             Student student = new Student();
             StudentRepository studentrepo = new StudentRepository();
             student.Courses = studentrepo.GetLatestCourseByTeacher(User.Identity.GetUserId());
-            student.User = studentrepo.GetStudents(id);
+           // student.User = studentrepo.GetStudents(id);
             student.CourseRegistrations = studentrepo.GetRegisteredCourses(isEnrolled);
             return View(student);
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Registration(Enrollment model)
         {
             EnrollmentRepository er = new EnrollmentRepository();
@@ -103,7 +107,8 @@ namespace CreownTutorWeb.Controllers
             return RedirectToAction("Registration");
         }
 
-        public ActionResult EditCourse(int id = 4, string isenrolled = "true")
+        [Authorize]
+        public ActionResult EditCourse(int id, string isenrolled = "true")
         {
             CourseNewViewModel model = new CourseNewViewModel();
             model = courseRepo.GetEditCourseDetail(id, isenrolled);
@@ -112,12 +117,16 @@ namespace CreownTutorWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult EditCourse(CourseNewViewModel model)
         {
             courseRepo.UpdateCourseInfo(model);
-            return View(model);
+            //LoadCategories(model);
+            return RedirectToAction("EditCourse", new { id = model.CourseID });
+            //return View(model);
         }
 
+        [Authorize]
         public ActionResult EditCourseList(int id = 4)
         {
             Teacher teacher = new Teacher();
@@ -127,6 +136,7 @@ namespace CreownTutorWeb.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult EditCourseList(int id, string name)
         {
             if (name == "edit")

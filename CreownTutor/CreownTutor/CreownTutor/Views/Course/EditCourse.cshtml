@@ -33,6 +33,7 @@
                     <hr>
                     @using (Html.BeginForm("EditCourse", "Course", FormMethod.Post, new { @class = "clearfix" }))
                     {
+                        @Html.HiddenFor(m=>m.CourseID)
                         @*<form id="job_apply_form" name="job_apply_form" method="post" enctype="multipart/form-data">*@
                         <div class="row">
                             <div class="col-md-6 col-md-push-0">
@@ -91,7 +92,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Message <small>*</small></label>
-                                    <textarea name="form_message" class="form-control required" rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
+                                    <textarea name="form_message" class="form-control " rows="5" placeholder="Your cover letter/message sent to the employer"></textarea>
                                 </div>
                                 @*<div class="form-group">
                                         <label>C/V Upload</label>
@@ -162,7 +163,6 @@
             </div>
         </div>
     </div>
-    @Html.HiddenFor(m=>m.CourseID)
 </section>
 
 <script type="text/javascript">
